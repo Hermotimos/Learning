@@ -2,7 +2,7 @@
 from: http://norvig.com/spell-correct.html
 """
 
-from Learning.reading_code.reading_Spelling_Corrector import *
+from reading_Spelling_Corrector import *
 
 
 def unit_tests():
