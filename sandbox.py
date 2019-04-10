@@ -59,17 +59,3 @@
 #     print(i)
 
 
-# checking loop_on_exception()
-
-def summary(a, b):
-    assert loop_on_exception(summary(a, b), assertion=isinstance(a, int) and isinstance(b, int))
-    return a + b
-
-
-def loop_on_exception(calling_function, assertion):
-    if assertion:
-        return True
-    else:
-        print('Assertion error')
-
-print(summary(3, 6))
