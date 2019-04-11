@@ -79,3 +79,22 @@ dict_for_indexing = {'Malinowski, Bronislaw': ('3', '5', '17', '167'),
                      'Geertz, Clifford': ('3', '5', '78', '89')}
 print(make_index(**dict_for_indexing))
 
+
+
+print('##########################################################################')
+print('MORE UNPACKING')
+
+(x, y), color = ((1, 2), 'red')
+print(x)
+print(y)
+print(color)
+
+
+def color_of_point(point):
+        (_, _), color = point
+        return color
+
+
+points = [((1, 2), 'red'), ((3, 4), 'green'), ((7, 9), 'blue')]
+sorted_by_color = sorted(points, key=color_of_point)
+print(sorted_by_color)
