@@ -10,8 +10,8 @@ for year in range(depositDuration):
     for month in range(0, 12):
         depositResult += depositResult * (yearlyInterestRate/12)
 
-print("After {} year(s) your time deposit of {} at {} interest rate "
-      "will give {}".format(depositDuration, depositStart, yearlyInterestRate, depositResult))
+print(f"After {depositDuration} year(s) your time deposit of {depositStart} at {yearlyInterestRate} interest rate "
+      f"will give {depositResult}")
 
 # [to do] exceptions: floats instead of integers - months possible to choose
 # [to do] other exceptions?

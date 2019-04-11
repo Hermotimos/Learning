@@ -27,7 +27,7 @@ def delete_n(seq=""):
     :return: seq without "N" and "n"
     """
     return seq.replace("N", "").replace("n", "")
-print("Test delete_n:", delete_n(dna_sample1))
+# print("Test delete_n:", delete_n(dna_sample1))
 
 
 def isdna(seq):
@@ -66,10 +66,9 @@ def find_errtypes(seq=""):
         if n not in ('n', 'N', '-'):
             err3 = True
     return ("Determined following errors in DNA sequence:\n"
-            "1. {}: Laser misreads: 'N' or 'n'\n"
-            "2. {}: Sequence unreadable: '-'\n"
-            "3. {}: Other errors"
-            .format(err1, err2, err3))
+            f"1. {err1}: Laser misreads: 'N' or 'n'\n"
+            f"2. {err2}: Sequence unreadable: '-'\n"
+            f"3. {err3}: Other errors")
 # print("Test find_errtypes:", find_errtypes('AAAAGGGTTTnnnAAAGGTTTTnNnN'))
 
 
@@ -86,7 +85,7 @@ def seq_cnt_case_insensitive(dna_seq="", searched_seq=""):
         return dna_seq.count(searched_seq)
     else:
         return("Given DNA sequence does not belong to the DNA of a terrestrial lifeform "
-               "or it contains following errors: \n{}".format(find_errtypes(dna_seq)))
+               f"or it contains following errors: \n{find_errtypes(dna_seq)}")
 
 
 print("GAGA", seq_cnt_case_insensitive(dna_sample1, "GAGA"))

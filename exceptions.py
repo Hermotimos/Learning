@@ -2,7 +2,7 @@
 # 1)
 
 
-def get_rations(list1, list2):
+def get_ratios(list1, list2):
     ratios = []
     for index in range(len(list1)):
         try:
@@ -17,7 +17,7 @@ def get_rations(list1, list2):
 lista1 = [0, 1, 2, 3, 4, 5]
 lista2 = [0, 4, 4, 4, 4, 4]
 
-print(get_rations(lista1, lista2))
+print(get_ratios(lista1, lista2))
 
 # special float value 'nan' - to secure coherence in the list (only floats)
 print(type(float('nan')))
@@ -72,7 +72,7 @@ def avg(list):
         print("Warning: some students have no results data (indicated by 0 as average score)")
         return 0.0
     except Exception as exception1:                                 # handling of other exceptions
-        print("An error occured: {}".format(exception1))
+        print(f"An error occured: {exception1}")
 
 
 test_grades = [[['Peter', 'Parker'], [80.0, 70.0, 85.0]],
