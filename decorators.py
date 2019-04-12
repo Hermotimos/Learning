@@ -119,3 +119,70 @@ def say_whee():
 
 say_whee()
 print('#############################################################################################################')
+
+
+# MORE ON DECORATORS
+#        - decorators can be moved to separate file and then imported
+#        - to make decorators accept arguments from decorated functions => put *args, **kwargs as arguments of wrapper
+#        - to make decotators return values from decorated functions => make wrapper-function return them
+
+
+def do_twice(any_function):
+    def wrapper(*args, **kwargs):                   # wrapper() automatically gets *args and **kwargs from any_function
+        any_function(*args, **kwargs)
+        any_function(*args, **kwargs)
+    return wrapper
+
+
+@do_twice
+def call_my_name(name):
+    print(name, '!!!')
+
+
+call_my_name('Mark')
+print('#############################################################################################################')
+
+
+def do_twice_with_return(any_function):
+    def wrapper(*args, **kwargs):                   # wrapper() automatically gets *args and **kwargs from any_function
+        any_function(*args, **kwargs)
+        return any_function(*args, **kwargs)
+    return wrapper
+
+
+@do_twice_with_return
+def call_my_name2(name):
+    print(name, '!!!')
+    return 'value returned from decorated function this is'
+
+
+x = call_my_name2('Bob')
+print(x)
+print('#############################################################################################################')
+
+
+# MORE ON DECORATORS
+#        - decorated functions are technically assigned become wrappers inside decorating functions
+#        - their __name__ is becomes the name of the wrapper, which may be confusing
+#        - to preserve their names use in-built @functools.wraps decorator from 'functools' module
+
+print(call_my_name2.__name__)
+
+import functools
+
+
+def do_thrice(any_function):
+    @functools.wraps(any_function)
+    def wrapper(*args, **kwargs):                   # wrapper() automatically gets *args and **kwargs from any_function
+        any_function(*args, **kwargs)
+        return any_function(*args, **kwargs)
+    return wrapper
+
+
+@do_thrice
+def call_my_name3(name):
+    print(name, '!!!')
+    return 'value returned from decorated function this is'
+
+
+print(call_my_name3.__name__)
