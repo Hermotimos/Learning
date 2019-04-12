@@ -1,6 +1,5 @@
 # BASICS FOR UNDERSTANDING DECORATORS:
-
-# [1] FUNCTIONS AS FIRST-CLASS OBJECTS
+#       FUNCTIONS AS FIRST-CLASS OBJECTS
 #       - like all objects in Py functions can be passed around and used as arguments
 #       - functions can be defined inside other functions
 #       - it's possible to return a function or it's value in the return of another function
@@ -21,7 +20,7 @@ print(function_using_other_functions_as_arg(beep_function))
 print(function_using_other_functions_as_arg(beep_function).split()[1])
 print(function_using_other_functions_as_arg(function_using_other_functions_as_arg))
 print(function_using_other_functions_as_arg(print))
-print()
+print('#############################################################################################################')
 
 
 # The order in which inner functions are defined doesn't matter => the order in which they're called does
@@ -39,7 +38,7 @@ def function_with_inner_functions():
 
 
 function_with_inner_functions()
-print()
+print('#############################################################################################################')
 
 
 # To return function from inside another function, we have to put it in return statement without parentheses ()
@@ -79,3 +78,44 @@ print()
 var3 = function_with_inner_functions('sth else')
 # var3() - this would cause error
 print(var3)
+print('#############################################################################################################')
+
+
+# SIMPLE DECORATORS:
+#           Decorator is a function that accepts another function as argument and modifies it's behavior
+#           Decorator wraps a function in some more code.
+#           Decorated function becomes an argument of decorating function
+
+def decorator_function(decorated_function):
+    def wrapper_func():
+        print('Something happens before decorated function is called')
+        decorated_function()
+        print('Something happens after decorated function is called')
+    return wrapper_func                                                     # NO PARENTHESES HERE after wrapper_func
+
+
+def say_whee():
+    print('Wheeee!')
+
+
+whee = decorator_function(say_whee)                                         # NO PARENTHESES HERE after say_whee
+whee()
+print('#############################################################################################################')
+
+
+# The above statements can be expressed in a more concise way with '@' operator
+def decorator_function(decorated_function):
+    def wrapper_func():
+        print('Something happens before decorated function is called')
+        decorated_function()
+        print('Something happens after decorated function is called')
+    return wrapper_func                                                     # NO PARENTHESES HERE after wrapper_func
+
+
+@decorator_function                             # thus say_whee() is doomed to always be arg of decorator_function()
+def say_whee():
+    print('Wheeee, here "@" is used!')
+
+
+say_whee()
+print('#############################################################################################################')
