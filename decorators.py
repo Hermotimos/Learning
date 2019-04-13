@@ -206,3 +206,27 @@ def call_my_name3(name):
 
 
 print(call_my_name3.__name__)
+print('#############################################################################################################')
+
+
+# EXAMPLE: DECORATOR TO VERIFY ANSWERS TO INPUT-FUNCTIONS:
+
+def verify_decorator2(func):
+    def wrapper():
+        value = func()
+        try:
+            assert value in ('m', 'f')
+            return value
+        except AssertionError:
+            print('Wrong value entered. Please try again.')
+            return wrapper()
+    return wrapper
+
+
+@verify_decorator2
+def ask_sex():
+    answ = input("Enter 'm' for male or 'f' for female\n").lower()
+    return answ
+
+
+print(ask_sex())
