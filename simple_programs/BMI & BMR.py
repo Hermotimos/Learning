@@ -68,3 +68,6 @@ def main():
     caloric_needs = calculate_caloric_needs(bmr)
     print("\nRESULT:\nYour basal metabolic rate (BMR) = 'no activity' mode : ", bmr, "kcal")
     print("Caloric needs for your lifestyle: ", caloric_needs, "kcal")
+
+
+main()
