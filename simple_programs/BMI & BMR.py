@@ -1,5 +1,11 @@
-# [to do]: exceptions; make this into a function + or into a class ?
-# review for clean code - names, short code, context
+"""
+    Calculates personal BMR (basal metabolic rate) and resulting daily caloric needs based on user input.
+    This simple program was written for learning and exercise purposes.
+
+    Sources:
+        https://www.flynerd.pl/2016/06/jak-obliczyc-zapotrzebowanie-kaloryczne-krok-po-kroku.html
+"""
+
 
 # Calculating basal metabolic rate (BMR)
 sex_mod = 0
