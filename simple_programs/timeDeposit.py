@@ -1,9 +1,18 @@
-# enables user to predict the amount of money in time deposit after given time
-# interest rate is added monthly
+"""
+    Calculates the amount of money in time deposit after given time with monthly compound interest payout.
+    This simple program was written for learning and exercise purposes.
 
-depositStart = float(input("How much money would you like to put into time deposit? "))
-yearlyInterestRate = float(input("What is the annual interest rate in %? ")) / 100
-depositDuration = int(input("For how many years should the deposit last? "))
+    Used features:
+        - for loop
+
+    Sources:
+        https://www.flynerd.pl/2017/01/python-3-formatowanie-napisow.html
+"""
+
+
+depositStart = float(input("How much money would you like to put into time deposit? \n"))
+yearlyInterestRate = float(input("What is the annual interest rate in %? \n")) / 100
+depositDuration = int(input("For how many years should the deposit last? \n"))
 
 depositResult = depositStart
 for year in range(depositDuration):
@@ -11,7 +20,5 @@ for year in range(depositDuration):
         depositResult += depositResult * (yearlyInterestRate/12)
 
 print(f"After {depositDuration} year(s) your time deposit of {depositStart} at {yearlyInterestRate} interest rate "
-      f"will give {depositResult}")
+      f"will amount to {depositResult}")
 
-# [to do] exceptions: floats instead of integers - months possible to choose
-# [to do] other exceptions?
