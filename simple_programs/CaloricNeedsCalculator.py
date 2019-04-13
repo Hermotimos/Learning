@@ -2,6 +2,13 @@
     Calculates personal BMR (basal metabolic rate) and resulting daily caloric needs based on user input.
     This simple program was written for learning and exercise purposes.
 
+    Used features:
+        - user defined funtions
+        - nested functions
+        - decorators
+        - if else statements
+        - assertions, exception handling
+
     Sources:
         https://www.flynerd.pl/2016/06/jak-obliczyc-zapotrzebowanie-kaloryczne-krok-po-kroku.html
 """
