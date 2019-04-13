@@ -8,6 +8,7 @@
         - decorators
         - if else statements
         - assertions, exception handling
+        - f-strings
 
     Sources:
         https://www.flynerd.pl/2016/06/jak-obliczyc-zapotrzebowanie-kaloryczne-krok-po-kroku.html
