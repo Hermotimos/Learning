@@ -8,6 +8,13 @@
         - simple decorators
         - decorators: accepting args, returning values
         - __name__ of decorated function
+
+    Sources:
+        https://dbader.org/blog/python-first-class-functions
+        https://www.programiz.com/python-programming/closure
+        https://www.geeksforgeeks.org/python-closures/
+        https://dbader.org/blog/python-decorators
+        https://realpython.com/primer-on-python-decorators/
 """
 
 
