@@ -1,3 +1,12 @@
+"""
+    This file is for learning and exercise purposes.
+
+    Topics:
+        - exceptions: syntax and catching
+        - examples: ZeroDivisionError, AssertionError
+"""
+
+
 ############################################################################################
 # 1)
 
@@ -85,7 +94,7 @@ print(yearly_scores_with_avg(test_grades))
 print()
 
 
-# ZADANIE [moja wersja]
+# ZADANIE [my version]
 def celcius_to_kelvin(temp):
     try:
         assert temp >= -273.15

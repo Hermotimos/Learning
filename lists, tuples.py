@@ -1,3 +1,13 @@
+""""
+    This file is for learning and exercise purposes.
+
+    Topics:
+        - lists, tuples
+        - adding, transformations
+        - mutability vs. immutability,
+"""
+
+
 # LISTS VS TUPLES
 
 lista1 = [1, 2, 3, 4, 5]
@@ -82,6 +92,7 @@ print()
 # First Example: loop will omit elements cause indexing doesn't follow changes
 # Second Example: ok
 
+
 def remove_dups(L1, L2):
     for e in L1:
         if e in L2:
@@ -100,21 +111,9 @@ def remove_dups(L1, L2):
         if e in L2:
             L1.remove(e)
 
+
 List1 = [1, 2, 3, 4]
 List2 = [1, 2, 5, 6]
 remove_dups(List1, List2)
 
 print(List1)
-
-
-x = [x**3 for x in range(1, 10)]
-print(x)
-x = {n for n in [0, 7, 0, 1, 2, 6, 0, 2, 1]}
-print(x)
-x = {w: len(w) for w in ('apple', 'I', 'have', 'no')}
-print(x)
-x = tuple(sign for sign in 'This is nothing')
-print(x)
-x = frozenset({n for n in [0, 7, 0, 1, 2, 6, 0, 2, 1]})
-print(x)
-

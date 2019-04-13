@@ -1,3 +1,16 @@
+"""
+    This file is for learning and exercise purposes.
+
+    Topics:
+        - functions as args
+        - inner functions (= nested functions)
+        - returning function vs. returning function's value within another function
+        - simple decorators
+        - decorators: accepting args, returning values
+        - __name__ of decorated function
+"""
+
+
 # BASICS FOR UNDERSTANDING DECORATORS:
 #       FUNCTIONS AS FIRST-CLASS OBJECTS
 #       - like all objects in Py functions can be passed around and used as arguments

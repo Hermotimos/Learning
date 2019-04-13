@@ -1,7 +1,16 @@
+""""
+    This file is for learning and exercise purposes.
 
-# https://www.python.org/dev/peps/pep-0008/
-# https://dbader.org/blog/python-lambda-functions
-# https://treyhunner.com/2018/09/stop-writing-lambda-expressions/
+    Topics:
+        - simple lambda syntax
+        - examples: map(), filter(), reduce()
+
+    Sources:
+        https://www.python.org/dev/peps/pep-0008/
+        https://dbader.org/blog/python-lambda-functions
+        https://treyhunner.com/2018/09/stop-writing-lambda-expressions/
+"""
+
 
 # SYNTAX:
 # lambda arguments: expression
@@ -68,7 +77,5 @@ my_letters = ('a', 'b', 'c', 'c', 'c', 'c', 'd', 'a', 'g', 'b', 'b', 'b')
 concatenated = reduce(lambda a, b: a + b, my_letters)
 print(concatenated)
 
-
-def somefunc(): return 'a'
 
 

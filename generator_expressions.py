@@ -1,3 +1,12 @@
+"""
+    This file is for learning and exercise purposes.
+
+    Topics:
+        - generator expressions
+        - looping over generator expressions
+"""
+
+
 my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 generator_expression = (x**2 for x in my_list)

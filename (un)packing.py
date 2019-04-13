@@ -1,3 +1,11 @@
+"""
+    This file is for learning and exercise purposes.
+
+    Topics:
+        - packing and unpacking arguments
+        - multiple assignement
+"""
+
 
 print('UNPACKING TUPLE')
 tuple_1 = [1, 2, 3, 4]

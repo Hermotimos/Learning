@@ -1,3 +1,15 @@
+""""
+    This file is for learning and exercise purposes.
+
+    Topics:
+        - creating a class
+        - creating an instance of a class
+        - basic dunder methods: __init__, __str__, __add__, __sub__, __float__
+
+    Sources:
+        https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/lecture-videos/lecture-8-object-oriented-programming/
+"""
+
 
 # 1)
 
@@ -10,6 +22,7 @@ class Coordinate(object):
         x_diff_sq = (self.x - other.y)**2
         y_diff_sq = (self.y - other.y)**2
         return (x_diff_sq + y_diff_sq)**0.5
+
 
 print('\n', '#' * 22, '1-2', '#' * 22, '\n')
 coord1 = Coordinate(0, 0)

@@ -1,4 +1,7 @@
-#
+"""
+    This is sandbox file for learning and exercise purposes.
+"""
+
 # # y/n function for TV series database with recursion :)
 #
 #
