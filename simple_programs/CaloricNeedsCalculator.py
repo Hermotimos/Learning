@@ -7,28 +7,6 @@
 """
 
 
-def verify_answer_decorator(func):
-    """ Verify assertions about user input. If false give error message and call input-functions recursively. """
-
-    def wrapper():
-        try:
-            value = func()
-            if func.__name__ == 'ask_lifestyle':
-                assert 0 < int(value) < 6
-                return int(value)
-            if func.__name__ == 'ask_sex':
-                assert value in ('m', 'f')
-                return value
-            if func.__name__ == 'ask_weight' or 'ask_height' or 'ask_age':
-                assert float(value)
-                return float(value)
-        except (AssertionError, ValueError):
-            print('Wong value entered. Please try again.')
-            return wrapper()
-
-    return wrapper
-
-
 def main():
     """ Print info about BMR and caloric needs based on user's input. """
     bmr = round(calculate_bmr(), 2)
@@ -103,6 +81,28 @@ def calculate_bmr():
 
     bmr = 10 * weight + 6.25 * height - 5 * age + sex_mod
     return bmr
+
+
+def verify_answer_decorator(func):
+    """ Verify assertions about user input. If false give error message and call input-functions recursively. """
+
+    def wrapper():
+        try:
+            value = func()
+            if func.__name__ == 'ask_lifestyle':
+                assert 0 < int(value) < 6
+                return int(value)
+            if func.__name__ == 'ask_sex':
+                assert value in ('m', 'f')
+                return value
+            if func.__name__ == 'ask_weight' or 'ask_height' or 'ask_age':
+                assert float(value)
+                return float(value)
+        except (AssertionError, ValueError):
+            print('Wong value entered. Please try again.')
+            return wrapper()
+
+    return wrapper
 
 
 main()
