@@ -4,6 +4,11 @@
     Topics:
         - packing and unpacking arguments
         - multiple assignement
+
+    Sources:
+        https://jpt-pynotes.readthedocs.io/en/latest/functions.html#argument-lists
+        https://treyhunner.com/2018/03/tuple-unpacking-improves-python-code-readability/
+        https://www.geeksforgeeks.org/packing-and-unpacking-arguments-in-python/
 """
 
 

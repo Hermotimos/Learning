@@ -3,6 +3,8 @@
 
     Topics:
         - comprehensions
+    Sources:
+        https://dbader.org/blog/list-dict-set-comprehensions-in-python
 """
 
 
