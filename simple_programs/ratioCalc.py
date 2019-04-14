@@ -1,12 +1,12 @@
 """
-    Calculate proportion. Ex. 700g berries cost 24.99 => 1100g berries cost x.
     This simple program was written for learning and exercise purposes.
+    Calculate proportion. Ex. 700g berries cost 24.99 => 1100g berries cost x.
 
     Features involved:
         - user defined functions
         - multiple assignment/tuple unpacking
         - format()
-        - assertion, exception handling
+        - exception handling, assertion
         - decorators
 """
 

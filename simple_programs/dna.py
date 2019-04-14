@@ -1,12 +1,12 @@
 """
+    This simple program was written for learning and exercise purposes.
     Searches for nucleobases' sequence occurences in a DNA sample (constant SAMPLE_1). Returns number of occurrences.
     If invalid sequence is searched, informs user about errors and offers options of cleansing the sequence.
 
-    This simple program was written for learning and exercise purposes.
 
     Features involved:
         - flow control: for loop, if else
-        - exceptions
+        - exception handling, assertion
         - comprehensions
         - multiple assignment
         - arguments packing/unpacking

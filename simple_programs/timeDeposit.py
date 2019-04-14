@@ -1,9 +1,10 @@
 """
-    Calculates the amount of money in time deposit after given time with monthly compound interest payout.
     This simple program was written for learning and exercise purposes.
+    Calculates the amount of money in time deposit after given time with monthly compound interest payout.
 
     Features involved:
         - nested for loop
+        - f-strings
 
     Sources:
         https://www.flynerd.pl/2017/01/python-3-formatowanie-napisow.html

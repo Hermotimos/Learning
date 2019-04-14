@@ -1,6 +1,6 @@
 """
-    Calculates personal BMR (basal metabolic rate) and resulting daily caloric needs based on user input.
     This simple program was written for learning and exercise purposes.
+    Calculates personal BMR (basal metabolic rate) and resulting daily caloric needs based on user input.
 
     Features involved:
         - user defined funtions
