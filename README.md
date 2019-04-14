@@ -1,7 +1,7 @@
-# LEARNING
+# Learning
 
 ## General info
-This directory contains learning materials in forms of examples and exercises, simple programs and code copier from other sites and repositories for analysis and experimentation purposes.
+This directory contains learning materials in forms of examples and exercises, simple programs and code copied from other sites and repositories for analysis and experimentation purposes.
 
 ## Technologies
 Python 3.7
