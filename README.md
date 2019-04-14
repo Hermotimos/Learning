@@ -26,14 +26,22 @@ http://norvig.com/spell-correct.html
 
 #### simple_programs
 https://www.flynerd.pl/tag/python-kurs
+
 #### loose files
 https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/lecture-videos/
+
 https://dbader.org/blog/
+
 https://realpython.com/
+
 https://www.python.org/dev/peps/pep-0008/
+
 https://www.geeksforgeeks.org/python-programming-language/
+
 https://treyhunner.com/blog/archives/
+
 https://jpt-pynotes.readthedocs.io/en/latest/index.html
+
 https://www.programiz.com/python-programming
 
 
