@@ -1,6 +1,23 @@
-DNA_NUCLEOBASES = {"A", "C", "G", "T", "a", "c", "g", "t"}
+"""
+    Searches for nucleobases' sequence occurences in a DNA sample (constant SAMPLE_1). Returns number of occurrences.
+    If invalid sequence is searched, informs user about errors and offers options of cleansing the sequence.
 
-dna_sample1 = "ACTGTGCTGACTCCCGGTGCTGCCGCTGCCATAGCTAAAGCCCGGGTCCTGGTAGGCAGGCGGGAAGCAGGGTGGGGGTCCCGGGTACTGGTAGGGGTAGCCCTGACCC" \
+    This simple program was written for learning and exercise purposes.
+
+    Features involved:
+        - flow control: for loop, if else
+        - exceptions
+        - comprehensions
+        - multiple assignment
+        - arguments packing/unpacking
+
+    Sources:
+        https://www.flynerd.pl/2018/01/python-metody-typu-string.html
+"""
+
+
+DNA_NUCLEOBASES = {"A", "C", "G", "T", "a", "c", "g", "t"}
+SAMPLE_1 = "ACTGTGCTGACTCCCGGTGCTGCCGCTGCCATAGCTAAAGCCCGGGTCCTGGTAGGCAGGCGGGAAGCAGGGTGGGGGTCCCGGGTACTGGTAGGGGTAGCTGC" \
       "AGAGGCGGGGGGGCAGCCGGGTGGGGCAGCGGGGCCAGCGTGTCCTGAA-CGAAGTCCCACTGGAGCCACTGTTGAGGTTCAGGGTGGCGAGATCTGGCGGNNNAGGGT" \
       "AGGTGAGGGCCGCGGAGGGGCCTCCGGCGTTCCCCTCCCCCCCGCCCTGAAACCCGAAGCCCCCACTCACTGCTGCAGAGATCCCCTGAAAACGTAGTAGCACTGCTCg" \
       "agacAGGTGATCTGTTGACCTGAAACCGCAGGAAGCCGTGCTTCAGCAAGCTGCTGGCGTACTTCCGGGCCT---GCCGCTCCTTGAAGCCCTCCACGTGTGTGTACAG" \
@@ -13,83 +30,84 @@ dna_sample1 = "ACTGTGCTGACTCCCGGTGCTGCCGCTGCCATAGCTAAAGCCCGGGTCCTGGTAGGCAGGCGGGA
       "TACATCCCCTGTTCcggCCAACACACAGACATGAGCAGGATGGGCTGCACAAGGTGGGCACGGGTGCCTGTGCACACGTCTGTGCAGGGAGTTGGGGACAGGCAACACA" \
       "CACGTGTCACAGCCCCATGACGGggcaattgcGCCATGCTGGCTGAATGGCAGAGACGCCCCTCCAAGCCTCGGTTTCTGCTGGGGCCCTCAGGAGCTGCCACTTACGT" \
       "GGAGCACCAGGCACGGAGCTGGTTAGTGAGGAGGAGCTGGTGCGCGTGACGGCGCTGGAGCAGGGACTCGTACCGTAGCGGGGCAGGGCNNNTGTCAGTGCCGCCGTGT" \
-      "GGtcagcggcgatCGGCG-GGTCGATGGGCCGCACCGGGTCAGCTGGGTGNAGACACGTGGCGATGACAGGCGGACAGATGGACAGGGTGGGAGGGCAGGGTGCAGGGC" \
+      "GGtcagcggcgatCGGCG-GGTCGATGGGCCGCACCGGGTCAGCTGGTGNAGACnACGTGGCGATGACAGGCGGACAGATGGACAGGGTGGGAGGGCAGGGTGCAGGGC" \
       "ACAGAGGAGAGAGGCCTTCAGGCTAGGTAGGCGCCCCCTCCCCATCCCGccccGTGTGCCCCGAGGGCCACTCACCCCGTGGGACGGTGAAGTAGCTTCG-GGCGTTGG" \
       "GTCCAGCACTTGGCCACAGTGAGGCTGNAAATGGCTGCAGGAACGGTGGTCCCCCCGCAAGGCCCCCATGGTCCCACCTCCCTGCCTGGCCCCTCCCGCTCCAGCGCCN" \
       "CCAGCC"
 
 
-def delete_n(seq=""):
-    """
-    Deletes "N" and "n" from sequence as "N" stands for misread that has been corrected:
-    Laser goes back to the misread nucleobase so there's no gap in data
-    :param seq: any DNA sequence
-    :return: seq without "N" and "n"
-    """
-    return seq.replace("N", "").replace("n", "")
-# print("Test delete_n:", delete_n(dna_sample1))
+def main():
+    searched_seq = ask_valid_sequence()
+    print(searched_seq, '\n', count_sequence_in_sample(searched_seq, SAMPLE_1))
+
+
+def count_sequence_in_sample(sequence, sample):
+    """ Return count of given DNA sequence/nucleobase occurrences in sample DNA sequence ignoring case. """
+    sequence, sample = sequence.upper(), sample.upper()
+    return sample.count(sequence)
+
+
+def ask_valid_sequence():
+    sequence = input("Please enter sequence to search for in the DNA sample 'SAMPLE_1'\n")
+    try:
+        assert isdna(sequence)
+        return sequence
+    except AssertionError:
+        answer = input("Given DNA sequence does not belong to the DNA of a terrestrial lifeform "
+                       f"or it contains following errors: \n{get_error_types(sequence)}"
+                       "\nChoose option:\n"
+                       "1 - enter new sequence\n"
+                       "2 - continue with current sequence: delete laser misread errors ('n' and 'N')\n"
+                       "3 - continue with current sequence: delete all errors excluding lost data ('-')\n"
+                       "4 - continue with current sequence: delete all errors\n")
+        if answer == "1":
+            return ask_valid_sequence()
+        elif answer == "2":
+            return from_sequence_delete_errors(sequence, 'n')
+        elif answer == "3":
+            errors = find_errors(sequence).copy()
+            errors.remove("-")
+            return from_sequence_delete_errors(sequence, *errors)
+        elif answer == '4':
+            errors = find_errors(sequence)
+            print(from_sequence_delete_errors(sequence, *errors))
+            return from_sequence_delete_errors(sequence, *errors)
 
 
 def isdna(seq):
-    """
-    Checks whether given sequence is combined of possible DNA nucleobases
-    :param seq: any dna sequence
-    :return: True | False
-    """
+    """ Verify if sequence is combined of possible DNA nucleobases. Return bool. """
     assert isinstance(seq, str), "Please enter data in str format!"
     return set(seq).issubset(DNA_NUCLEOBASES)
-# print("Test is_dna_seq:", isdna("atgc"))
-# print("Test is_dna_seq:", isdna("h"))
-# print("Test is_dna_seq:", isdna(2))
 
 
-def find_errs(seq=""):
-    """
-    Finds signs in sequence that aren't valid DNA nucleabases
-    :param seq: Any DNA sequence
-    :return: Set of signs
-    """
+def get_error_types(seq):
+    """ Print info about erorrs present in errors set. """
+    err1, err2, err3 = False, False, False
+    errors_set = find_errors(seq)
+    for n in errors_set.copy():             # necessary to avoid: 'RuntimeError: Set changed size during iteration'
+        if n == 'n' or n == 'N':
+            err1 = True
+            errors_set.remove(n)
+        if n == '-':
+            err2 = True
+            errors_set.remove(n)
+        if n not in ('n', 'N', '-'):
+            err3 = True
+    return (f"1. [{err1}]: Laser misreads: 'N' or 'n'\n"
+            f"2. [{err2}]: Sequence unreadable: '-'\n"
+            f"3. [{err3}]: Other errors: {', '.join(e for e in errors_set)}")
+
+
+def from_sequence_delete_errors(sequence, *errors):
+    """ Return sequence without given pattern regardless of pattern's upper/lower case. """
+    for err in errors:
+        sequence = sequence.replace(err.lower(), "").replace(err.upper(), "")
+    return sequence
+
+
+def find_errors(seq):
+    """ Return set of letters in sequence that aren't valid DNA nucleabases. """
     return {n for n in set(seq) if n not in DNA_NUCLEOBASES}
 
 
-def find_errtypes(seq=""):
-    """
-    :param seq: Any DNA sequence
-    :return: Info about types of errors found in entry sequence
-    """
-    err1, err2, err3 = False, False, False
-    for n in find_errs(seq):
-        if n == 'n' or n == 'N':
-            err1 = True
-        if n == '-':
-            err2 = True
-        if n not in ('n', 'N', '-'):
-            err3 = True
-    return ("Determined following errors in DNA sequence:\n"
-            f"1. {err1}: Laser misreads: 'N' or 'n'\n"
-            f"2. {err2}: Sequence unreadable: '-'\n"
-            f"3. {err3}: Other errors")
-# print("Test find_errtypes:", find_errtypes('AAAAGGGTTTnnnAAAGGTTTTnNnN'))
-
-
-def seq_cnt_case_insensitive(dna_seq="", searched_seq=""):
-    """
-    Counts DNA sequence or single nucleobase occurrences in a given DNA sequence
-    :param dna_seq: DNA sequence
-    :param searched_seq: searched nucleobae (A or C or G or T) or DNA sequence
-    :return: count of nucleobases/DNA sequences regardless of nucleobase letter's case
-    """
-    if isdna(searched_seq):
-        dna_seq = dna_seq.upper()
-        searched_seq = searched_seq.upper()
-        return dna_seq.count(searched_seq)
-    else:
-        return("Given DNA sequence does not belong to the DNA of a terrestrial lifeform "
-               f"or it contains following errors: \n{find_errtypes(dna_seq)}")
-
-
-print("GAGA", seq_cnt_case_insensitive(dna_sample1, "GAGA"))
-print("CTGAA", seq_cnt_case_insensitive(dna_sample1, "CTGAA"))
-print("c", seq_cnt_case_insensitive(dna_sample1, "c"))
-print()
-print("JJJJXXX", seq_cnt_case_insensitive(dna_sample1, "JJJJXXX"))
+main()
