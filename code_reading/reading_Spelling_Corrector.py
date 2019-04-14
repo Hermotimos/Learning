@@ -1,6 +1,8 @@
 """
-from: http://norvig.com/spell-correct.html
-Comments are mine, made in the process of understanding.
+    This code was copied for learning purposes. All comments were added in the process of understanding.
+
+    Source:
+        http://norvig.com/spell-correct.html
 """
 
 from collections import Counter
@@ -8,64 +10,56 @@ import re
 
 
 def words(text):
-    """
-    Breaks text into words via re.findall(pattern, str) => \w+  pattern to match words
-    :param text: str
-    :return: List of words from 'text' in lower case
-    """
     return re.findall(r'\w+', text.lower())
+    # Breaks text into words via re.findall(pattern, str) => \w+  pattern to match words
+    # returns: list of words from 'text' in lower case
 
+# print("Test words(): ", words("NOW is the time to see what f words() returns and what it doesn't !!!!!!"))
 
-print("Test words(): ", words("NOW is the time to see what f words() returns and what it doesn't !!!!!!"))
 
 WORDS = Counter(words(open('big.txt').read()))
-"""
-opens big.txt and reads it, then words() converts text to list of words
-Counter is a subclass of dict: key is an object, value is it's counter
-WORDS - constant, frequency dictionary based on output of words() on big.txt
-"""
-print("Test Counter(): ", WORDS)
-print("Test Counter(): ", type(WORDS))
-print(len(WORDS))
-print(sum(WORDS.values()))
-print(WORDS.most_common(10))
-print('#' * 40)
+# opens big.txt and reads it, then words() converts text to list of words
+# Counter is a subclass of dict: key is an object, value is it's counter
+# WORDS - constant, frequency dictionary based on output of words() on big.txt
+
+# print("Test Counter(): ", WORDS)
+# print("Test Counter(): ", type(WORDS))
+# print(len(WORDS))
+# print(sum(WORDS.values()))
+# print(WORDS.most_common(10))
+# print('#' * 40)
 
 
 def P(word, N=sum(WORDS.values())):
-    """
-    Assert probability of word-argument in WORDS (PEP8: function name should be word_probability)
-    :param word: Input arg (a word) from user or function
-    :param N: Arg wit default value - sum of values of Counter WORDS, i.e. count of non-unique words in WORDS
-    :return: Ratio of word occurrences to count of all words (=probability of word in WORDS)
-    """
     return WORDS[word]/N
+    # Assert probability of word-argument in WORDS (PEP8: function name should be word_probability)
+    # :param word: Input arg (a word) from user or function
+    # :param N: Arg wit default value - sum of values of Counter WORDS, i.e. count of non-unique words in WORDS
+    # :return: Ratio of word occurrences to count of all words (=probability of word in WORDS)
 
 
-print("Test P(): ", P("why"))
-print('#' * 40)
+# print("Test P(): ", P("why"))
+# print('#' * 40)
 
 
 def correction(word):
-    """
-    Returns correction of the word-argument based on candidates() and P()
-    :param word: Input arg (a word) from user (this is the actual function for user)
-    :return: word from candidates-set or -list with maximal probability (key=P)
-    """
     return max(candidates(word), key=P)
+    # Returns correction of the word-argument based on candidates() and P()
+    # :param word: Input arg (a word) from user (this is the actual function for user)
+    # :return: word from candidates-set or -list with maximal probability (key=P)
+
 # print("Test max() evaluation per key: ", max([1, 33], [2, 7, 4], [1], key=len))
 # print("Test max() evaluation per key: ", max([1, 33], [2, 7, 4], [1], key=sum))
 # # key - specifies which function should be used to evaluate max(): len(), sum() etc.
 
 
 def candidates(word):
-    """
-    Generates possible spelling corrections for word based on other functions
-    :param word: Any one-word str from correction()
-    :return: Word as 1-element list via known(), else set of words with 1 edit, or 2 edits,
-    or word as list even if not known
-    """
     return known([word]) or known(edits1(word)) or known(edits2(word)) or [word]
+    # Generates possible spelling corrections for word based on other functions
+    # :param word: Any one-word str from correction()
+    # :return: Word as 1-element list via known(), else set of words with 1 edit, or 2 edits,
+    # or word as list even if not known
+
 # 'or' operator in return statement makes Python return first of these alternatives that is True (returns sth)
 # so if word() determines that word 'xxx' is present in our WORDS dictionary, than it returns 'xxx'
 # otherwise it evaluates known(edits1(word)) and so forth
@@ -74,21 +68,15 @@ def candidates(word):
 
 
 def known(words):
-    """
-    Returns list of unique words present (hence 'known') in the text used as database
-    :param words: words() function that returns text broken into words
-    :return: Dict subset of unique words that appear in dict WORDS
-    """
     return set(w for w in words if w in WORDS)
+    # Returns list of unique words present (hence 'known') in the text used as database
+    # :param words: words() function that returns text broken into words
+    # :return: Dict subset of unique words that appear in dict WORDS
+
 # return statement contains "List comprehension" - way to construct a list
 
 
 def edits1(word):
-    """
-    Prepares set of all possible mutations of a word that are one sign away from the input
-    :param word: Any one-word str from candidates()
-    :return: Set of deletes, transposes, replaces, and inserts
-    """
     letters     = 'abcdefghijklmnopqrstuvwxyz'
     splits      = [(word[:i], word[i:]) for i in range(len(word) + 1)]              # possible splits of a word
     deletes     = [L + R[1:]            for L, R in splits if R]                    # possible sums of 2 splits
@@ -102,6 +90,10 @@ def edits1(word):
     # print('Test inserts within edits1():', inserts[:10])
     return set(deletes + transposes + replaces + inserts)
 
+    # Prepares set of all possible mutations of a word that are one sign away from the input
+    # :param word: Any one-word str from candidates()
+    # :return: Set of deletes, transposes, replaces, and inserts
+
 
 def edits2(word):
     return (e2 for e1 in edits1(word) for e2 in edits1(e1))
@@ -110,6 +102,3 @@ def edits2(word):
 print("Ex. edits1()", edits1('spelink'))
 print("Ex. candidates():", candidates("spelink"))
 print("Ex. correction():", correction("spelink"))
-
-
-

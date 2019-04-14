@@ -1,5 +1,9 @@
-""" source: https://github.com/nestordeharo/mysql-python-class/blob/master/mysql_python.py#L2
-    My comments added in the process of understanding."""
+"""
+    This code was copied for learning purposes. All comments were added in the process of understanding.
+
+    Source:
+        https://github.com/nestordeharo/mysql-python-class/blob/master/mysql_python.py#L2
+"""
 
 #!/usr/bin/env python
 # coding=utf-8
@@ -95,7 +99,6 @@ class MysqlPython(object):
         self.__session.execute(query, values)
         self.__connection.commit()
 
-        # Obtain rows affected
         update_rows = self.__session.rowcount
         self.__close()
 
@@ -129,7 +132,6 @@ class MysqlPython(object):
         self.__session.execute(query, values)
         self.__connection.commit()
 
-        # Obtain rows affected
         delete_rows = self.__session.rowcount
         self.__close()
 

@@ -1,6 +1,10 @@
 """
-from: http://norvig.com/spell-correct.html
+    This code was copied for learning purposes. All comments were added in the process of understanding.
+
+    Source:
+        http://norvig.com/spell-correct.html
 """
+
 
 from reading_Spelling_Corrector import *
 
@@ -57,14 +61,12 @@ def spelltest(tests, verbose=False):
 
 
 def testset(lines):
-    """
-    Parse 'right: wrong1 wrong2' lines into [('right', 'wrong1'), ('right', 'wrong2')] pairs.
-    :param lines: file with test sets of corrected words and their misspelled versions
-    :return: list of tuples: [('right', 'wrong1'), ('right', 'wrong2')]
-    """
+    """Parse 'right: wrong1 wrong2' lines into [('right', 'wrong1'), ('right', 'wrong2')] pairs. """
     return [(right, wrong)
             for (right, wrongs) in (line.split(':') for line in lines)
             for wrong in wrongs.split()]
+    # :param lines: file with test sets of corrected words and their misspelled versions
+    # :return: list of tuples: [('right', 'wrong1'), ('right', 'wrong2')]
 
 
 print(unit_tests())
