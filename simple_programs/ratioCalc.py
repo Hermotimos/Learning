@@ -2,11 +2,12 @@
     Calculate proportion. Ex. 700g berries cost 24.99 => 1100g berries cost x.
     This simple program was written for learning and exercise purposes.
 
-    Used features:
+    Features involved:
         - user defined functions
         - multiple assignment/tuple unpacking
         - format()
         - assertion, exception handling
+        - decorators
 """
 
 
@@ -21,12 +22,25 @@ def print_example():
     print('\t\t{:^9}{:3}{:^9}'.format(700, ' ' * 3, 'n'))
 
 
+def verify_answer_decorator(func):
+    def wrapper():
+        try:
+            result = func()
+            return result
+        except ValueError:
+            print('Wrong value entered. Please try again.')
+            return wrapper()
+    return wrapper
+
+
+@verify_answer_decorator
 def ask_known_part():
     value1 = float(input("Known ratio's 1st attribute: "))
     value2 = float(input("Known ratio's 2nd attribute: "))
     return value1, value2
 
 
+@verify_answer_decorator
 def ask_other_part():
     value1 = float(input("Searched ratio's 1st attribute (if unknown type '0' or 'n'): "))
     value2 = float(input("Searched ratio's 2nd attribute (if unknown type '0' or 'n'): "))
@@ -46,7 +60,7 @@ def calculate_proportion(ratio1=tuple, ratio2=tuple):
             ratio2_value2 = round(ratio2_value2, 2)
         print(ratio1_value1, "/", ratio1_value2, "=", ratio2_value1, "/", ratio2_value2)
     except AssertionError:
-        print("Wrong data entered! Ratio 0/0 cannot be resolved!")
+        print("Wrong data entered! Ratio n/n cannot be resolved!")
 
 
 def main():
@@ -56,6 +70,4 @@ def main():
     calculate_proportion(left, right)
 
 
-# todo works fine, what's the deal?
-# todo exception: user types str instead of number
 main()
