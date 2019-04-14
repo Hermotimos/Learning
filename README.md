@@ -11,11 +11,9 @@ All programs can be run in cmd or IDE wthout installation.
 
 
 ## Content
-### code reading
+#### code reading
 Code copied from other sites and repositories, commented and experimented with. 
-
-### simple_programs
+#### simple_programs
 One-file scripts.
-
-### loose files
+#### loose files
 Notes, examples and exercises.
