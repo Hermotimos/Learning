@@ -25,7 +25,7 @@ https://github.com/nestordeharo/mysql-python-class/blob/master/mysql_python.py#L
 http://norvig.com/spell-correct.html
 
 #### simple_programs
-flynerd.pl/tag/python-kurs
+https://www.flynerd.pl/tag/python-kurs
 
 #### loose files
 https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/lecture-videos/
@@ -43,11 +43,3 @@ https://treyhunner.com/blog/archives/
 https://jpt-pynotes.readthedocs.io/en/latest/index.html
 
 https://www.programiz.com/python-programming
-
-
-
-
-
-
-        
-
