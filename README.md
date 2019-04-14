@@ -21,7 +21,9 @@ Notes, examples and exercises.
 ## Sources
 #### code_reading
 https://github.com/nestordeharo/mysql-python-class/blob/master/mysql_python.py#L2
+
 http://norvig.com/spell-correct.html
+
 #### simple_programs
 https://www.flynerd.pl/tag/python-kurs
 #### loose files
