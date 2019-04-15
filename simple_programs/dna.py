@@ -78,12 +78,13 @@ def ask_valid_sequence():
     str: DNA sequence rid of errors as per user's choice.
     """
     sequence = input("Please enter sequence to search for in the DNA sample 'SAMPLE_1'\n")
+    errors = find_errors(sequence)
     try:
-        assert isdna(sequence)
+        assert not errors
         return sequence
     except AssertionError:
         answer = input("Given DNA sequence does not belong to the DNA of a terrestrial lifeform "
-                       f"or it contains following errors: \n{get_error_types(sequence)}"
+                       f"or it contains following errors: \n{get_error_types(errors)}"
                        "\nChoose option:\n"
                        "1 - enter new sequence\n"
                        "2 - continue with current sequence: delete laser misread errors ('n' and 'N')\n"
@@ -103,24 +104,7 @@ def ask_valid_sequence():
             return from_sequence_delete_errors(sequence, *errors)
 
 
-def isdna(seq):
-    """
-    Verify if sequence is combined of possible DNA nucleobases. Return bool.
-
-    Parameters
-    ----------
-    seq (str): DNA sequence acquired from user in ask_valid_sequence().
-
-    Returns
-    -------
-    bool: True when seq is subset of DNA_NUCLEOBASES (i.e. seq is composed of letters for valid DNA nucleobases).
-          False otherwise.
-    """
-    assert isinstance(seq, str), "Please enter data in str format!"
-    return set(seq).issubset(DNA_NUCLEOBASES)
-
-
-def get_error_types(seq):
+def get_error_types(errs):
     """
     Return info about errors present in sequence 'seq'.
 
@@ -133,19 +117,18 @@ def get_error_types(seq):
     str: Information for user about error types found in seq.
     """
     err1, err2, err3 = False, False, False
-    errors_set = find_errors(seq)
-    for n in errors_set.copy():             # necessary to avoid: 'RuntimeError: Set changed size during iteration'
+    for n in errs.copy():             # necessary to avoid: 'RuntimeError: Set changed size during iteration'
         if n == 'n' or n == 'N':
             err1 = True
-            errors_set.remove(n)
+            errs.remove(n)
         if n == '-':
             err2 = True
-            errors_set.remove(n)
+            errs.remove(n)
         if n not in ('n', 'N', '-'):
             err3 = True
     return (f"1. [{err1}]: Laser misreads: 'N' or 'n'\n"
             f"2. [{err2}]: Sequence unreadable: '-'\n"
-            f"3. [{err3}]: Other errors: {', '.join(e for e in errors_set)}")
+            f"3. [{err3}]: Other errors: {', '.join(e for e in errs)}")
 
 
 def find_errors(seq):
