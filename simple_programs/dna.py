@@ -39,7 +39,7 @@ SAMPLE_1 = "ACTGTGCTGACTCCCGGTGCTGCCGCTGCCATAGCTAAAGCCCGGGTCCTGGTAGGCAGGCGGGAAGC
 
 def main():
     """
-    Ask user for DNA sequence, return number of its occurrences in the sample DNA sequence 'SAMPLE_1'.
+    Ask user for a DNA sequence, validate it and return number of its occurrences in the sample DNA sequence 'SAMPLE_1'.
 
     If the searched sequence contains characters not valid as DNA nucleobases, user may decide to modify it by
     removing invalid characters.
@@ -48,8 +48,9 @@ def main():
     -------
     Prints searched sequence (possibly modified), goes to next line, prints number of its occurrences in 'SAMPLE_1'.
     """
-    searched_seq = ask_valid_sequence()
-    print(searched_seq, '\n', count_sequence_in_sample(searched_seq, SAMPLE_1))
+    searched_seq = ask_sequence()
+    validated_seq = validate_sequence(searched_seq)
+    print(validated_seq, '\n', count_sequence_in_sample(validated_seq, SAMPLE_1))
 
 
 def count_sequence_in_sample(sequence, sample):
@@ -69,39 +70,63 @@ def count_sequence_in_sample(sequence, sample):
     return sample.count(sequence)
 
 
-def ask_valid_sequence():
+def ask_sequence():
+    """Return sequence from user's input."""
+    return input("Please enter sequence to search for in the DNA sample 'SAMPLE_1'\n")
+
+
+def validate_sequence(sequence):
     """
-    Ask user for a DNA sequence, check if provided sequence is valid DNA sequence. If not offer options for correction.
+    Check if provided sequence is valid DNA sequence. If not offer options for correction.
 
     Returns
     -------
-    str: DNA sequence rid of errors as per user's choice.
+    str: DNA sequence rid of errors (or not) as per user's choice.
     """
-    sequence = input("Please enter sequence to search for in the DNA sample 'SAMPLE_1'\n")
     errors = find_errors(sequence)
     try:
         assert not errors
         return sequence
     except AssertionError:
-        answer = input("Given DNA sequence does not belong to the DNA of a terrestrial lifeform "
+        answer = input(f"\nThe DNA sequence '{sequence}'' does not belong to the DNA of a terrestrial life form "
                        f"or it contains following errors: \n{get_error_types(errors)}"
                        "\nChoose option:\n"
                        "1 - enter new sequence\n"
                        "2 - continue with current sequence: delete laser misread errors ('n' and 'N')\n"
                        "3 - continue with current sequence: delete all errors excluding lost data ('-')\n"
-                       "4 - continue with current sequence: delete all errors\n")
+                       "4 - continue with current sequence: delete all errors\n"
+                       "5 - continue with current sequence: no changes\n")
         if answer == "1":
-            return ask_valid_sequence()
+            return ask_sequence()
         elif answer == "2":
-            return from_sequence_delete_errors(sequence, 'n')
+            new_seq = from_sequence_delete_errors(sequence, 'n')
+            return validate_sequence(new_seq)
         elif answer == "3":
             errors = find_errors(sequence).copy()
             errors.remove("-")
-            return from_sequence_delete_errors(sequence, *errors)
+            new_seq = from_sequence_delete_errors(sequence, *errors)
+            return validate_sequence(new_seq)
         elif answer == '4':
             errors = find_errors(sequence)
-            print(from_sequence_delete_errors(sequence, *errors))
-            return from_sequence_delete_errors(sequence, *errors)
+            new_seq = from_sequence_delete_errors(sequence, *errors)
+            return validate_sequence(new_seq)
+        elif answer == '5':
+            return sequence
+
+
+def find_errors(sequence):
+    """
+    Return set of letters in seq that aren't valid DNA nucleabases.
+
+    Parameters
+    ----------
+    seq (str): DNA sequence provided by get_error_types().
+
+    Returns
+    -------
+    set: All characters in seq recognised as not beeing valid DNA nucleobases.
+    """
+    return {n for n in set(sequence) if n not in DNA_NUCLEOBASES}
 
 
 def get_error_types(errs):
@@ -110,7 +135,7 @@ def get_error_types(errs):
 
     Parameters
     ----------
-    seq (str): DNA sequence provided by ask_valid_sequence().
+    seq (str): DNA sequence provided by validate_sequence().
 
     Returns
     -------
@@ -131,21 +156,6 @@ def get_error_types(errs):
             f"3. [{err3}]: Other errors: {', '.join(e for e in errs)}")
 
 
-def find_errors(seq):
-    """
-    Return set of letters in seq that aren't valid DNA nucleabases.
-
-    Parameters
-    ----------
-    seq (str): DNA sequence provided by get_error_types().
-
-    Returns
-    -------
-    set: All characters in seq recognised as not beeing valid DNA nucleobases.
-    """
-    return {n for n in set(seq) if n not in DNA_NUCLEOBASES}
-
-
 def from_sequence_delete_errors(sequence, *errors):
     """
     Return sequence without given pattern regardless of pattern's upper/lower case.
@@ -154,7 +164,7 @@ def from_sequence_delete_errors(sequence, *errors):
 
     Parameters
     ----------
-    sequence (str): DNA sequence provided by ask_valid_sequence().
+    sequence (str): DNA sequence provided by validate_sequence().
     *errors (str or set): Variable length iterable.
 
     Returns
