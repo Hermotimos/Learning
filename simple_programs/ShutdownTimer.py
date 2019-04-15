@@ -13,6 +13,13 @@ import time
 
 
 def ask_shutdown_mode():
+    """
+    Ask user to choose shutdown option (shutdown or hibernation). In case of wrong value ask recursively.
+
+    Returns
+    -------
+    str: Shutdown command.
+    """
     entry = input("Wybierz opcję zamykania systemu:\n1 - zamknięcie \n2 - hibernacja\n")
     mode = ''
     try:
@@ -28,6 +35,13 @@ def ask_shutdown_mode():
 
 
 def ask_time():
+    """
+    Ask user to enter countdown start value in minutes. In case of wrong value ask recursively.
+
+    Returns
+    -------
+    str: Number of minutes entered as str type.
+    """
     entry = input("Podaj za ile minut chcesz wyłączyć komputer i zatwierdź przez ENTER:\n")
     try:
         assert int(entry) > 0
@@ -38,14 +52,20 @@ def ask_time():
 
 
 def shutdown_countdown():
+    """
+    Print countdown every minute and finally shutdown/hibernate system.
+
+    Prints info about chosen countdown value and warns user to save progress before shutdown.
+    Prints countdown every minute. When countdown ends, performs shutdown/hibernation.
+    """
     mode = ask_shutdown_mode()
     minutes_str = ask_time()
     ending = ''
 
     if minutes_str == "1":
-        ending = 'ę'
+        ending = "ę"
     elif 1 < int(minutes_str[-1]) < 5:
-        ending = 'y'
+        ending = "y"
     print(f'\nKomputer zostanie wyłączony za {minutes_str} minut{ending}.'
           '\n\t ...Zapisz otwarte pliki przed końcem odliczania, aby uniknąć utraty danych.'
           '\n\t\t ...W każdej chwili możesz przerwać odliczanie przez wyłączenie okna programu.')
@@ -53,14 +73,11 @@ def shutdown_countdown():
     minutes_int = int(minutes_str)
     timer_secs = minutes_int * 60
     while timer_secs > 0:
-        """
-        'minutes' are deprecated before first print, 
-        cause exe file created by pyinstaller misses a minute somehow and prints this variable only after 1 min
-        """
-        minutes_int -= 1
-        print('\n', str(minutes_int), end='')
+        print(f'\n{minutes_int}', minutes_int, end="")
         timer_secs -= 60
+        minutes_int -= 1
         time.sleep(60)
+
     os.system(f"{mode}")
 
 
