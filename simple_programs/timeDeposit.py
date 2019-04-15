@@ -5,6 +5,7 @@
     Features involved:
         - nested for loop
         - f-strings
+        - docstring
 
     Sources:
         https://www.flynerd.pl/2017/01/python-3-formatowanie-napisow.html

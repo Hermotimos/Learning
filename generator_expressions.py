@@ -4,6 +4,11 @@
     Topics:
         - generator expressions
         - looping over generator expressions
+
+    Sources:
+        https://dbader.org/blog/python-generators
+        https://www.programiz.com/python-programming/generator
+        https://dbader.org/blog/python-generator-expressions
 """
 
 

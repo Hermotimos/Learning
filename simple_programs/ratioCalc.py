@@ -8,6 +8,7 @@
         - format()
         - exception handling, assertion
         - decorators
+        - docstring
 """
 
 
