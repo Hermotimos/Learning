@@ -2,7 +2,8 @@
     This simple program was written for learning and exercise purposes.
 
     Features involved:
-        - pyautogui
+        - module import(pyautogui)
+        - flow control: while loop
 
     Sources:
         https://automatetheboringstuff.com/chapter18/
