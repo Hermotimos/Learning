@@ -155,7 +155,7 @@ def from_sequence_delete_errors(sequence, *errors):
     Parameters
     ----------
     sequence (str): DNA sequence provided by ask_valid_sequence().
-    *errors: variable length iterable
+    *errors (str or set): Variable length iterable.
 
     Returns
     -------
