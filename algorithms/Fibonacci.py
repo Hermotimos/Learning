@@ -35,7 +35,7 @@ for i in range(0, 11):
 def fibonacci(n):
     current = 0
     after = 1
-    for _ in range(0, n):
+    for _ in range(n):
         current, after = after, current + after
     return current
 
