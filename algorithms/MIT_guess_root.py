@@ -81,6 +81,33 @@ for num in range(9):
     approximate_cube_root(num)
 
 
+# Here's the MIT algorithm with example that enters infinite loop.
+def approximate_cube_root_MIT(cube, max_inaccuracy=0.0001, increment=0.01):
+    guess = 0.0
+    guess_counter = 0
+
+    while abs(cube - guess ** 3) >= max_inaccuracy:
+        guess += increment
+        guess_counter += 1
+    if abs(cube - guess ** 3) >= max_inaccuracy:
+        print(f"""Failed on cube root of {cube}.
+                Number of guesses: {guess_counter}.
+                Maximal inaccuracy allowed: {max_inaccuracy}.
+                Increment set to: {increment}.\n""")
+    else:
+        if cube < 0:
+            guess = - guess
+        print(f"""Cube root of {cube} is approximately  {guess}.
+                Number of guesses: {guess_counter}.
+                Maximal inaccuracy allowed: {max_inaccuracy}.
+                Increment set to: {increment}.
+                {guess}**3 = {guess**3}\n""")
+
+# This enters infinite loop:
+# approximate_cube_root_MIT(10000)
+
+
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>BISECTION SEARCH<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
+
