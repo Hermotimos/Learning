@@ -125,6 +125,8 @@ for i in range(0, 111):
     print(fib_decorated(i), '', end='')
 
 
+# -----------------------------------------------------------------------------------------------------------
+
 # The golden ratio of Fibonacci sequence
 print('\n\nRatio of increment:')
 for i in range(1, 11):
