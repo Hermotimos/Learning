@@ -48,18 +48,18 @@ for i in range(0, 11):
 # Bug: n == 0 should return 0
 
 
-def fib_simplest(n):
+def fib_mit_better(n):
     if n == 0:
         return 0
     elif n == 1:
         return 1
     else:
-        return fib_simplest(n-1) + fib_simplest(n-2)
+        return fib_mit_better(n - 1) + fib_mit_better(n - 2)
 
 
 print('\nFibonacci with recursion without bug [MIT]')
 for i in range(0, 11):
-    print(fib_simplest(i), '', end='')
+    print(fib_mit_better(i), '', end='')
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -92,7 +92,7 @@ def fib_memo(n):
         val = 0
     elif n == 1:
         val = 1
-    elif n > 1:
+    else:
         val = fib_memo(n-1) + fib_memo(n-2)
 
     fib_cache[n] = val
@@ -116,7 +116,7 @@ def fib_decorated(n):
         return 0
     elif n == 1:
         return 1
-    elif n > 1:
+    else:
         return fib_decorated(n-1) + fib_decorated(n-2)
 
 
