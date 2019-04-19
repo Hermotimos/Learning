@@ -41,11 +41,10 @@ def fib_mit(n):
         return fib_mit(n-1) + fib_mit(n-2)
 
 
+# This one is for real Fibonacci: where sequence starts from 1 rabbit.
 print('\nFibonacci with recursion [MIT]')
 for i in range(0, 11):
     print(fib_mit(i), '', end='')
-# Printout shows bug in this algorithm. It's one step too far into the Fibonacci (skipped value for 0).
-# Bug: n == 0 should return 0
 
 
 def fib_mit_better(n):
@@ -57,6 +56,7 @@ def fib_mit_better(n):
         return fib_mit_better(n - 1) + fib_mit_better(n - 2)
 
 
+# This one is for sequence starting with 0.
 print('\nFibonacci with recursion without bug [MIT]')
 for i in range(0, 11):
     print(fib_mit_better(i), '', end='')
