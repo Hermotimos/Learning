@@ -28,17 +28,16 @@ print()
 
 # GUESS-AND-CHECK: with negative numbers
 def guess_cube_root2(cube):
-    result = 0
+    guess = 0
     for guess in range(abs(cube) + 1):
         if guess ** 3 >= abs(cube):
-            result = guess
             break
-    if abs(cube) != result ** 3:
+    if guess ** 3 != abs(cube):
         print(f'{cube} is not a perfect cube.')
     else:
         if cube < 0:
-            result = -result
-        print(f'Cube root of {cube} is {result}.')
+            guess = -guess
+        print(f'Cube root of {cube} is {guess}.')
 
 
 guess_cube_root2(8)
@@ -52,15 +51,16 @@ print()
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>APPROXIMATE SOLUTION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
-# In MIT source was: while abs(cube - guess ** 3) >= ...
+# In MIT source was: while abs(cube - guess ** 3) >= epsilon
+# Changed to:        while (abs(cube) - guess ** 3) > max_inaccuracy
 # With my change program doesn't enter infinite loop for cube = 10000 (that was example of infinite loop in MIT lecture)
-# Because of this block of code for failure could be removed.
+# So block of code for 'not perfect cube' could be removed.
 # Also added code for negative cubes.
 def approximate_cube_root(cube, max_inaccuracy=0.0001, increment=0.01):
     guess = 0.0
     guess_counter = 0
 
-    while (abs(cube) - guess ** 3) >= max_inaccuracy:
+    while (abs(cube) - guess ** 3) > max_inaccuracy:
         guess += increment
         guess_counter += 1
 
@@ -85,25 +85,25 @@ def approximate_cube_root_mit(cube, max_inaccuracy=0.0001, increment=0.01):
     guess = 0.0
     guess_counter = 0
 
-    while abs(cube - guess ** 3) >= max_inaccuracy:
+    while abs(cube - guess ** 3) > max_inaccuracy:
         guess += increment
         guess_counter += 1
     if abs(cube - guess ** 3) >= max_inaccuracy:
         print(f"""Failed on cube root of {cube}.
                 Number of guesses: {guess_counter}.
-                Maximal inaccuracy allowed: {max_inaccuracy}.
-                Increment set to: {increment}.\n""")
+                Maximal inaccuracy: {max_inaccuracy}.
+                Increment: {increment}.\n""")
     else:
         if cube < 0:
             guess = - guess
         print(f"""Cube root of {cube} is approximately  {guess}.
                 Number of guesses: {guess_counter}.
-                Maximal inaccuracy allowed: {max_inaccuracy}.
-                Increment set to: {increment}.
+                Maximal inaccuracy: {max_inaccuracy}.
+                Increment: {increment}.
                 {guess}**3 = {guess**3}\n""")
 
 # This enters infinite loop:
-# approximate_cube_root_MIT(10000)
+# approximate_cube_root_mit(10000)
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ def bisection_cube_root_only_positive(cube, max_inaccuracy=0.01):
     low, high = 0, cube
     guess = (low + high) / 2.0
 
-    while abs(cube - guess**3) >= max_inaccuracy:
+    while abs(cube - guess**3) > max_inaccuracy:
         if guess**3 < cube:
             low = guess
         else:
@@ -126,7 +126,7 @@ def bisection_cube_root_only_positive(cube, max_inaccuracy=0.01):
 
     print(f"""Cube root of {cube} is approximately: {guess}
             Number of guesses: {guess_count}.
-            Maximal inaccuracy allowed: {max_inaccuracy}.
+            Maximal inaccuracy: {max_inaccuracy}.
             {guess}**3 = {guess**3}\n""")
 
 
@@ -144,7 +144,7 @@ def bisection_cube_root_with_negative(cube, max_inaccuracy=0.01):
     low, high = 0, abs(cube)
     guess = (low + high) / 2.0
 
-    while abs(abs(cube) - guess**3) >= max_inaccuracy:
+    while abs(abs(cube) - guess**3) > max_inaccuracy:
         if guess**3 < abs(cube):
             low = guess
         else:
@@ -157,7 +157,7 @@ def bisection_cube_root_with_negative(cube, max_inaccuracy=0.01):
 
     print(f"""Cube root of {cube} is approximately: {guess}
             Number of guesses: {guess_count}.
-            Maximal inaccuracy allowed: {max_inaccuracy}.
+            Maximal inaccuracy: {max_inaccuracy}.
             {guess}**3 = {guess**3}\n""")
     return guess
 
@@ -174,7 +174,7 @@ def bisection_cube_root_fractions(cube, max_inaccuracy=0.00001):
     low, high = cube, 1
     guess = (low + high) / 2.0
 
-    while abs(abs(cube) - guess**3) >= max_inaccuracy:
+    while abs(abs(cube) - guess**3) > max_inaccuracy:
         if guess**3 < abs(cube):
             low = guess
         else:
@@ -187,7 +187,7 @@ def bisection_cube_root_fractions(cube, max_inaccuracy=0.00001):
 
     print(f"""Cube root of {cube} is approximately: {guess}
             Number of guesses: {guess_count}.
-            Maximal inaccuracy allowed: {max_inaccuracy}.
+            Maximal inaccuracy: {max_inaccuracy}.
             {guess}**3 = {guess**3}\n""")
     return guess
 
@@ -199,43 +199,31 @@ bisection_cube_root_fractions(0.2)
 
 # Positive, negative and fraction numbers.
 # Also fixed bug from MIT lecture considering number of guesses: first guess was never counted.
+
+
 def bisection_root_all(cube, max_inaccuracy=0.01):
 
-    if abs(cube) < 1:
+    if abs(cube) < 1:                  # 0 < abs(cube) < 1
         low, high = abs(cube), 1
-        guess = (low + high) / 2.0
-        guess_count = 1
-
-        while abs(abs(cube) - guess ** 3) >= max_inaccuracy:
-            if guess ** 3 < abs(cube):
-                low = guess
-            else:
-                high = guess
-            guess_count += 1
-            guess = (low + high) / 2.0
-
-        if cube < 0:
-            guess = -guess
-
-    else:
+    else:                              # 1 <= abs(cube)
         low, high = 0, abs(cube)
+    guess = (low + high) / 2.0
+    guess_count = 1
+
+    while abs(abs(cube) - guess ** 3) > max_inaccuracy:
+        if guess ** 3 > abs(cube):
+            high = guess
+        else:
+            low = guess
+        guess_count += 1
         guess = (low + high) / 2.0
-        guess_count = 1
 
-        while abs(abs(cube) - guess ** 3) >= max_inaccuracy:
-            if guess ** 3 < abs(cube):
-                low = guess
-            else:
-                high = guess
-            guess_count += 1
-            guess = (low + high) / 2.0
-
-        if cube < 0:
-            guess = -guess
+    if cube < 0:
+        guess = -guess
 
     print(f"""Cube root of {cube} is approximately: {guess}
                 Number of guesses: {guess_count}.
-                Maximal inaccuracy allowed: {max_inaccuracy}.
+                Maximal inaccuracy: {max_inaccuracy}.
                 {guess}**3 = {guess ** 3}\n""")
 
 
