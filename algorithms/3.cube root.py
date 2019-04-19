@@ -107,7 +107,7 @@ def approximate_cube_root_mit(cube, max_inaccuracy=0.0001, increment=0.01):
 
 
 # ----------------------------------------------------------------------------------------------------
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>BISECTION SEARCH<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>BISECTION/BINARY SEARCH<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
 
@@ -130,8 +130,9 @@ def bisection_cube_root_only_positive(cube, max_inaccuracy=0.01):
             {guess}**3 = {guess**3}\n""")
 
 
+
+print('\n----------------BISECTION/BINARY SEARCH----------------\n')
 print('ONLY POSITIVE NUMBERS')
-print('\n----------------BISECTION----------------\n')
 bisection_cube_root_only_positive(64)
 bisection_cube_root_only_positive(42331233, max_inaccuracy=0.00000001)
 for num in range(9):
