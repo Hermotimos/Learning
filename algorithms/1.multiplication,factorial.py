@@ -12,7 +12,6 @@
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>MULTIPLICATION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
-
 # ITERATIVE MULTIPLICATION
 
 
@@ -46,6 +45,8 @@ print(multiplication_iter2(-3, 7))
 print(multiplication_iter2(3, -7))
 print(multiplication_iter2(-3, -7))
 
+
+# ------------------------------------------------------------------------------------------------------
 
 # RECURSIVE MULTIPLICATION
 
@@ -89,3 +90,27 @@ print(multiplication2(-3, -7))
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>FACTORIAL<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
+
+def factorial(n):
+    if n <= 1:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+
+print('\nFactorial recursive')
+for val in range(11):
+    print(val, '=>', factorial(val))
+
+
+# ------------------------------------------------------------------------------------------------------
+def factorial2(n):
+    product = 0
+    for i in range(0, n+ 1):
+        product *= i
+    return product
+
+
+print('\nFactorial iterative')
+for val in range(11):
+    print(val, '=>', factorial(val))
