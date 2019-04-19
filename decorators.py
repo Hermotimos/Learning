@@ -182,7 +182,7 @@ print('#########################################################################
 
 
 # MORE ON DECORATORS
-#        - decorated functions are technically assigned become wrappers inside decorating functions
+#        - decorated functions are technically become wrappers inside decorating functions
 #        - their __name__ is becomes the name of the wrapper, which may be confusing
 #        - to preserve their names use in-built @functools.wraps decorator from 'functools' module
 
