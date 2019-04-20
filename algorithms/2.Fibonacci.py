@@ -76,7 +76,7 @@ print('\nTime:', time.time() - timer)
 # All three algorithms perform the same for n in range(0, 11111):
 # fib_with_dict(): Time: 1.7741012573242188, 1.786102294921875, 1.7611007690429688
 # fib_memo(): 1.8361051082611084, 1.797102689743042, 1.920109748840332
-# fib_memo2(): Time: 1.9261102676391602; 1.8461055755615234; 1.8511056900024414
+# fib_memo2(): Time: 1.8981084823608398, 1.8031032085418701, 1.8231043815612793
 # fib_decorated(): Time: 1.7651009559631348, 1.8391053676605225, 1.8151037693023682
 
 
@@ -138,15 +138,15 @@ def fib_memo2(n):
         elif n == 1:
             val = 1
         else:
-            val = fib_memo(n-1) + fib_memo(n-2)
+            val = fib_memo2(n-1) + fib_memo2(n-2)
 
-        fib_cache[n] = val
+        fib_cache2[n] = val
         return val
 
 
 print('\nFibonacci with memoization version 2: no starter [experiments]')
 timer = time.time()
-for i in range(0, 1111):
+for i in range(0, 11111):
     print(fib_memo2(i), '', end='')
 print('\nTime:', time.time() - timer)
 
