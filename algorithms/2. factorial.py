@@ -3,15 +3,18 @@
 
     Topics:
         - algorithms: iteration, recursion
+        - memoization
 
     Sources:
         https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
 """
 import time
+import sys
+sys.setrecursionlimit(100000)
 
 
 # ----------------------------------------------------------------------------------------------------
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>FACTORIAL<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FACTORIAL RECURSIVE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
 
@@ -27,7 +30,11 @@ for val in range(11):
     print(val, '=>', factorial(val))
 
 
-# ------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FACTORIAL ITERATIVE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# ----------------------------------------------------------------------------------------------------
+
+
 def factorial2(n):
     product = 1
     for i in range(1, n + 1):
@@ -39,6 +46,9 @@ print('\nFactorial iterative 1')
 for val in range(11):
     print(val, '=>', factorial2(val))
 print(factorial2(12345))
+
+
+# ----------------------------------------------------------------------------------------------------
 
 
 def factorial3(n):
@@ -54,12 +64,13 @@ for val in range(11):
     print(val, '=>', factorial3(val))
 print(factorial3(12345))
 
-# ------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FACTORIAL RECURSIVE WITH MEMOIZATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# ----------------------------------------------------------------------------------------------------
 # MEMOIZATION: in case of factorials there's no gain in performance if function is called just once.
 # The gain occurs after we call it once to get some data into cache dict 'factorials', and only subsequent calls use it.
 
-import sys
-sys.setrecursionlimit(100000)
+
 factorials = {}
 
 
