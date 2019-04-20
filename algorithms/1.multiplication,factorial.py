@@ -180,28 +180,28 @@ def factorial_memo(n):
 
 print('\nFactorial recursive with memoizaition - iteration 1')
 timer = time.time()
-n = 3500
-print(factorial_memo(n))
-print(f'Time for {n}!: ', time.time() - timer)
+y = 3500
+print(factorial_memo(y))
+print(f'Time for {y}!: ', time.time() - timer)
 print()
 
 # This one uses factorials cache, slight improvement in performance
 print('Factorial recursive with memoizaition - iteration 2')
 timer = time.time()
-n = 3500
-print(factorial_memo(n))
-print(f'Time for {n}!: ', time.time() - timer)
+y = 3500
+print(factorial_memo(y))
+print(f'Time for {y}!: ', time.time() - timer)
 print()
 
 # Starting from ca. 4000 an more it would throw error if cache 'factorials' were empty, now it computes.
 timer = time.time()
-n = 5000
-print(factorial_memo(n))
-print(f'Time for {n}!: ', time.time() - timer)
+y = 5000
+print(factorial_memo(y))
+print(f'Time for {y}!: ', time.time() - timer)
 print()
 
 # Now it's possible to gradually increase numbers, as 'factorials' cache gradually gets bigger.
 timer = time.time()
-n = 8000
-print(factorial_memo(n))
-print(f'Time for {n}!: ', time.time() - timer)
+y = 8000
+print(factorial_memo(y))
+print(f'Time for {y}!: ', time.time() - timer)
