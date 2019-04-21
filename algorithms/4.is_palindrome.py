@@ -22,10 +22,10 @@ from time_function_decorator import time_function
 
 def format_string(palindrome_check_function):
     def wrapper(text):
-        letters = 'abcdefghijklmnopqrstuvwxyz'
-        text = text.lower()
+        digits = 'abcdefghijklmnopqrstuvwxyz0123456789'
+        text = str(text).lower()
         for d in text:
-            if d not in letters:
+            if d not in digits:
                 text = text.replace(d, '')
         return palindrome_check_function(text)
     return wrapper
@@ -68,7 +68,7 @@ print()
 def is_palindrome_recursive(string):
 
     def to_chars(text):
-        text = text.lower()
+        text = str(text).lower()
         chars = ''
         for d in text:
             if d in 'abcdefghijklmnopqrstuvwxyz':
@@ -97,12 +97,12 @@ print()
 # ----------------------------------------------------------------------------------------------------
 
 
-def is_palindrome_simple(n1):
-    for let in n1.lower():
-        if let not in 'abcdefghijklmnopqrstuvwxyz':
-            n1 = n1.replace(let, '')
-    n2 = n1[::-1]
-    return n1 == n2
+def is_palindrome_simple(text):
+    text = str(text)
+    for digit in text.lower():
+        if digit not in 'abcdefghijklmnopqrstuvwxyz0123456789':
+            text = text.replace(digit, '')
+    return text == text[::-1]
 
 
 print('CHECK PALINDROME NO RECURSION OR ITERATION EXPLICITLY')
@@ -118,7 +118,7 @@ print()
 # ----------------------------------------------------------------------------------------------------
 
 
-strings = ('abb cdaaXXaa, dcbba!', 'fsdas dasdas sadsf', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'abasaa', 'd',
+strings = ('abb cdaaXXaa, dcbba!', 'fsdas dasdas sadsf', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 111, 'd',
            'ACTGTGCTGACTCCCGGTGCTGCCGCTGCCATAGCTAAAGCCCGGGTCCTGGTAGGCAGGCGGGAAGCAGGGTGGGGGTCCCGGGTACTGGTAGGGGTAGCTGC')
 
 print('ITERATIVE')
