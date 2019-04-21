@@ -130,7 +130,6 @@ def bisection_cube_root_only_positive(cube, max_inaccuracy=0.01):
             {guess}**3 = {guess**3}\n""")
 
 
-
 print('\n----------------BISECTION/BINARY SEARCH----------------\n')
 print('ONLY POSITIVE NUMBERS')
 bisection_cube_root_only_positive(64)
@@ -236,3 +235,53 @@ bisection_root_all(0.2, max_inaccuracy=0.0001)
 bisection_root_all(-1.5, max_inaccuracy=0.0001)
 bisection_root_all(-42341.6435235, max_inaccuracy=0.0001)
 bisection_root_all(-0.423425, max_inaccuracy=0.0001)
+
+
+
+# ----------------------------------------------------------------------------------------------------
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEWTON-RAPHSON <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# ----------------------------------------------------------------------------------------------------
+
+
+# VIVISECTION:
+epsilon = 0.01
+y = 8
+myguess = y / 2
+step = 0
+print(f'Cube = {y}\nInitial guess = {myguess}\n')
+
+while abs(myguess * myguess - y) >= epsilon:
+
+    print(f'{myguess}*{myguess} - {y} >= {epsilon}')
+    print(f'{myguess * myguess} - {y} >= {epsilon}')
+    step += 1
+    print(f"""Guess {step}: guess = guess - ((guess**2) - y)/(2 * guess)
+         guess = {myguess} - (({myguess}**2) - {y})/(2 * {myguess})
+         guess = {myguess} - ({myguess ** 2} - {y})/({2 * myguess})
+         guess = {myguess} - {myguess ** 2 - y}/{2 * myguess}
+         guess = {myguess} - {(myguess ** 2 - y) / (2 * myguess)}
+         guess = {myguess - ((myguess ** 2) - y) / (2 * myguess)})\n""")
+
+    myguess = myguess - ((myguess ** 2) - y) / (2 * myguess)           # <<== ACTUAL ALGORITHM
+
+print(f'Square root of {y} is about {myguess}\n'
+      f'{myguess}**2 = {myguess ** 2}')
+
+
+# FUNCTION
+def newton_raphson_square_root(square, max_inaccuracy=0.01):
+    guess = square / 2
+    guess_cnt = 1
+    while abs(guess * guess - square) >= max_inaccuracy:
+        guess = guess - ((guess**2) - square) / (2 * guess)
+        guess_cnt += 1
+    print(f"""Cube root of {square} is approximately: {guess}
+                    Number of guesses: {guess_cnt}.
+                    Maximal inaccuracy: {max_inaccuracy}.
+                    {guess}**2 = {guess ** 2}\n""")
+
+
+print('\n>>>>NEWTON-RAPHSON SQUARE ROOT FOR POSITIVE<<<<')
+newton_raphson_square_root(24)
+newton_raphson_square_root(7)
+newton_raphson_square_root(435345324)
