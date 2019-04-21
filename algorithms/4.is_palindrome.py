@@ -13,7 +13,7 @@ from time_function_decorator import time_function
 
 
 # ----------------------------------------------------------------------------------------------------
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CHECK PALINDROME ITERATIVE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>> CHECK PALINDROME ITERATIVE (LINEAR SEARCH) <<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
 
@@ -50,7 +50,7 @@ def is_palindrome_iterative(string):
     return f' => {check}'
 
 
-print('CHECK PALINDROME ITERATIVE')
+print('CHECK PALINDROME ITERATIVE (LINEAR SEARCH)')
 str1 = 'abb cdaaXXaa, dcbba!'
 str2 = 'fsdas dasdas sadsf'
 print(str1, is_palindrome_iterative(str1))
