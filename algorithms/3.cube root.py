@@ -6,6 +6,9 @@
 
     Sources:
         https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
+        https://www.youtube.com/watch?v=6_Va36K-DE8
+        https://stackoverflow.com/questions/49714510/find-a-cube-root-with-newtons-method
+
 """
 
 
@@ -58,7 +61,7 @@ print()
 # Also added code for negative cubes.
 def approximate_cube_root(cube, max_inaccuracy=0.0001, increment=0.01):
     guess = 0.0
-    guess_counter = 0
+    guess_counter = 1
 
     while (abs(cube) - guess ** 3) > max_inaccuracy:
         guess += increment
@@ -83,7 +86,7 @@ for num in range(9):
 # Here's the MIT algorithm with example that enters infinite loop.
 def approximate_cube_root_mit(cube, max_inaccuracy=0.0001, increment=0.01):
     guess = 0.0
-    guess_counter = 0
+    guess_counter = 1
 
     while abs(cube - guess ** 3) > max_inaccuracy:
         guess += increment
@@ -112,9 +115,9 @@ def approximate_cube_root_mit(cube, max_inaccuracy=0.0001, increment=0.01):
 
 
 def bisection_cube_root_only_positive(cube, max_inaccuracy=0.01):
-    guess_count = 0
     low, high = 0, cube
     guess = (low + high) / 2.0
+    guess_count = 1
 
     while abs(cube - guess**3) > max_inaccuracy:
         if guess**3 < cube:
@@ -140,9 +143,9 @@ print()
 
 
 def bisection_cube_root_with_negative(cube, max_inaccuracy=0.01):
-    guess_count = 0
     low, high = 0, abs(cube)
     guess = (low + high) / 2.0
+    guess_count = 1
 
     while abs(abs(cube) - guess**3) > max_inaccuracy:
         if guess**3 < abs(cube):
@@ -170,9 +173,9 @@ print()
 
 # MIT ASSIGNMENT: FRACTIONS
 def bisection_cube_root_fractions(cube, max_inaccuracy=0.00001):
-    guess_count = 0
     low, high = cube, 1
     guess = (low + high) / 2.0
+    guess_count = 1
 
     while abs(abs(cube) - guess**3) > max_inaccuracy:
         if guess**3 < abs(cube):
@@ -237,10 +240,12 @@ bisection_root_all(-42341.6435235, max_inaccuracy=0.0001)
 bisection_root_all(-0.423425, max_inaccuracy=0.0001)
 
 
-
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEWTON-RAPHSON <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
+
+# This algorithm has different shapes depending on the case. The shape depends on calculus.
+# So this is only taken from net, but real meaning is yet to be understood.
 
 
 # VIVISECTION:
@@ -269,19 +274,39 @@ print(f'Square root of {y} is about {myguess}\n'
 
 
 # FUNCTION
-def newton_raphson_square_root(square, max_inaccuracy=0.01):
+def newton_raphson_square_root(square, max_inaccuracy=0.001):
     guess = square / 2
     guess_cnt = 1
     while abs(guess * guess - square) >= max_inaccuracy:
         guess = guess - ((guess**2) - square) / (2 * guess)
         guess_cnt += 1
-    print(f"""Cube root of {square} is approximately: {guess}
+    print(f"""SQUARE root of {square} is approximately: {guess}
                     Number of guesses: {guess_cnt}.
                     Maximal inaccuracy: {max_inaccuracy}.
                     {guess}**2 = {guess ** 2}\n""")
 
 
 print('\n>>>>NEWTON-RAPHSON SQUARE ROOT FOR POSITIVE<<<<')
+newton_raphson_square_root(49)
 newton_raphson_square_root(24)
-newton_raphson_square_root(7)
+newton_raphson_square_root(8)
 newton_raphson_square_root(435345324)
+
+
+def newton_raphson_cube_root(cube, max_inaccuracy=0.001):
+    guess = cube / 2
+    guess_cnt = 1
+    while ((1/3) * (2*guess + cube/guess**2)) ** 3 - cube > max_inaccuracy:
+        guess = (1/3) * (2*guess + cube/guess**2)
+        guess_cnt += 1
+    print(f"""CUBE root of {cube} is approximately: {guess}
+                    Number of guesses: {guess_cnt}.
+                    Maximal inaccuracy: {max_inaccuracy}.
+                    {guess}**2 = {guess ** 3}\n""")
+
+
+print('\n>>>>NEWTON-RAPHSON CUBE ROOT FOR POSITIVE<<<<')
+newton_raphson_cube_root(49)
+newton_raphson_cube_root(24)
+newton_raphson_cube_root(8)
+newton_raphson_cube_root(435345324)
