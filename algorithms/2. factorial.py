@@ -4,12 +4,12 @@
     Topics:
         - algorithms: iteration, recursion
         - memoization
+        - decorators
 
     Sources:
         https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
 """
 import time
-import functools
 import sys
 sys.setrecursionlimit(100000)
 
@@ -169,19 +169,6 @@ y = 3500
 print(factorial_recur_memo_short(y))
 print(f'Time for {y}!: ', time.time() - timer)
 print()
-
-
-# ----------------------------------------------------------------------------------------------------
-
-
-@functools.lru_cache(maxsize=100000)
-def factorial_memo_decorated(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial_memo_decorated(n - 1)
-
-# SO FAR THIS DOESN'T WORK - TODO
 
 
 # ----------------------------------------------------------------------------------------------------
