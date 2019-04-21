@@ -11,6 +11,7 @@
 """
 import time
 import sys
+from time_function_decorator import time_function
 sys.setrecursionlimit(100000)
 
 
@@ -174,15 +175,6 @@ print()
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PERFORMANCE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
-
-
-def time_function(function):
-    def wrapper(*args):
-        timer_start = time.time()
-        function(*args)
-        timer_stop = time.time() - timer_start
-        print('Time elapsed for {}({}): {}'.format(function.__name__, ",".join(str(a) for a in args), timer_stop))
-    return wrapper
 
 
 print('PERFORMANCE: iterative 1')
