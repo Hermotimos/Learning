@@ -9,6 +9,7 @@
         https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
         https://www.geeksforgeeks.org/python-program-check-string-palindrome-not/
 """
+from time_function_decorator import time_function
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -23,9 +24,9 @@ def format_string(palindrome_check_function):
     def wrapper(text):
         letters = 'abcdefghijklmnopqrstuvwxyz'
         text = text.lower()
-        for s in text:
-            if s not in letters:
-                text = text.replace(s, '')
+        for d in text:
+            if d not in letters:
+                text = text.replace(d, '')
         return palindrome_check_function(text)
     return wrapper
 
@@ -54,6 +55,7 @@ str1 = 'abb cdaaXXaa, dcbba!'
 str2 = 'fsdas dasdas sadsf'
 print(str1, is_palindrome_iterative(str1))
 print(str2, is_palindrome_iterative(str2))
+print()
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -87,6 +89,7 @@ str1 = 'abb cdaaXXaa, dcbba!'
 str2 = 'fsdas dasdas sadsf'
 print(is_palindrome_recursive(str1))
 print(is_palindrome_recursive(str2))
+print()
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -107,3 +110,36 @@ str1 = 'abb cdaaXXaa, dcbba!'
 str2 = 'fsdas dasdas sadsf'
 print(is_palindrome_simple(str1))
 print(is_palindrome_simple(str2))
+print()
+
+
+# ----------------------------------------------------------------------------------------------------
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PERFORMANCE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# ----------------------------------------------------------------------------------------------------
+
+
+strings = ('abb cdaaXXaa, dcbba!', 'fsdas dasdas sadsf', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'abasaa', 'd',
+           'ACTGTGCTGACTCCCGGTGCTGCCGCTGCCATAGCTAAAGCCCGGGTCCTGGTAGGCAGGCGGGAAGCAGGGTGGGGGTCCCGGGTACTGGTAGGGGTAGCTGC')
+
+print('ITERATIVE')
+clocked = time_function(is_palindrome_iterative)
+for s in strings:
+    clocked(s)
+print()
+
+print('RECURSIVE')
+clocked = time_function(is_palindrome_recursive)
+for s in strings:
+    clocked(s)
+print()
+
+print('SIMPLEST')
+clocked = time_function(is_palindrome_simple)
+for s in strings:
+    clocked(s)
+print()
+
+
+# CONCLUSION
+#
+# All of above algorithms take no time to compute for short strings.
