@@ -30,26 +30,57 @@ print(sorted(UNSORTED_NUMBERS))
 
 def linear_search_unsorted(iterable, searched):
     found = False
+    steps = 0
     for e in iterable:
+        steps += 1
         if e == searched:
             found = True
-    print(found)
+    return f"""Steps: {steps:5}\t{'not ' if found == False else "":}found '{searched}' in {len(iterable)} elements"""
 
 
-linear_search_unsorted(UNSORTED_NUMBERS, 4)
-linear_search_unsorted(UNSORTED_NUMBERS, 44)
-linear_search_unsorted(UNSORTED_LETTERS, 'z')
-linear_search_unsorted(UNSORTED_LETTERS, 'h')
-linear_search_unsorted(SORTED_LETTERS, 'a')
+print('LINEAR SEARCH ON UNSORTED ITERABLE')
+print(linear_search_unsorted(UNSORTED_NUMBERS, 4))
+print(linear_search_unsorted(UNSORTED_NUMBERS, 11))
+print(linear_search_unsorted(UNSORTED_NUMBERS, 44))
+print(linear_search_unsorted(UNSORTED_LETTERS, 'z'))
+print(linear_search_unsorted(UNSORTED_LETTERS, 'h'))
 print()
-linear_search_unsorted(UNSORTED_NUMBERS_TUPLE, 4)
-linear_search_unsorted(UNSORTED_NUMBERS_TUPLE, 44)
-linear_search_unsorted(UNSORTED_LETTERS_TUPLE, 'z')
-linear_search_unsorted(UNSORTED_LETTERS_TUPLE, 'h')
+print(linear_search_unsorted(UNSORTED_NUMBERS_TUPLE, 4))
+print(linear_search_unsorted(UNSORTED_NUMBERS_TUPLE, 44))
+print(linear_search_unsorted(UNSORTED_NUMBERS_TUPLE, 11))
+print(linear_search_unsorted(UNSORTED_LETTERS_TUPLE, 'z'))
+print(linear_search_unsorted(UNSORTED_LETTERS_TUPLE, 'h'))
 print()
+
+
+# LINEAR SEARCH ON SORTED ITERABLE
 
 
 def linear_search_sorted(iterable, searched):
+    found = False
+    steps = 0
     for e in range(len(iterable)):
+        steps += 1
         if iterable[e] == searched:
-            return True
+            found = True
+            break
+        if iterable[e] > searched:
+            break
+    return f"""Steps: {steps:5}\t{'not ' if found == False else "":}found '{searched}' in {len(iterable)} elements"""
+
+
+print('LINEAR SEARCH ON SORTED ITERABLE')
+print(linear_search_sorted(SORTED_NUMBERS, 4))
+print(linear_search_sorted(SORTED_NUMBERS, 44))
+print(linear_search_sorted(SORTED_NUMBERS, 11))
+print(linear_search_sorted(SORTED_LETTERS, 'z'))
+print(linear_search_sorted(SORTED_LETTERS, 'h'))
+print()
+print(linear_search_sorted(SORTED_NUMBERS_TUPLE, 4))
+print(linear_search_sorted(SORTED_NUMBERS_TUPLE, 44))
+print(linear_search_sorted(SORTED_NUMBERS_TUPLE, 11))
+print(linear_search_sorted(SORTED_LETTERS_TUPLE, 'z'))
+print(linear_search_sorted(SORTED_LETTERS_TUPLE, 'h'))
+print()
+
+
