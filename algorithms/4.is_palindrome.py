@@ -52,11 +52,23 @@ def is_palindrome_iterative(string):
     return f' => {check}'
 
 
-print('CHECK PALINDROME ITERATIVE (LINEAR SEARCH)')
+# UPGRADE
+@format_string
+def is_palindrome_iterative2(string):
+    for v in range(len(string) // 2 + 1):
+        if string[v] != string[-(v+1)]:
+            return f' => {False}'        # This is possible, because the first 'return' called in the function, ends it
+    return f' => {True}'                 # So if first return is called, then this one will be avoided
+
+
+print('\nCHECK PALINDROME ITERATIVE (LINEAR SEARCH)')
 str1 = 'abb cdaaXfXaa, dcbba!'
 str2 = 'fsdas dasfdas sadsf'
 print(str1, is_palindrome_iterative(str1))
 print(str2, is_palindrome_iterative(str2))
+print('---------------')
+print(str1, is_palindrome_iterative2(str1))
+print(str2, is_palindrome_iterative2(str2))
 print()
 
 
