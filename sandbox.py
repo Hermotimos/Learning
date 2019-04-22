@@ -62,3 +62,30 @@
 #     print(i)
 
 
+# # SPOJ half of the half
+# values = open('sandbox_SPOJ_input').read().splitlines()
+# times = int(values[0])
+# words = tuple(str(v) for v in values[1:])
+#
+# for t in range(times):
+#     word = words[t]
+#     out = ''
+#     for letter in (word[i] for i in range(0, len(word) // 2, 2)):
+#         out += letter
+#     print(out)
+#
+#
+# # Fizz Buzz
+# def fizzbuzz():
+#     for n in range(1, 101):
+#         if n % 3 == 0 and n % 5 == 0:
+#             print('Fizz Buzz')
+#         elif n % 3 == 0:
+#             print('Fizz')
+#         elif n % 5 == 0:
+#             print('Buzz')
+#         else:
+#             print(n)
+#
+#
+# fizzbuzz()
