@@ -52,12 +52,12 @@ def is_palindrome_iterative(string):
     return f' => {check}'
 
 
-# UPGRADE
+# SIMPLIFICATION
 @format_string
 def is_palindrome_iterative2(string):
     for v in range(len(string) // 2 + 1):
         if string[v] != string[-(v+1)]:
-            return f' => {False}'        # This is possible, because the first 'return' called in the function, ends it
+            return f' => {False}'        # This is possible, because the first 'return' called in the function ends it
     return f' => {True}'                 # So if first return is called, then this one will be avoided
 
 
