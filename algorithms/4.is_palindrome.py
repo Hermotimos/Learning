@@ -34,7 +34,8 @@ def format_string(palindrome_check_function):
 # SHORTER VERSION OF THE ABOVE:
 # def format_string_shorter(palindrome_check_function):
 #     def wrapper(text):
-#         for s in text.lower():
+#         text = str(text).lower()
+#         for s in text:
 #             if s not in 'abcdefghijklmnopqrstuvwxyz':
 #                 text = text.replace(s, '')
 #         return palindrome_check_function(text)
@@ -47,12 +48,13 @@ def is_palindrome_iterative(string):
     for v in range(len(string) // 2 + 1):
         if string[v] != string[-(v+1)]:
             check = False
+            break
     return f' => {check}'
 
 
 print('CHECK PALINDROME ITERATIVE (LINEAR SEARCH)')
-str1 = 'abb cdaaXXaa, dcbba!'
-str2 = 'fsdas dasdas sadsf'
+str1 = 'abb cdaaXfXaa, dcbba!'
+str2 = 'fsdas dasfdas sadsf'
 print(str1, is_palindrome_iterative(str1))
 print(str2, is_palindrome_iterative(str2))
 print()
@@ -98,14 +100,14 @@ print()
 
 
 def is_palindrome_simple(text):
-    text = str(text)
-    for digit in text.lower():
+    text = str(text).lower()
+    for digit in text:
         if digit not in 'abcdefghijklmnopqrstuvwxyz0123456789':
             text = text.replace(digit, '')
     return text == text[::-1]
 
 
-print('CHECK PALINDROME NO RECURSION OR ITERATION EXPLICITLY')
+print('CHECK PALINDROME SIMPLEST')
 str1 = 'abb cdaaXXaa, dcbba!'
 str2 = 'fsdas dasdas sadsf'
 print(is_palindrome_simple(str1))
