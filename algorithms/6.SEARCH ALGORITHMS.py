@@ -84,3 +84,78 @@ print(linear_search_sorted(SORTED_LETTERS_TUPLE, 'h'))
 print()
 
 
+# ----------------------------------------------------------------------------------------------------
+# >>>>>>>>>>>>>>>>>>>>>>>>> BISECTION SEARCH [REQUIRES SORTED ITERABLE] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# ----------------------------------------------------------------------------------------------------
+
+
+# 1) ALGORITHM WITH COPYING OF THE LIST => cost O(n)
+# cost of recursion is O(log n) but cost of copying the list is O(n)
+
+
+def bisection_search(iterable, searched):
+    if len(iterable) == 0:
+        return False
+    elif len(iterable) == 1:
+        return iterable[0] == searched
+    else:
+        half = len(iterable) // 2
+        if iterable[half] > searched:
+            return bisection_search(iterable[:half], searched)
+        else:
+            return bisection_search(iterable[half:], searched)
+
+
+print('BISECTION SEARCH - WITH COPYING')
+print(bisection_search(SORTED_NUMBERS, 4))
+print(bisection_search(SORTED_NUMBERS, 44))
+print(bisection_search(SORTED_NUMBERS, 11))
+print(bisection_search(SORTED_LETTERS, 'z'))
+print(bisection_search(SORTED_LETTERS, 'h'))
+print()
+print(bisection_search(SORTED_NUMBERS_TUPLE, 4))
+print(bisection_search(SORTED_NUMBERS_TUPLE, 44))
+print(bisection_search(SORTED_NUMBERS_TUPLE, 11))
+print(bisection_search(SORTED_LETTERS_TUPLE, 'z'))
+print(bisection_search(SORTED_LETTERS_TUPLE, 'h'))
+print()
+
+
+
+# 2) MY ALGORITHM => cost O(log n)
+# based on hint from MIT lecture to use pointers instead of copying iterable
+
+
+def bisection_search_efficient_1(iterable, searched, low=0, high=0):
+    if high == 0:
+        high = len(iterable)
+
+    if len(iterable) == 0:
+        return False
+    elif len(iterable[low:high]) == 1:
+        return iterable[0] == searched
+
+    else:
+        middle = (low + high) // 2
+        if iterable[middle] == searched:
+            return True
+        elif iterable[middle] > searched:
+            high = middle
+        else:
+            low = middle
+        return bisection_search_efficient_1(iterable, searched, low, high)
+
+
+print('BISECTION SEARCH - WITH POINTERS')
+print(bisection_search_efficient_1(SORTED_NUMBERS, 4))
+print(bisection_search_efficient_1(SORTED_NUMBERS, 44))
+print(bisection_search_efficient_1(SORTED_NUMBERS, 11))
+print(bisection_search_efficient_1(SORTED_LETTERS, 'z'))
+print(bisection_search_efficient_1(SORTED_LETTERS, 'h'))
+print()
+print(bisection_search_efficient_1(SORTED_NUMBERS_TUPLE, 4))
+print(bisection_search_efficient_1(SORTED_NUMBERS_TUPLE, 44))
+print(bisection_search_efficient_1(SORTED_NUMBERS_TUPLE, 11))
+print(bisection_search_efficient_1(SORTED_LETTERS_TUPLE, 'z'))
+print(bisection_search_efficient_1(SORTED_LETTERS_TUPLE, 'h'))
+print()
