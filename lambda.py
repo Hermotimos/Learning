@@ -17,15 +17,16 @@
 
 double = lambda x: x*2
 square = lambda x: x**2
-next_even = lambda x: x + 1 if x % 2 == 1 else False
-
-my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-example = lambda x: [e for e in x if e % 2 == 0]
+next_even = lambda x: x + 1 if x % 2 == 1 else x + 2
 
 print(double(4))
 print(square(4))
 print(next_even(3))
 print(next_even(6))
+print()
+
+my_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+example = lambda x: [e for e in x if e % 2 == 0]
 
 print(example(my_list))
 
@@ -35,9 +36,10 @@ print('##################################################')
 # as per PEP8 lambdas shouldn't be used in simple assignments as above
 # lambdas can be used inside other functions like below
 
+
 # filter() takes function and iterable as args
 # returns elements of list that pass the criteria of the function
-my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+my_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 filtered = list(filter(lambda x: (x % 2 == 0), my_list))
 print(filtered)
@@ -76,6 +78,3 @@ print(summed)
 my_letters = ('a', 'b', 'c', 'c', 'c', 'c', 'd', 'a', 'g', 'b', 'b', 'b')
 concatenated = reduce(lambda a, b: a + b, my_letters)
 print(concatenated)
-
-
-
