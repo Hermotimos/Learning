@@ -11,6 +11,7 @@
 print('LIST COMPREHENSION')
 x = [x * 2 for x in range(10)]
 print(x)
+# simpler:
 x = list(range(0, 19, 2))
 print(x)
 
@@ -26,16 +27,16 @@ print(x)
 print('TUPLE COMPREHENSION')
 x = tuple(x for x in range(5))
 print(x)
+# simpler:
 x = tuple(range(5))
 print(x)
 
 
-print('COMBINING LISTS WITH LIST COMPREHENSION')
+print('COMBINING TWO LISTS WITH A LIST COMPREHENSION')
 nums = [1, 2, 3]
 letters = ['a', 'b', 'c', 'd', 'e']
 nums_letters = [[num, let] for num in nums for let in letters]
 print(nums_letters)
-print(x)
 
 
 print('MORE COMPREHENSIONS')
@@ -45,7 +46,7 @@ x = {n for n in [0, 7, 0, 1, 2, 6, 0, 2, 1]}
 print(x)
 x = {w: len(w) for w in ('apple', 'I', 'have', 'no')}
 print(x)
-x = tuple(sign for sign in 'This is nothing')
+x = tuple(sign for sign in 'This is nothing' if sign != ' ')
 print(x)
-x = frozenset({n for n in [0, 7, 0, 1, 2, 6, 0, 2, 1]})
+x = frozenset({n for n in [0, 7, 0, 1, 2, 6, 0, 2, 1] if n > 0})
 print(x)
