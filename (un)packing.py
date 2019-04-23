@@ -3,7 +3,7 @@
 
     Topics:
         - packing and unpacking arguments
-        - multiple assignement
+        - multiple assignment
 
     Sources:
         https://jpt-pynotes.readthedocs.io/en/latest/functions.html#argument-lists
@@ -50,7 +50,7 @@ forfun(*list_1)
 print('*dict accesses keys')
 forfun(*dict_1)
 forfun(*dict_2)
-print('**dict accesses values - but they need to be str to be printed out without error')
+print('**dict accesses values - but keys need to be str for values to be printed out without error')     # WHY?
 # forfun(**dict_1)  # - generates error: TypeError: forfun() keywords must be strings
 forfun(**dict_2)
 
@@ -62,16 +62,17 @@ list_1 = (1, 2, 3, 4)
 dict_1 = {1: 'a', 2: 'b', 3: 'c', 4: 'd'}
 dict_2 = {'a': 'orange', 'b': 'apple', 'c': 'kiwi', 'd': 'banana'}
 
+
 def sumup(*args):
-    """ Function call packs unknown number of arguments into a tuple,
-    thus enabling us to iterate over it """
+    """Function packs all provided arguments into a tuple, so then it can iterate over them."""
     summ = 0
     for a in args:
         summ += a
     return summ
 
 
-print(sumup(*tuple_1))
+print(sumup(1, 4, 6, 7, 8, 11))
+print(sumup(*tuple_1))              # Here *tuple_1 unpack arguments, which are then packed again by sumup(*args)
 print(sumup(*dict_1))
 print(sumup(*tuple_1, *list_1, *dict_1))
 
@@ -80,18 +81,17 @@ print('#########################################################################
 print('PACKING WITH FUNCTIONS - arbitrary number of kwargs')
 
 
-def make_index(**kwargs):
+def unpack_dict(**kwargs):
     index = ''
     for key in kwargs:
         index += "{} {}\n".format(key, ', '.join(kwargs[key]))
     return index
 
 
-dict_for_indexing = {'Malinowski, Bronislaw': ('3', '5', '17', '167'),
-                     'Levi-Strauss, Claude': ('4', '9', '89', '134'),
-                     'Geertz, Clifford': ('3', '5', '78', '89')}
-print(make_index(**dict_for_indexing))
-
+dict_citations = {'Malinowski, Bronislaw': ('3', '5', '17', '167'),
+                  'Levi-Strauss, Claude': ('4', '9', '89', '134'),
+                  'Geertz, Clifford': ('3', '5', '78', '89')}
+print(unpack_dict(**dict_citations))     # **dict_citations unpacks dict items
 
 
 print('##########################################################################')
@@ -101,13 +101,18 @@ print('MORE UNPACKING')
 print(x)
 print(y)
 print(color)
+print()
 
 
 def color_of_point(point):
-        (_, _), color = point
-        return color
+    (_, _), colour = point
+    return colour
 
 
 points = [((1, 2), 'red'), ((3, 4), 'green'), ((7, 9), 'blue')]
+for p in points:
+    print(color_of_point(p), '// ', end='')
+
+print()
 sorted_by_color = sorted(points, key=color_of_point)
 print(sorted_by_color)
