@@ -45,10 +45,10 @@ print()
 
 
 def linear_search_sorted(iterable, searched):
-    for e in range(len(iterable)):
-        if iterable[e] == searched:
+    for e in iterable:
+        if e == searched:
             return True
-        if iterable[e] > searched:
+        elif e > searched:
             return False
     return False
 
