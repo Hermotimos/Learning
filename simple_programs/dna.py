@@ -172,8 +172,9 @@ def from_sequence_delete_errors(sequence, *errors):
     str: Sequence with specified characters removed.
     """
     for err in errors:
-        sequence = sequence.replace(err.lower(), "").replace(err.upper(), "")   # assignment! (replace() returns copy)
+        sequence = sequence.replace(err.lower(), "").replace(err.upper(), "")
     return sequence
+    # replace() returns copy, hence assignment is needed to return modified sequence
 
 
 main()
