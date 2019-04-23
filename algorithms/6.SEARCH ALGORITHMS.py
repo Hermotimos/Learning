@@ -97,8 +97,8 @@ print()
 # based on hint from MIT lecture to use pointers instead of copying iterable
 
 
-def bisection_search_efficient_1(iterable, searched, low=0, high=0):
-    if high == 0:
+def bisection_search_efficient_1(iterable, searched, low=0, high=None):
+    if high is None:
         high = len(iterable)
 
     if len(iterable) == 0:
