@@ -287,97 +287,20 @@ print()
 
 
 # ----------------------------------------------------------------------------------------------------
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MERGE SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PERFORMANCE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
 
-list1 = [(2, 'two'), (3, 'three'), (0, 'zero'), (4, 'four'), (1, 'one')]
-list2 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1]
-list3 = list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2
-list4 = list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3
-list5 = list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4
-list6 = list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5
+algorithms = [bubble_mit, bubble_sort_short, bubble_sort_shortest, selection_sort, merge_sort]
 
-lists = [list1, list2, list3, list4, list5, list6]
-algorithms = [bogo_sort, bubble_mit, bubble_sort_short, bubble_sort_shortest, selection_sort, merge_sort]
-
-for i, list_ in enumerate(lists):
-    print(f'\nlist{i + 1} [length: {len(list_)}]\n-------')
-    for a in algorithms:
-        if not (list_ in (list3, list4, list5, list6) and a == bogo_sort):      # Avoid infinite waiting by monkey sort
-            time_function(a)(list_)
-
-
-# CONCLUSIONS
-#
-# 1)
-# Surprisingly, my versions of bubble sort algorithm are much more efficient than the version from MIT lecture.
-# I created them only in order to simplify syntax, but they actually work faster.
-# This is visible especially for big lists.
-# They even perform better than merge sort.
-#
-# 2)
-
-
-"""
-RESULTS:
-list1 [length: 9]
--------
-Time for bogo_sort                : 9072181
-Time for bubble_mit               : 3284
-Time for bubble_sort_short        : 2463
-Time for bubble_sort_shortest     : 4516
-Time for selection_sort           : 11084
-Time for merge_sort               : 25863
-
-list2 [length: 5]
--------
-Time for bogo_sort                : 2414705
-Time for bubble_mit               : 2464
-Time for bubble_sort_short        : 2463
-Time for bubble_sort_shortest     : 3284
-Time for selection_sort           : 6568
-Time for merge_sort               : 13137
-
-list3 [length: 33]
--------
-Time for bubble_mit               : 172831
-Time for bubble_sort_short        : 5747
-Time for bubble_sort_shortest     : 7800
-Time for selection_sort           : 71021
-Time for merge_sort               : 109610
-
-list4 [length: 163]
--------
-Time for bubble_mit               : 6437025
-Time for bubble_sort_short        : 43926
-Time for bubble_sort_shortest     : 47210
-Time for selection_sort           : 2116254
-Time for merge_sort               : 1190111
-
-list5 [length: 685]
--------
-Time for bubble_mit               : 104488757
-Time for bubble_sort_short        : 93599
-Time for bubble_sort_shortest     : 126031
-Time for selection_sort           : 29530261
-Time for merge_sort               : 21002024
-
-list6 [length: 8905]
--------
-Time for bubble_mit               : 12698599455
-Time for bubble_sort_short        : 1128942
-Time for bubble_sort_shortest     : 1563688
-Time for selection_sort           : 4042312764
-Time for merge_sort               : 51884554
-
-list7 [length: 80145]
--------
-Time for bubble_mit               : 1063667727599 ns = 1063.667727599 s = 17.72779546
-Time for bubble_sort_short        : 10158019 ns = 0.010158019 s 
-Time for bubble_sort_shortest     : 14344138 ns = 0.014344138 s 
-Time for selection_sort           : 329638676420 ns = 329.63867642 s =  5.49397794
-Time for merge_sort               : 578784174 ns = 0.578784174 s 
-
-
-"""
+for alg in algorithms:
+    list1 = [17, 2, 73, 1, 34, 3, 54, 17, 2, 73]
+    list2 = list1 + list1 + list1 + list1 + list1 + list1 + list1 + list1 + list1 + list1
+    list3 = list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2
+    list4 = list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3
+    list5 = list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4
+    lists = [list1, list2, list3, list4, list5]
+    print()
+    for i, list_ in enumerate(lists):
+        print(f'list length: {len(list_)}')
+        time_function(alg)(list_)
