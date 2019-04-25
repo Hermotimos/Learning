@@ -291,33 +291,29 @@ print()
 # ----------------------------------------------------------------------------------------------------
 
 
-list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
-list2 = [(2, 'two'), (3, 'three'), (0, 'zero'), (4, 'four'), (1, 'one')]
-list3 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3]
-list4 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3,
-         73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43,
-         17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3,
-         73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43,
-         11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3]
-list5 = list4 + list3 + list4 + list4 + list4
-list6 = list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5
-list7 = list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6
+list1 = [(2, 'two'), (3, 'three'), (0, 'zero'), (4, 'four'), (1, 'one')]
+list2 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1]
+list3 = list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2
+list4 = list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3
+list5 = list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4
+list6 = list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5
 
-lists = [list1, list2, list3, list4, list5, list6, list7]
+lists = [list1, list2, list3, list4, list5, list6]
 algorithms = [bogo_sort, bubble_mit, bubble_sort_short, bubble_sort_shortest, selection_sort, merge_sort]
 
 for i, list_ in enumerate(lists):
     print(f'\nlist{i + 1} [length: {len(list_)}]\n-------')
     for a in algorithms:
-        if not (list_ in (list3, list4, list5, list6, list7) and a == bogo_sort):      # Avoid unbounded waiting time for monkey search on list3
+        if not (list_ in (list3, list4, list5, list6) and a == bogo_sort):      # Avoid infinite waiting by monkey sort
             time_function(a)(list_)
 
 
-# CONCLUSION
+# CONCLUSIONS
 #
 # 1)
 # Surprisingly, my versions of bubble sort algorithm are much more efficient than the version from MIT lecture.
 # I created them only in order to simplify syntax, but they actually work faster.
 # This is visible especially for big lists.
 # They even perform better than merge sort.
-# TODO test for arbitrarily large list, like
+#
+# 2)
