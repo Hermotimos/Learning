@@ -180,27 +180,27 @@ print()
 print('PERFORMANCE: iterative 1')
 clocked_factorial = time_function(factorial_iterative_1)
 for v in (3000, 3000, 5000, 5000, 8000, 8000, 20000, 90000, 90000):
-    clocked_factorial(v)
+    print(v, '', end=''), clocked_factorial(v)
 print()
 
 print('PERFORMANCE: iterative 2')
 clocked_factorial = time_function(factorial_iterative_2)
 for v in (3000, 3000, 5000, 5000, 8000, 8000, 20000, 90000, 90000):
-    clocked_factorial(v)
+    print(v, '', end=''), clocked_factorial(v)
 print()
 
 
 print('PERFORMANCE: recursive')
 clocked_factorial = time_function(factorial_recursive)
 for v in (3000, 3000):          # THIS WON'T EVEN COMPUTE FOR 5000 !!!!!!
-    clocked_factorial(v)
+    print(v, '', end=''), clocked_factorial(v)
 print()
 
 
 print('PERFORMANCE: recursive with memoization')
 clocked_factorial = time_function(factorial_recur_memo)
 for v in (3000, 3000, 5000, 5000, 8000, 8000, 11500, 15000, 18500, 22000, 25500, 29000, 32500, 32500):
-    clocked_factorial(v)
+    print(v, '', end=''), clocked_factorial(v)
 print()
 
 
