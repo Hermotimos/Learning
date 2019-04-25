@@ -152,6 +152,7 @@ list3 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 
 print('\nlist1'), bubble_sort2(list1)
 print('\nlist2'), bubble_sort2(list2)
 print('\nlist3'), bubble_sort2(list3, False)
+print()
 
 # Order of growth O(n**2) because each iterative solution is O(len(listx) = O(n).
 # There are 2 iterative constructs (while and for), so O(n)*O(n) = O(n**2)
@@ -160,5 +161,35 @@ print('\nlist3'), bubble_sort2(list3, False)
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SELECTION SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
+print('SELECTION SORT')
 
 
+# PURE ALGORITHM
+def selection(listx):
+    index = 0
+    while index != len(listx):
+        for n in range(index, len(listx)):
+            if listx[index] > listx[n]:
+                listx[index], listx[n] = listx[n], listx[index]
+        index += 1
+    return listx
+
+
+# WITH PRINTOUT
+def selection2(listx):
+    index = 0
+    while index != len(listx):
+        print(f'Step {index}: {listx}')
+        for n in range(index, len(listx)):
+            if listx[index] > listx[n]:
+                listx[index], listx[n] = listx[n], listx[index]
+        index += 1
+    return listx
+
+
+list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
+list2 = [(2, 'two'), (3, 'three'), (0, 'zero'), (4, 'four'), (1, 'one')]
+list3 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3]
+print('\nlist1'), print(selection2(list1))
+print('\nlist2'), print(selection2(list2))
+print('\nlist3'), print(selection2(list3))
