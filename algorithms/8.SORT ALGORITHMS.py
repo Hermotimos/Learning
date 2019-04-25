@@ -7,15 +7,12 @@
     Sources:
         https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
 """
-
-# ----------------------------------------------------------------------------------------------------
-# >>>>>>>>>>>>>>>>>>>>>>>>>>> MONKEY SORT / BOGO SORT / SHOTGUN SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-# ----------------------------------------------------------------------------------------------------
 import random
 
 
-def is_sorted(iterable):
-    return all(iterable[n] <= iterable[n + 1] for n in range(len(iterable)-1))
+# CODE TO CHECK IF LIST IS SORTED
+def is_sorted(listx):
+    return all(listx[n - 1] <= listx[n] for n in range(1, len(listx)))
 
 
 tuple1 = 1, 2, 3, 4
@@ -31,60 +28,124 @@ print(is_sorted(list2))
 print()
 
 
-def bogo_sort(iterable, shuffle_counter=0):
-    print(f'Start: {iterable}')
-    while not is_sorted(iterable):
-        random.shuffle(iterable)
+# ----------------------------------------------------------------------------------------------------
+# >>>>>>>>>>>>>>>>>>>>>>>>>>> MONKEY SORT / BOGO SORT / SHOTGUN SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# ----------------------------------------------------------------------------------------------------
+print('MONKEY SORT / BOGO SORT / SHOTGUN SORT')
+
+
+# PURE ALGORITHM
+def bogo_sort(listx):
+    while not all(listx[n - 1] <= listx[n] for n in range(1, len(listx))):
+        random.shuffle(listx)
+    return listx
+
+
+# VERSION WITH PRINTOUT AND COUNTER
+def bogo_sort2(listx, shuffle_counter=0):
+    print(f'Start: {listx}')
+    while not all(listx[n - 1] <= listx[n] for n in range(1, len(listx))):
+        random.shuffle(listx)
         shuffle_counter += 1
-    print(f'Steps needed: {shuffle_counter}: {iterable}')
+    print(f'Steps needed: {shuffle_counter}: {listx}')
 
 
-print('MONKEY SEARCH / BOGO SEARCH / SHOTGUN SEARCH')
 list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
 list2 = [(2, 'two'), (3, 'three'), (0, 'zero'), (4, 'four'), (1, 'one')]
 list3 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3]
-print('\nlist1'), bogo_sort(list1)
-print('\nlist2'), bogo_sort(list2)
-# print('\nlist3'), bogo_sort(list3)        # Woooops... this probably takes hours.
+print('\nlist1'), bogo_sort2(list1)
+print('\nlist2'), bogo_sort2(list2)
+# print('\nlist3'), bogo_sort2(list3)        # Woooops... this probably takes hours.
 print()
+
 # This algorithm will eventually sort short lists.
-# 10 trials for a 7-element iterable: 327, 325, 235, 204, 169, 421, 401, 593, 3, 391. Generally seen range 3 - 2400 !!!
+# 10 trials for a 7-element list: 327, 325, 235, 204, 169, 421, 401, 593, 3, 391. Generally seen range 3 - 2400 !!!
 # Order of growth O is here unbounded in the worst case scenario.
 
 
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> BUBBLE SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
+print('BUBBLE SORT')
+print()
 
 
-def bubble_sort(iterable):
-    while True:
+# MIT VERSION
+
+def bubble_mit(L):
+    swap = False
+    while not swap:
         swap = True
-        for e in range(1, len(iterable)):
-            if iterable[e - 1] > iterable[e]:
+        for j in range(1, len(L)):
+            if L[j-1] > L[j]:
                 swap = False
-                iterable[e - 1], iterable[e] = iterable[e], iterable[e - 1]
-        if swap:
-            return iterable
+                temp = L[j]
+                L[j] = L[j - 1]
+                L[j - 1] = temp
+    return L
 
 
-# VERSION WITH PRINTOUT:
-def bubble_sort2(iterable, printout=True):
-    print(f'Start: {iterable}') if printout else None
+list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
+print(f'MIT algorithm test for {list1}:')
+print(bubble_mit(list1))
+print()
+# COMMENT
+# This 'swap' business here is very counter-intuitive, as 'swap = False' right before a swap is done.
+# Also it doen't make use of multiple assignment. And it's long...
+# So it needs simplification
+
+
+# SHORTER VERSION
+
+def bubble_sort_short(listx):
+    while True:
+        swap = False
+        for e in range(1, len(listx)):
+            if listx[e-1] > listx[e]:
+                swap = True
+                listx[e-1], listx[e] = listx[e], listx[e-1]
+        if not swap:
+            return listx
+
+
+list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
+print(f'Shorter algorithm test for list {list1}:')
+print(bubble_sort_short(list1))
+print()
+
+
+# SHORTEST VERSION
+
+def bubble_sort_shortest(listx):
+    while not all(listx[n-1] <= listx[n] for n in range(1, len(listx))):
+        for e in range(1, len(listx)):
+            if listx[e-1] > listx[e]:
+                listx[e-1], listx[e] = listx[e], listx[e-1]
+    return listx
+
+
+list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
+print(f'Shortest algorithm test for list {list1}:')
+print(bubble_sort_shortest(list1))
+print()
+
+
+# VERSION WITH PRINTOUT AND COUNTER
+def bubble_sort2(listx, printout=True):
+    print(f'Start: {listx}') if printout else None
     step_count = 0
     while True:
-        swap = True
-        for e in range(1, len(iterable)):
-            if iterable[e - 1] > iterable[e]:
-                swap = False
+        swap = False
+        for e in range(1, len(listx)):
+            if listx[e-1] > listx[e]:
+                swap = True
                 step_count += 1
-                iterable[e - 1], iterable[e] = iterable[e], iterable[e - 1]
-                print(f'Step {step_count}: {iterable}') if printout else None
-        if swap:
-            return iterable if printout else print(f'Steps: {step_count}: {iterable}.')
+                listx[e-1], listx[e] = listx[e], listx[e-1]
+                print(f'Step {step_count}: {listx}') if printout else None
+        if not swap:
+            return listx if printout else print(f'Steps: {step_count}: {listx}.')
 
 
-print('BUBBLE SEARCH')
 list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
 list2 = [(2, 'two'), (3, 'three'), (0, 'zero'), (4, 'four'), (1, 'one')]
 list3 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3]
@@ -92,7 +153,7 @@ print('\nlist1'), bubble_sort2(list1)
 print('\nlist2'), bubble_sort2(list2)
 print('\nlist3'), bubble_sort2(list3, False)
 
-# Order of growth O(n**2) because each iterative solution is O(len(iterable) = O(n).
+# Order of growth O(n**2) because each iterative solution is O(len(listx) = O(n).
 # There are 2 iterative constructs (while and for), so O(n)*O(n) = O(n**2)
 
 
