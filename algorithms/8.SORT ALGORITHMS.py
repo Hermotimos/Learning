@@ -72,17 +72,17 @@ print()
 
 # MIT VERSION
 
-def bubble_mit(L):
+def bubble_mit(listx):
     swap = False
     while not swap:
         swap = True
-        for j in range(1, len(L)):
-            if L[j-1] > L[j]:
+        for j in range(1, len(listx)):
+            if listx[j - 1] > listx[j]:
                 swap = False
-                temp = L[j]
-                L[j] = L[j - 1]
-                L[j - 1] = temp
-    return L
+                temp = listx[j]
+                listx[j] = listx[j - 1]
+                listx[j - 1] = temp
+    return listx
 
 
 list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
@@ -102,8 +102,8 @@ def bubble_sort_short(listx):
         swap = False
         for e in range(1, len(listx)):
             if listx[e-1] > listx[e]:
-                swap = True
                 listx[e-1], listx[e] = listx[e], listx[e-1]
+                swap = True
         if not swap:
             return listx
 
@@ -138,9 +138,9 @@ def bubble_sort2(listx, printout=True):
         swap = False
         for e in range(1, len(listx)):
             if listx[e-1] > listx[e]:
+                listx[e-1], listx[e] = listx[e], listx[e-1]
                 swap = True
                 step_count += 1
-                listx[e-1], listx[e] = listx[e], listx[e-1]
                 print(f'Step {step_count}: {listx}') if printout else None
         if not swap:
             return listx if printout else print(f'Steps: {step_count}: {listx}.')
