@@ -8,6 +8,7 @@
         https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
 """
 import random
+from time_function_decorator import time_function
 
 
 # CODE TO CHECK IF LIST IS SORTED
@@ -165,7 +166,7 @@ print('SELECTION SORT')
 
 
 # PURE ALGORITHM
-def selection(listx):
+def selection_sort(listx):
     index = 0
     while index != len(listx):
         for n in range(index, len(listx)):
@@ -193,3 +194,130 @@ list3 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 
 print('\nlist1'), print(selection2(list1))
 print('\nlist2'), print(selection2(list2))
 print('\nlist3'), print(selection2(list3))
+print()
+
+
+# ----------------------------------------------------------------------------------------------------
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MERGE SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# ----------------------------------------------------------------------------------------------------
+print('MERGE SORT')
+
+
+def merge_sort(listx):
+    def merge(left, right):
+        result = []
+        a, b = 0, 0
+        while a < len(left) and b < len(right):
+            if left[a] < right[b]:
+                result.append(left[a])
+                a += 1
+            else:
+                result.append(right[b])
+                b += 1
+        while a < len(left):
+            result.append(left[a])
+            a += 1
+        while b < len(right):
+            result.append(right[b])
+            b += 1
+        return result
+
+    if len(listx) < 2:
+        return listx[:]
+    else:
+        middle = len(listx) // 2
+        half1 = merge_sort(listx[:middle])
+        half2 = merge_sort(listx[middle:])
+        return merge(half1, half2)
+
+
+list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
+list2 = [(2, 'two'), (3, 'three'), (0, 'zero'), (4, 'four'), (1, 'one')]
+list3 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3]
+print('\nlist1'), print(merge_sort(list1))
+print('\nlist2'), print(merge_sort(list2))
+print('\nlist3'), print(merge_sort(list3))
+
+
+# WITH PRINTOUT
+# Steps counting has no meaning by recursion - I'm putting it here to see why
+
+def merge_sort2(listx):
+    global counter
+    counter += 1
+
+    def merge(left, right):
+        print(f'Step {counter}:\n\t\tleft: {left}\n\t\tright: {right}')
+        result = []
+        a, b = 0, 0
+        while a < len(left) and b < len(right):
+            if left[a] < right[b]:
+                result.append(left[a])
+                a += 1
+            else:
+                result.append(right[b])
+                b += 1
+        while a < len(left):
+            result.append(left[a])
+            a += 1
+        while b < len(right):
+            result.append(right[b])
+            b += 1
+        return result
+
+    if len(listx) < 2:
+        return listx[:]
+    else:
+        middle = len(listx) // 2
+        half1 = merge_sort2(listx[:middle])
+        half2 = merge_sort2(listx[middle:])
+        return merge(half1, half2)
+
+
+list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
+list2 = [(2, 'two'), (3, 'three'), (0, 'zero'), (4, 'four'), (1, 'one')]
+list3 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3]
+counter = 0
+print('\nlist1'), print(merge_sort2(list1))
+counter = 0
+print('\nlist2'), print(merge_sort2(list2))
+counter = 0
+print('\nlist3'), print(merge_sort2(list3))
+print()
+
+
+# ----------------------------------------------------------------------------------------------------
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MERGE SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# ----------------------------------------------------------------------------------------------------
+
+
+list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
+list2 = [(2, 'two'), (3, 'three'), (0, 'zero'), (4, 'four'), (1, 'one')]
+list3 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3]
+list4 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3,
+         73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43,
+         17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3,
+         73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43,
+         11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3]
+list5 = list4 + list3 + list4 + list4 + list4
+list6 = list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5 + list5
+list7 = list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6 + list6
+
+lists = [list1, list2, list3, list4, list5, list6, list7]
+algorithms = [bogo_sort, bubble_mit, bubble_sort_short, bubble_sort_shortest, selection_sort, merge_sort]
+
+for i, list_ in enumerate(lists):
+    print(f'\nlist{i + 1} [length: {len(list_)}]\n-------')
+    for a in algorithms:
+        if not (list_ in (list3, list4, list5, list6, list7) and a == bogo_sort):      # Avoid unbounded waiting time for monkey search on list3
+            time_function(a)(list_)
+
+
+# CONCLUSION
+#
+# 1)
+# Surprisingly, my versions of bubble sort algorithm are much more efficient than the version from MIT lecture.
+# I created them only in order to simplify syntax, but they actually work faster.
+# This is visible especially for big lists.
+# They even perform better than merge sort.
+# TODO test for arbitrarily large list, like
