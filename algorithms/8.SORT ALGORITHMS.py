@@ -168,7 +168,7 @@ print('SELECTION SORT')
 # PURE ALGORITHM
 def selection_sort(listx):
     index = 0
-    while index != len(listx):
+    while index < len(listx):
         for n in range(index, len(listx)):
             if listx[index] > listx[n]:
                 listx[index], listx[n] = listx[n], listx[index]
