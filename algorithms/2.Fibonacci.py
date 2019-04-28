@@ -98,12 +98,12 @@ print('\nTime:', time.time() - timer)
 
 
 # -----------------------------------------------------------------------------------------------------
-fib_cache = {}
+fib_cache_1 = {}
 
 
 def fib_memo(n):
-    if n in fib_cache:
-        return fib_cache[n]
+    if n in fib_cache_1:
+        return fib_cache_1[n]
 
     elif n == 0:
         val = 0
@@ -112,7 +112,7 @@ def fib_memo(n):
     else:
         val = fib_memo(n-1) + fib_memo(n-2)
 
-    fib_cache[n] = val
+    fib_cache_1[n] = val
     return val
 
 
@@ -159,7 +159,7 @@ def fib_memo3(n):
         elif n == 1:
             fib_cache3[n] = 1
         else:
-            fib_cache3[n] = fib_memo2(n-1) + fib_memo2(n-2)
+            fib_cache3[n] = fib_memo3(n-1) + fib_memo3(n-2)
     return fib_cache3[n]
 
 
