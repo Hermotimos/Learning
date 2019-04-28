@@ -132,24 +132,42 @@ fib_cache2 = {}
 def fib_memo2(n):
     if n in fib_cache2:
         return fib_cache2[n]
+    elif n == 0:
+        fib_cache2[n] = 0
+    elif n == 1:
+        fib_cache2[n] = 1
     else:
-        if n == 0:
-            val = 0
-        elif n == 1:
-            val = 1
-        else:
-            val = fib_memo2(n-1) + fib_memo2(n-2)
-
-        fib_cache2[n] = val
-        return val
+        fib_cache2[n] = fib_memo2(n-1) + fib_memo2(n-2)
+    return fib_cache2[n]
 
 
-print('\nFibonacci with memoization version 2: no starter [experiments]')
+print('\nFibonacci with memoization version 2: more concise')
 timer = time.time()
-for i in range(0, 11111):
+for i in range(0, 1111):
     print(fib_memo2(i), '', end='')
 print('\nTime:', time.time() - timer)
 
+
+# -----------------------------------------------------------------------------------------------------
+fib_cache3 = {}
+
+
+def fib_memo3(n):
+    if n not in fib_cache3:
+        if n == 0:
+            fib_cache3[n] = 0
+        elif n == 1:
+            fib_cache3[n] = 1
+        else:
+            fib_cache3[n] = fib_memo2(n-1) + fib_memo2(n-2)
+    return fib_cache3[n]
+
+
+print('\nFibonacci with memoization version 3: different')
+timer = time.time()
+for i in range(0, 1111):
+    print(fib_memo3(i), '', end='')
+print('\nTime:', time.time() - timer)
 
 # -----------------------------------------------------------------------------------------------------
 # Memoization can be done with module functools, decorator @lru_cache() [Last Recently Used]
