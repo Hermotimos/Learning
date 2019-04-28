@@ -80,23 +80,23 @@ print(factorial_iterative_2(12345))
 
 
 # ----------------------------------------------------------------------------------------------------
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FACTORIAL RECURSIVE WITH MEMOIZATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> FACTORIAL WITH MEMOIZATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
-# MEMOIZATION: in case of factorials there's no gain in performance if function is called just once.
-# The gain occurs after we call it once to get some data into cache dict 'factorials', and only subsequent calls use it.
+# MEMOIZATION: in case of factorials_1 there's no gain in performance if function is called just once.
+# The gain occurs by second call (after data from first is cached in dict 'factorials_1' subsequent calls can use it).
 
-factorials = {}
+factorials_1 = {}
 
 
 def factorial_recur_memo(n):
-    if n in factorials:
-        return factorials[n]
+    if n in factorials_1:
+        return factorials_1[n]
     else:
         if n == 0:
             result = 1
         else:
             result = n * factorial_recur_memo(n - 1)
-        factorials[n] = result
+        factorials_1[n] = result
         return result
 
 
@@ -110,7 +110,7 @@ print(factorial_recur_memo(y))
 print(f'Time for {y}!: ', time.time() - timer)
 print()
 
-# This one already uses factorials cache, so there's slight improvement in performance
+# This one already uses factorials_1 cache, so there's slight improvement in performance
 print('\n', '-' * 50)
 print('Factorial recursive with memoizaition - iteration 2 (improvement in performance)')
 print('-' * 50)
@@ -121,14 +121,14 @@ print(factorial_recur_memo(y))
 print(f'Time for {y}!: ', time.time() - timer)
 print()
 
-# Starting from ca. 4000 an more it would throw error if cache 'factorials' were empty, now it computes.
+# Starting from ca. 4000 an more it would throw error if cache 'factorials_1' were empty, now it computes.
 timer = time.time()
 y = 5000
 print(factorial_recur_memo(y))
 print(f'Time for {y}!: ', time.time() - timer)
 print()
 
-# Now it's possible to gradually increase numbers, as 'factorials' cache gradually gets bigger.
+# Now it's possible to gradually increase numbers, as 'factorials_1' cache gradually gets bigger.
 timer = time.time()
 y = 8000
 print(factorial_recur_memo(y))
@@ -178,11 +178,45 @@ print(factorial_recur_memo_short(y))
 print(f'Time for {y}!: ', time.time() - timer)
 print()
 
+# ----------------------------------------------------------------------------------------------------
+
+factorials_3 = {}
+
+
+def factorial_iter_memo(n):
+    if n not in factorials_3:
+        value = 1
+        for x in range(1, n + 1):
+            value *= x
+            factorials_3[x] = value
+        return value
+    return factorials_3[n]
+
+
+print('\n', '-' * 50)
+print('Factorial iterative with memoization')
+print('-' * 50)
+
+timer = time.time()
+y = 50000
+print(factorial_iter_memo(y))
+print(f'Time for {y}!: ', time.time() - timer)
+print()
+
+factorials_3 = {}
+print(f'Time for 50000!: ')
+time_function(factorial_iter_memo)(50000)
+# TODO works up to 50000 (1 sec) but more will hang the system ==> try out on stronger system.
+# TODO: Probably this is caused by searching for memoized/cached data => try with bisection search algorithms
+print()
 
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PERFORMANCE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
-
+factorials_1 = {}
+factorials_2 = {}
+factorials_3 = {}
+# Redeclared to reset stored data before performance test.
 
 print('PERFORMANCE: iterative 1')
 clocked_factorial = time_function(factorial_iterative_1)
@@ -211,9 +245,20 @@ for v in (3000, 3000, 5000, 5000, 8000, 8000, 11500, 15000, 18500, 22000, 25500,
 print()
 
 
+print('PERFORMANCE: iterative with memoization')
+clocked_factorial = time_function(factorial_iter_memo)
+for v in (3000, 3000, 5000, 5000, 8000, 8000, 11500, 15000, 18500, 22000, 25500, 29000, 32500, 32500, 50000, 60000):
+    print(v, '', end=''), clocked_factorial(v)
+print()
+
+
 # CONCLUSION:
 # ----------
 # RECURSIVE: Without memoization recursive algorithm is a joke.
 # ITERATIVE: performs very well for small numbers (up to 20000). But then it slows down significantly.
 # RECURSIVE WITH MEMOIZATION: works well if it can populate its cache with gradually increasing searched n.
 #                             So it's potentially better than iterative for big numbers, but under conditions.
+# ITERATIVE WITH MEMOIZATION: the most efficient one, can handle 80000 from scratch in 7.5 secs (though 90000 hangs the
+#                             system instead of throwing exception). Performance tests show this is the best by far.
+
+# TODO clean up this mess... - break into 2 files: one with algorithms and trials, another with performance tests.
