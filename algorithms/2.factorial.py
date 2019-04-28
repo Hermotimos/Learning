@@ -27,8 +27,15 @@ def factorial_recursive(n):
         return n * factorial_recursive(n - 1)
 
 
-# Shorter but harder to read version:
-def factorial_recursive_short(n): return 1 if n == 0 else n * factorial_recursive(n - 1)
+# Shorter:
+def factorial_rec_short1(n):
+    if n < 2:
+        return 1
+    return n * factorial_rec_short1(n - 1)
+
+
+# Still shorter but harder to read:
+def factorial_rec_short2(n): return 1 if n < 2 else n * factorial_rec_short2(n - 1)
 
 
 print('\nFactorial recursive')
