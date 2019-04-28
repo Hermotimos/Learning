@@ -16,7 +16,7 @@
 
 def multiplication_iter1(a, b):
     result = 0
-    for n in range(0, b):
+    for n in range(b):
         result += a
     return result
 
@@ -38,7 +38,7 @@ def multiplication_iter2(a, b):
     return result
 
 
-print('\nMultiplication iterative while while - for positive numbers')
+print('\nMultiplication iterative while - for positive numbers')
 for x in range(0, 3):
     for y in range(0, 4):
         print(f'{x:2} * {y:2} =', multiplication_iter2(x, y))
@@ -49,7 +49,7 @@ for x in range(0, 3):
 
 def multiplication_iter3(a, b):
     result = 0
-    for n in range(0, abs(b)):
+    for n in range(abs(b)):
         result += a
     if b < 0:
         result = -result
@@ -90,8 +90,6 @@ for x in range(-2, 3):
 def multiplication_recur1(a, b):
     if b == 0:
         return 0
-    elif b == 1:
-        return a
     else:
         return a + multiplication_recur1(a, b - 1)
 
@@ -108,8 +106,6 @@ for x in range(0, 3):
 def multiplication_recur2(a, b):
     if b == 0:
         value = 0
-    elif abs(b) == 1:
-        value = a
     else:
         value = a + multiplication_recur2(a, abs(b) - 1)
 
