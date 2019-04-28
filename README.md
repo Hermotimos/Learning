@@ -11,6 +11,8 @@ All programs can be run in cmd or IDE without installation.
 
 
 ## Content
+#### algorithms
+Algorithms with performance tests (ex. factorial, Fibonacci, search and sort algorithms, Towers of Hanoi).
 #### code reading
 Code copied from other sites and repositories, commented and experimented with. 
 #### simple_programs
