@@ -105,7 +105,7 @@ def factorial3(n):
         return n * factorial3(n-1)
 
 
-# //////////// FACTORIAL WITH MEMOIZATION ITERATIVE -1- ////////////
+# //////////// FACTORIAL ITERATIVE WITH MEMOIZATION -1- ////////////
 
 factorials1 = {}
 
@@ -130,7 +130,7 @@ def fact11(n):
     return factorials1[n]
 
 
-# //////////// FACTORIAL WITH MEMOIZATION RECURSIVE -1- ////////////
+# //////////// FACTORIAL RECURSIVE WITH MEMOIZATION -1- ////////////
 
 factorials2 = {}
 
@@ -165,3 +165,66 @@ def fact222(n):
 # //////////////////////////////////////////////////////////////////////////////////////
 # ///////////////////////////////////// FIBONACCI //////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////////////////////
+
+
+# //////////// FIBONACCI ITERATIVE -1- ////////////
+
+def fib1(n):
+    current = 0
+    after = 1
+    for n in range(n):
+        current, after = after, current + after
+    return current
+
+
+# //////////// FIBONACCI RECURSIVE -1- ////////////
+
+def fib2(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib2(n-1) + fib2(n-2)
+
+
+# //////////// FIBONACCI RECURSIVE WITH MEMOIZATION -1- ////////////
+
+fibonacci = {}
+
+
+def fib3(n):
+    if n in fibonacci:
+        return fibonacci[n]
+    else:
+        if n == 0:
+            res = 0
+        elif n < 3:
+            res = 1
+        else:
+            res = fib3(n-1) + fib3(n-2)
+        fibonacci[n] = res
+    return res
+
+
+def fib33(n):
+    if n not in fibonacci:
+        if n == 0:
+            res = 0
+        elif n < 3:
+            res = 1
+        else:
+            res = fib33(n-1) + fib33(n-2)
+        fibonacci[n] = res
+    return fibonacci[n]
+
+
+def fib333(n):
+    if n not in fibonacci:
+        if n == 0:
+            fibonacci[n] = 0
+        elif n < 3:
+            fibonacci[n] = 1
+        else:
+            fibonacci[n] = fib333(n-1) + fib333(n-2)
+    return fibonacci[n]
