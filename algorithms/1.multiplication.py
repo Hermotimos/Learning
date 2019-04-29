@@ -8,7 +8,6 @@
         https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
 """
 
-
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ITERATIVE MULTIPLICATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
@@ -21,7 +20,7 @@ def multiplication_iter1(a, b):
     return result
 
 
-print('\nMultiplication iterative with range - for positive numbers')
+print('\nMultiplication iterative (for) - for positive numbers')
 for x in range(0, 3):
     for y in range(0, 4):
         print(f'{x:2} * {y:2} =', multiplication_iter1(x, y))
@@ -38,7 +37,7 @@ def multiplication_iter2(a, b):
     return result
 
 
-print('\nMultiplication iterative while - for positive numbers')
+print('\nMultiplication iterative (while) - for positive numbers')
 for x in range(0, 3):
     for y in range(0, 4):
         print(f'{x:2} * {y:2} =', multiplication_iter2(x, y))
@@ -56,7 +55,7 @@ def multiplication_iter3(a, b):
     return result
 
 
-print('\nMultiplication iterative with for statement - for positive and negative numbers')
+print('\nMultiplication iterative (for) - for positive and negative numbers')
 for x in range(-2, 3):
     for y in range(-2, 3):
         print(f'{x:2} * {y:2} =', multiplication_iter3(x, y))
@@ -76,7 +75,7 @@ def multiplication_iter4(a, b):
     return result
 
 
-print('\nMultiplication iterative with while - for positive and negative numbers')
+print('\nMultiplication iterative (while) - for positive and negative numbers')
 for x in range(-2, 3):
     for y in range(-2, 3):
         print(f'{x:2} * {y:2} =', multiplication_iter4(x, y))
@@ -113,21 +112,21 @@ def multiplication_recur2(a, b):
     return value
 
 
-# Shorter version:
-def multiply_recur3(a, b):
+# Shorter:
+def multiplication_recur22(a, b):
     if b == 0:
         return 0
-    value = a + multiply_recur3(a, abs(b) - 1)
+    value = a + multiplication_recur22(a, abs(b) - 1)
     if b < 0:
         value = -value
     return value
 
 
-# Shortest version:
-def multiply_recur4(a, b):
+# Shortest:
+def multiplication_recur222(a, b):
     if b == 0:
         return 0
-    value = a + multiply_recur3(a, abs(b) - 1)
+    value = a + multiplication_recur222(a, abs(b) - 1)
     return -value if b < 0 else value
 
 
@@ -135,4 +134,5 @@ print('\nMultiplication recursive - negative numbers included')
 for x in range(-2, 3):
     for y in range(-2, 3):
         print(f'{x:2} * {y:2} =', multiplication_recur2(x, y))
+
 
