@@ -233,11 +233,11 @@ def fib333(n):
 # //////////////////////////////////////////////////////////////////////////////////////
 # ///////////////////////////////////// CUBE ROOT //////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////////////////////
-# ALL SOLS ARE ITERATIVE
-# TODO test these algorithms, because they have been reshaped (simplified or shortened)
+# ITERATIVE: GUESS & CHECK, APPROXIMATION
+# RECURSIVE: BISECTION
 
 
-# //////////// GUESS&CHECK FOR POSITIVE NUMBERS ONLY -1- ////////////
+# //////////// GUESS&CHECK FOR POSITIVE NUMBERS -1- ////////////
 
 def cube_root1(n):
     for guess in range(n+1):
@@ -266,3 +266,68 @@ def cube_root22(n):
         elif guess**3 > abs(n):
             return f'{n} is not a perfect cube'
 
+
+# //////////// APPROXIMATION FOR POSITIVE AND NEGATIVE NUMBERS -1- ////////////
+
+def cube_root3(n, tolerance=0.01, increment=0.01):
+    approx = 0.0
+    while (abs(n) - approx**3) > tolerance:
+        approx += increment
+    if n < 0:
+        approx = -approx
+    return approx
+
+
+def cube_root33(n, tolerance=0.01, increment=0.01):
+    approx = 0.0
+    while (abs(n) - approx**3) > tolerance:
+        approx += increment
+    return -approx if n < 0 else approx
+
+
+# //////////// BISECTION SEARCH FOR POSITIVE AND NEGATIVE NUMBERS -1- ////////////
+
+def cube_root4(n, tolerance=0.01):
+    low = 0
+    high = abs(n)
+    guess = (low + high) / 2
+    while abs(abs(n) - guess**3) > tolerance:
+        if guess**3 > abs(n):
+            high = guess
+        else:
+            low = guess
+        guess = (low + high) / 2
+    if n < 0:
+        guess = -guess
+    return guess
+
+
+def cube_root44(n, tolerance=0.01):
+    low, high = 0, abs(n)
+    guess = (low + high) / 2
+    while abs(abs(n) - guess**3) > tolerance:
+        if guess**3 > abs(n):
+            high = guess
+        else:
+            low = guess
+        guess = (low + high) / 2
+    return -guess if n < 0 else guess
+
+
+# //////////// BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS -1- ////////////
+
+def cube_root5(n, tolerance=0.01):
+    if abs(n) < 1:
+        low, high = abs(n), 1
+    else:
+        low, high = 0, abs(n)
+    guess = (low + high) / 2
+
+    while abs(abs(n) - guess**3) > tolerance:
+        if guess**3 > abs(n):
+            high = guess
+        else:
+            low = guess
+        guess = (low + high) / 2
+
+    return -guess if n < 0 else guess
