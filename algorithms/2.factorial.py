@@ -186,10 +186,9 @@ factorials_3 = {}
 def factorial_iter_memo(n):
     if n not in factorials_3:
         value = 1
-        for x in range(1, n + 1):
-            value *= x
-            factorials_3[x] = value
-        return value
+        for n in range(1, n + 1):
+            value *= n
+            factorials_3[n] = value
     return factorials_3[n]
 
 
@@ -206,7 +205,7 @@ print()
 factorials_3 = {}
 print(f'Time for 50000!: ')
 time_function(factorial_iter_memo)(50000)
-# TODO works up to 50000 (1 sec) but more will hang the system ==> try out on stronger system.
+# TODO works up to 50000 (1.5 secs) but more will hang the system ==> try out on stronger system.
 # TODO: Probably this is caused by searching for memoized/cached data => try with bisection search algorithms
 print()
 
@@ -258,7 +257,10 @@ print()
 # ITERATIVE: performs very well for small numbers (up to 20000). But then it slows down significantly.
 # RECURSIVE WITH MEMOIZATION: works well if it can populate its cache with gradually increasing searched n.
 #                             So it's potentially better than iterative for big numbers, but under conditions.
-# ITERATIVE WITH MEMOIZATION: the most efficient one, can handle 80000 from scratch in 7.5 secs (though 90000 hangs the
-#                             system instead of throwing exception). Performance tests show this is the best by far.
+# ITERATIVE WITH MEMOIZATION: the most efficient one, can handle 50000 from scratch in 1.5 secs (though more hangs the
+#                             system instead of throwing exception). It's slightly slower than recursive memo, but
+#                             can handle much bigger leaps of n values than recursive.
 
 # TODO clean up this mess... - break into 2 files: one with algorithms and trials, another with performance tests.
+
+# TODO something doesn't work with time for recursive with memo: it prints 2.5e-06 secs though it takes no time...
