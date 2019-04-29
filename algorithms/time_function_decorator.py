@@ -1,7 +1,7 @@
 import time
 
 
-def time_function(function):
+def time_function(function, print_args=True):
     """Returns function execution time
 
     Possible changes for different measured units:
@@ -16,5 +16,10 @@ def time_function(function):
         timer_start = time.perf_counter_ns()
         function(*args)
         timer_stop = time.perf_counter_ns() - timer_start
-        print('Time for {:25}: {:.10f} secs'.format(function.__name__, timer_stop * 0.000000001))
+        print('Time for {}({}): {:.10f} secs'.format(
+                                                        function.__name__,
+                                                        ",".join(str(a) for a in args) if print_args else '',
+                                                        timer_stop * 0.000000001
+                                                        )
+              )
     return wrapper
