@@ -17,48 +17,36 @@ from time_function_decorator import time_function
 # ----------------------------------------------------------------------------------------------------
 
 
-# 1) My own solution before searching on the Internet:
-
-
 def format_string(palindrome_check_function):
     def wrapper(text):
-        digits = 'abcdefghijklmnopqrstuvwxyz0123456789'
         text = str(text).lower()
         for d in text:
-            if d not in digits:
+            if d not in 'abcdefghijklmnopqrstuvwxyz':
                 text = text.replace(d, '')
         return palindrome_check_function(text)
     return wrapper
 
 
-# SHORTER VERSION OF THE ABOVE:
-# def format_string_shorter(palindrome_check_function):
-#     def wrapper(text):
-#         text = str(text).lower()
-#         for s in text:
-#             if s not in 'abcdefghijklmnopqrstuvwxyz':
-#                 text = text.replace(s, '')
-#         return palindrome_check_function(text)
-#     return wrapper
-
-
 @format_string
 def is_palindrome_iterative(string):
+    if len(string) == 0:
+        return False
     check = True
-    for v in range(len(string) // 2 + 1):
-        if string[v] != string[-(v+1)]:
+    for v in range(1, len(string) // 2):
+        if string[v-1] != string[-v]:
             check = False
             break
     return f' => {check}'
 
 
-# SIMPLIFICATION
 @format_string
 def is_palindrome_iterative2(string):
-    for v in range(len(string) // 2 + 1):
-        if string[v] != string[-(v+1)]:
-            return f' => {False}'        # This is possible, because the first 'return' called in the function ends it
-    return f' => {True}'                 # So if first return is called, then this one will be avoided
+    if len(string) == 0:
+        return False
+    for v in range(1, len(string) // 2):
+        if string[v-1] != string[-v]:
+            return False
+    return True
 
 
 print('\nCHECK PALINDROME ITERATIVE (LINEAR SEARCH)')
@@ -75,6 +63,9 @@ print()
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CHECK PALINDROME RECURSIVE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
+# Disadvantage of recursive solutions: returns True for empty str.
+# Putting 'if len(text) == 0: return False results in always False in recursive solution.
+# Dealing with it would require several lines of code
 
 
 # 1) MIT lecture solution
@@ -106,12 +97,33 @@ print(is_palindrome_recursive(str2))
 print()
 
 
+# SIMPLER:
+def is_palindrome_recursive2(string):
+    string = str(string).lower()
+    for d in string:
+        if d not in 'abcdefghijklmnopqrstuvwxyz':
+            string = string.replace(d, '')
+    if len(string) <= 1:
+        return True
+    else:
+        return string[0] == string[-1] and is_palindrome_recursive2(string[1:-1])
+
+
+print('CHECK PALINDROME RECURSIVE 2')
+str1 = 'abb cdaaXXaa, dcbba!'
+str2 = 'fsdas dasdas sadsf'
+print(is_palindrome_recursive2(str1))
+print(is_palindrome_recursive2(str2))
+print()
+
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CHECK PALINDROME SIMPLEST <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
 
 def is_palindrome_simple(text):
+    if len(text) == 0:
+        return False
     text = str(text).lower()
     for digit in text:
         if digit not in 'abcdefghijklmnopqrstuvwxyz0123456789':
@@ -124,6 +136,7 @@ str1 = 'abb cdaaXXaa, dcbba!'
 str2 = 'fsdas dasdas sadsf'
 print(is_palindrome_simple(str1))
 print(is_palindrome_simple(str2))
+
 print()
 
 
