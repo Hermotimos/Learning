@@ -8,47 +8,62 @@
         https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
         https://www.youtube.com/watch?v=6_Va36K-DE8
         https://stackoverflow.com/questions/49714510/find-a-cube-root-with-newtons-method
-
 """
 
 
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>GUESS-AND-CHECK<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
+
+# GUESS-AND-CHECK: only positive numbers
+
 def guess_cube_root1(cube):
     for guess in range(cube + 1):
         if guess**3 == cube:
-            print(f'Cube root of {cube} is {guess}')
+            return f'Cube root of {cube} is {guess}'
+    return f'{cube} is not a perfect cube'
 
 
-print('\n----------------GUESS----------------\n')
-guess_cube_root1(8)
-guess_cube_root1(27)
-guess_cube_root1(64)
-guess_cube_root1(100)         # This one just won't print because condition is not met.
+print('\n----------------GUESS & CHECK----------------\n')
+for d in (8, 27, 64, 100):
+    print(guess_cube_root1(d))
 print()
 
 
 # GUESS-AND-CHECK: with negative numbers
+
 def guess_cube_root2(cube):
     guess = 0
     for guess in range(abs(cube) + 1):
         if guess ** 3 >= abs(cube):
             break
     if guess ** 3 != abs(cube):
-        print(f'{cube} is not a perfect cube.')
+        return f'{cube} is not a perfect cube.'
     else:
         if cube < 0:
             guess = -guess
-        print(f'Cube root of {cube} is {guess}.')
+        return f'Cube root of {cube} is {guess}.'
 
 
-guess_cube_root2(8)
-guess_cube_root2(-27)
-guess_cube_root2(-64)
-guess_cube_root2(100)
+for d in (8, -27, -64, 100):
+    print(guess_cube_root2(d))
 print()
 
+
+# GUESS-AND-CHECK: with negative numbers [shorter]
+
+def guess_cube_root3(n):
+    for guess in range(abs(n)+1):
+        if guess**3 == abs(n):
+            guess = -guess if n < 0 else guess
+            return f'Cube root of {n} is {guess}.'
+        elif guess**3 > abs(n):
+            return f'{n} is not a perfect cube.'
+
+
+for d in (8, -27, -64, 100):
+    print(guess_cube_root3(d))
+print()
 
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>APPROXIMATE SOLUTION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -59,6 +74,8 @@ print()
 # With my change program doesn't enter infinite loop for cube = 10000 (that was example of infinite loop in MIT lecture)
 # So block of code for 'not perfect cube' could be removed.
 # Also added code for negative cubes.
+
+
 def approximate_cube_root(cube, max_inaccuracy=0.0001, increment=0.01):
     guess = 0.0
     guess_counter = 1
