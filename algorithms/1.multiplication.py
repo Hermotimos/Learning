@@ -56,7 +56,7 @@ def multiplication_iter3(a, b):
     return result
 
 
-print('\nMultiplication iterative with range - for positive and negative numbers')
+print('\nMultiplication iterative with for statement - for positive and negative numbers')
 for x in range(-2, 3):
     for y in range(-2, 3):
         print(f'{x:2} * {y:2} =', multiplication_iter3(x, y))
@@ -121,6 +121,14 @@ def multiply_recur3(a, b):
     if b < 0:
         value = -value
     return value
+
+
+# Shortest version:
+def multiply_recur4(a, b):
+    if b == 0:
+        return 0
+    value = a + multiply_recur3(a, abs(b) - 1)
+    return -value if b < 0 else value
 
 
 print('\nMultiplication recursive - negative numbers included')
