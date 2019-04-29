@@ -196,38 +196,32 @@ factorials_4.clear()
 
 
 print('\nPERFORMANCE: iterative 1')
-clocked_factorial = time_function(fact_iter1)
 for v in (3000, 3000, 5000, 5000, 8000, 8000, 20000, 90000, 90000):
-    clocked_factorial(v)
+    time_function(fact_iter1)(v)
 
 print('\nPERFORMANCE: iterative 2')
-clocked_factorial = time_function(fact_iter2)
 for v in (3000, 3000, 5000, 5000, 8000, 8000, 20000, 90000, 90000):
-    clocked_factorial(v)
+    time_function(fact_iter2)(v)
 
 
 print('\nPERFORMANCE: recursive')
-clocked_factorial = time_function(fact_recur1)
 for v in (3000, 3000):
-    clocked_factorial(v)
+    time_function(fact_recur1)(v)
 print('This algorithm can\'t do 5000!: Process finished with exit code -1073741571 (0xC00000FD)')
 
 print('\nPERFORMANCE: recursive with memoization')
-clocked_factorial = time_function(fact_recur_memo1)
 for v in (3000, 3000, 5000, 5000, 8000, 8000, 11500, 15000, 18500, 22000, 25500, 29000, 32500, 32500):
-    clocked_factorial(v)
+    time_function(fact_recur_memo1)(v)
 
 
 print('\nPERFORMANCE: iterative with memoization')
-clocked_factorial = time_function(factorial_iter_memo)
 for v in (3000, 3000, 5000, 5000, 8000, 8000, 11500, 15000, 18500, 22000, 25500, 29000, 32500, 32500):
-    clocked_factorial(v)
+    time_function(factorial_iter_memo)(v)
 
 print('\nPERFORMANCE: iterative with memoization can do even more [from scratch, cached data reset]:')
 factorials_4.clear()
-clocked_factorial = time_function(factorial_iter_memo)
 for v in (50000, 60000):
-    clocked_factorial(v)
+    time_function(factorial_iter_memo)(v)
 
 
 # CONCLUSION:
