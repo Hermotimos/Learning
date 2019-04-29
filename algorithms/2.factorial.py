@@ -232,14 +232,11 @@ for v in (50000, 60000):
 
 # CONCLUSION:
 # ----------
-# RECURSIVE: Without memoization recursive algorithm is a joke.
-# ITERATIVE: performs very well for small numbers (up to 20000). But then it slows down significantly.
+# RECURSIVE:    Without memoization recursive algorithm is a joke.
+# ITERATIVE:    performs very well for small numbers (up to 20000). But then it slows down significantly.
 # RECURSIVE WITH MEMOIZATION: works well if it can populate its cache with gradually increasing searched n.
-#                             So it's potentially better than iterative for big numbers, but under conditions.
+#                             It's potentially better than iterative for big numbers (only by gradually increasing n).
 # ITERATIVE WITH MEMOIZATION: the most efficient one, can handle 50000 from scratch in 1.5 secs (though more hangs the
 #                             system instead of throwing exception). It's slightly slower than recursive memo, but
 #                             can handle much bigger leaps of n values than recursive.
-
-# TODO clean up this mess... - break into 2 files: one with algorithms and trials, another with performance tests.
-
-# TODO something doesn't work with time for recursive with memo: it prints 2.5e-06 secs though it takes no time...
+#                             TODO Test theory that it's a problem with searching the dict. Use search algorithm !
