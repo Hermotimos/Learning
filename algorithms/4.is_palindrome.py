@@ -63,12 +63,12 @@ print()
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CHECK PALINDROME RECURSIVE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
-# Disadvantage of recursive solutions: returns True for empty str.
-# Putting 'if len(text) == 0: return False results in always False in recursive solution.
-# Dealing with it would require several lines of code
 
 
 # 1) MIT lecture solution
+# Disadvantage of recursive solutions: returns True for empty str.
+# Putting 'if len(text) == 0: return False' results in always False in recursive solution.
+# Dealing with it would require several lines of code
 
 def is_palindrome_recursive(string):
 
@@ -97,7 +97,8 @@ print(is_palindrome_recursive(str2))
 print()
 
 
-# SIMPLER:
+# 2) Simplified version
+
 def is_palindrome_recursive2(string):
     string = str(string).lower()
     for d in string:
@@ -115,6 +116,38 @@ str2 = 'fsdas dasdas sadsf'
 print(is_palindrome_recursive2(str1))
 print(is_palindrome_recursive2(str2))
 print()
+
+
+# 3) Best version
+
+def palindrome4(text):
+    def convert_to_digits(string):
+        string = str(string).lower()
+        for d in string:
+            if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
+                string = string.replace(d, '')
+        return string
+
+    def is_palindrome(string):
+        if len(string) <= 1:
+            return True
+        return string[0] == string[-1] and is_palindrome(string[1:-1])
+
+    text = convert_to_digits(text)
+    if len(text) == 0:
+        return False
+    return is_palindrome(text)
+
+
+# Better: avoids applying text formatting in each recursive step AND deals with empty strings (returns False)
+# TODO Test it's performance in comparison to others
+
+str1 = 'abb cdaaXXaa, dcbba!'
+str2 = 'fsdas dasdas sadsf'
+print(palindrome4(str1))
+print(palindrome4(str2))
+print(palindrome4('3'))
+
 
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CHECK PALINDROME SIMPLEST <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

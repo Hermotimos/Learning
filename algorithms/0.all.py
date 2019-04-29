@@ -452,7 +452,6 @@ def palindrome333(text):
 # //////////// PALINDROME RECURSIVE -2- ////////////
 
 def palindrome4(text):
-
     def convert_to_digits(string):
         string = str(string).lower()
         for d in string:
@@ -461,25 +460,17 @@ def palindrome4(text):
         return string
 
     def is_palindrome(string):
-        if len(text) <= 1:
+        if len(string) <= 1:
             return True
         return string[0] == string[-1] and is_palindrome(string[1:-1])
 
     text = convert_to_digits(text)
     if len(text) == 0:
         return False
-    if len(text) == 1:
-        return True
-
-    result = is_palindrome(text)
-    return result
+    return is_palindrome(text)
 
 
-# Better: avoids applying text formatting in each recursive step AND deals with empty strings
-# TODO Test it's performance in comparison to others
+# //////////////////////////////////////////////////////////////////////////////////////
+# ////////////////////////////////// TOWERS OF HANOI ///////////////////////////////////
+# //////////////////////////////////////////////////////////////////////////////////////
 
-str1 = 'abb cdaaXXaa, dcbba!'
-str2 = 'fsdas dasdas sadsf'
-print(palindrome4(str1))
-print(palindrome4(str2))
-print(palindrome4(''))
