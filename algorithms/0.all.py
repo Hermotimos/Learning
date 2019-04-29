@@ -228,3 +228,41 @@ def fib333(n):
         else:
             fibonacci[n] = fib333(n-1) + fib333(n-2)
     return fibonacci[n]
+
+
+# //////////////////////////////////////////////////////////////////////////////////////
+# ///////////////////////////////////// CUBE ROOT //////////////////////////////////////
+# //////////////////////////////////////////////////////////////////////////////////////
+# ALL SOLS ARE ITERATIVE
+# TODO test these algorithms, because they have been reshaped (simplified or shortened)
+
+
+# //////////// GUESS&CHECK FOR POSITIVE NUMBERS ONLY -1- ////////////
+
+def cube_root1(n):
+    for guess in range(n+1):
+        if guess**3 == n:
+            return f'Cube root of {n} is {guess}'
+    return f'{n} is not a perfect cube'
+
+
+# //////////// GUESS&CHECK FOR POSITIVE & NEGATIVE NUMBERS -1- ////////////
+
+def cube_root2(n):
+    for guess in range(abs(n)+1):
+        if guess**3 == abs(n):
+            if n < 0:
+                guess = -guess
+            return f'Cube root of {n} is {guess}'
+        elif guess**3 > abs(n):
+            return f'{n} is not a perfect cube'
+
+
+def cube_root22(n):
+    for guess in range(abs(n)+1):
+        if guess**3 == abs(n):
+            guess = -guess if n < 0 else guess
+            return f'Cube root of {n} is {guess}'
+        elif guess**3 > abs(n):
+            return f'{n} is not a perfect cube'
+
