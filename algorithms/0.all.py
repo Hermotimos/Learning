@@ -368,3 +368,118 @@ def cube_root7(n, low=0, high=0, tolerance=0.01):
     else:
         low = guess
     return cube_root7(n, low, high, tolerance)
+
+
+# //////////////////////////////////////////////////////////////////////////////////////
+# ///////////////////////////////////// PALINDROME /////////////////////////////////////
+# //////////////////////////////////////////////////////////////////////////////////////
+
+
+# //////////// PALINDROME SIMPLEST ////////////
+
+def palindrome1(text):
+    if len(text) == 0:
+        return False
+
+    text = str(text).lower()
+    for d in text:
+        if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
+            text = text.replace(d, '')
+    return text == text[::-1]
+
+
+# //////////// PALINDROME ITERATIVE ////////////
+
+def palindrome2(text):
+    if len(text) == 0:
+        return False
+
+    text = str(text).lower()
+    for d in text:
+        if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
+            text = text.replace(d, '')
+
+    for n in range(1, len(text) // 2):
+        if text[n-1] != text[-n]:
+            return False
+    return True
+
+
+# //////////// PALINDROME RECURSIVE -1- ////////////
+
+def palindrome3(text):
+    if len(text) <= 1:
+        return True
+
+    text = str(text).lower()
+    for d in text:
+        if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
+            text = text.replace(d, '')
+
+    if text[0] != text[-1]:
+        return False
+    else:
+        check = palindrome3(text[1:-1])
+    return check
+
+
+def palindrome33(text):
+    if len(text) <= 1:
+        return True
+
+    text = str(text).lower()
+    for d in text:
+        if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
+            text = text.replace(d, '')
+
+    if text[0] != text[-1]:
+        return False
+    return palindrome33(text[1:-1])
+
+
+def palindrome333(text):
+    if len(text) <= 1:
+        return True
+
+    text = str(text).lower()
+    for d in text:
+        if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
+            text = text.replace(d, '')
+
+    return text[0] == text[-1] and palindrome333(text[1:-1])
+
+
+# //////////// PALINDROME RECURSIVE -2- ////////////
+
+def palindrome4(text):
+
+    def convert_to_digits(string):
+        string = str(string).lower()
+        for d in string:
+            if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
+                string = string.replace(d, '')
+        return string
+
+    def is_palindrome(string):
+        if len(text) <= 1:
+            return True
+        return string[0] == string[-1] and is_palindrome(string[1:-1])
+
+    text = convert_to_digits(text)
+    if len(text) == 0:
+        return False
+    if len(text) == 1:
+        return True
+
+    result = is_palindrome(text)
+    return result
+
+
+# Better: avoids applying text formatting in each recursive step AND deals with empty strings
+# TODO Test it's performance in comparison to others
+
+str1 = 'abb cdaaXXaa, dcbba!'
+str2 = 'fsdas dasdas sadsf'
+print(palindrome4(str1))
+print(palindrome4(str2))
+print(palindrome4(''))
