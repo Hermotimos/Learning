@@ -257,10 +257,66 @@ bisection_root_all(-42341.6435235, max_inaccuracy=0.0001)
 bisection_root_all(-0.423425, max_inaccuracy=0.0001)
 
 
+# //////////// BISECTION SEARCH FOR POSITIVE, NEGATIVE [RECURSIVE] ////////////
+
+def cube_root6(n, low=0, high=0, tolerance=0.01):
+    if high == 0:
+        high = abs(n)
+    guess = (low + high) / 2
+    if abs(abs(n) - guess**3) <= tolerance:
+        if n < 0:
+            guess = -guess
+        return f'Cube root of {n} is approximately: {guess}'
+    elif guess**3 > abs(n):
+        high = guess
+    else:
+        low = guess
+    return cube_root6(n, low, high, tolerance)
+
+
+print('>>>>BISECION RECURSIVE FOR POSITIVE, NEGATIVE [my own]<<<<')
+print(cube_root6(8, tolerance=0.0001))
+print(cube_root6(7, tolerance=0.0001))
+print(cube_root6(-64, tolerance=0.0001))
+print(cube_root6(42341.6435235, tolerance=0.0001))
+print()
+
+
+# //////////// BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS [RECURSIVE] ////////////
+
+
+def cube_root7(n, low=0, high=0, tolerance=0.01):
+    if abs(n) < 1 and high == 0:
+        low, high = abs(n), 1
+    elif high == 0:
+        high = abs(n)
+    guess = (low + high) / 2
+    if abs(abs(n) - guess**3) <= tolerance:
+        if n < 0:
+            guess = -guess
+        return f'Cube root of {n} is approximately: {guess}'
+    elif guess**3 > abs(n):
+        high = guess
+    else:
+        low = guess
+    return cube_root7(n, low, high, tolerance)
+
+
+print('>>>>BISECION RECURSIVE FOR POSITIVE, NEGATIVE, AND FRACTIONS [my own]<<<<')
+print(cube_root7(8, tolerance=0.0001))
+print(cube_root7(7, tolerance=0.0001))
+print(cube_root7(-64, tolerance=0.0001))
+print(cube_root7(0.2, tolerance=0.0001))
+print(cube_root7(-1.5, tolerance=0.0001))
+print(cube_root7(-42341.6435235, tolerance=0.0001))
+print(cube_root7(-0.423425, tolerance=0.0001))
+print()
+
+
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEWTON-RAPHSON <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
-
+print('\n>>>>NEWTON-RAPHSON SQUARE ROOT <<<<')
 # This algorithm has different shapes depending on the case. The shape depends on calculus.
 # So this is only taken from net, but real meaning is yet to be understood.
 

@@ -233,11 +233,9 @@ def fib333(n):
 # //////////////////////////////////////////////////////////////////////////////////////
 # ///////////////////////////////////// CUBE ROOT //////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////////////////////
-# ITERATIVE: GUESS & CHECK, APPROXIMATION
-# RECURSIVE: BISECTION
 
 
-# //////////// GUESS&CHECK FOR POSITIVE NUMBERS -1- ////////////
+# //////////// GUESS&CHECK FOR POSITIVE NUMBERS ////////////
 
 def cube_root1(n):
     for guess in range(n+1):
@@ -246,7 +244,7 @@ def cube_root1(n):
     return f'{n} is not a perfect cube'
 
 
-# //////////// GUESS&CHECK FOR POSITIVE & NEGATIVE NUMBERS -1- ////////////
+# //////////// GUESS&CHECK FOR POSITIVE & NEGATIVE NUMBERS ////////////
 
 def cube_root2(n):
     for guess in range(abs(n)+1):
@@ -267,7 +265,7 @@ def cube_root22(n):
             return f'{n} is not a perfect cube'
 
 
-# //////////// APPROXIMATION FOR POSITIVE AND NEGATIVE NUMBERS -1- ////////////
+# //////////// APPROXIMATION FOR POSITIVE AND NEGATIVE NUMBERS ////////////
 
 def cube_root3(n, tolerance=0.01, increment=0.01):
     approx = 0.0
@@ -285,7 +283,7 @@ def cube_root33(n, tolerance=0.01, increment=0.01):
     return -approx if n < 0 else approx
 
 
-# //////////// BISECTION SEARCH FOR POSITIVE AND NEGATIVE NUMBERS -1- ////////////
+# //////////// BISECTION SEARCH FOR POSITIVE AND NEGATIVE NUMBERS [ITERATIVE] ////////////
 
 def cube_root4(n, tolerance=0.01):
     low = 0
@@ -314,7 +312,7 @@ def cube_root44(n, tolerance=0.01):
     return -guess if n < 0 else guess
 
 
-# //////////// BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS -1- ////////////
+# //////////// BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS [ITERATIVE] ////////////
 
 def cube_root5(n, tolerance=0.01):
     if abs(n) < 1:
@@ -331,3 +329,42 @@ def cube_root5(n, tolerance=0.01):
         guess = (low + high) / 2
 
     return -guess if n < 0 else guess
+
+
+# //////////// BISECTION SEARCH FOR POSITIVE, NEGATIVE [RECURSIVE] ////////////
+
+def cube_root6(n, low=0, high=0, tolerance=0.01):
+    if high == 0:
+        high = abs(n)
+    guess = (low + high) / 2
+
+    if abs(abs(n) - guess**3) <= tolerance:
+        if n < 0:
+            guess = -guess
+        return f'Cube root of {n} is approximately: {guess}'
+
+    elif guess**3 > abs(n):
+        high = guess
+    else:
+        low = guess
+    return cube_root6(n, low, high, tolerance)
+
+
+# //////////// BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS [RECURSIVE] ////////////
+
+def cube_root7(n, low=0, high=0, tolerance=0.01):
+    if abs(n) < 1 and high == 0:
+        low, high = abs(n), 1
+    elif high == 0:
+        high = abs(n)
+    guess = (low + high) / 2
+
+    if abs(abs(n) - guess**3) <= tolerance:
+        guess = -guess if n < 0 else guess
+        return f'Cube root of {n} is approximately: {guess}'
+
+    elif guess**3 > abs(n):
+        high = guess
+    else:
+        low = guess
+    return cube_root7(n, low, high, tolerance)
