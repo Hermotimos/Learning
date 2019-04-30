@@ -155,12 +155,13 @@ print(palindrome4('3'))
 
 
 def is_palindrome_simple(text):
-    if len(text) == 0:
-        return False
     text = str(text).lower()
     for digit in text:
         if digit not in 'abcdefghijklmnopqrstuvwxyz0123456789':
             text = text.replace(digit, '')
+
+    if len(text) == 0:
+        return False
     return text == text[::-1]
 
 
@@ -169,8 +170,6 @@ str1 = 'abb cdaaXXaa, dcbba!'
 str2 = 'fsdas dasdas sadsf'
 print(is_palindrome_simple(str1))
 print(is_palindrome_simple(str2))
-
-print()
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -181,19 +180,19 @@ print()
 strings = ('abb cdaaXXaa, dcbba!', 'fsdas dasdas sadsf', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 111, 'd',
            'ACTGTGCTGACTCCCGGTGCTGCCGCTGCCATAGCTAAAGCCCGGGTCCTGGTAGGCAGGCGGGAAGCAGGGTGGGGGTCCCGGGTACTGGTAGGGGTAGCTGC')
 
-print('ITERATIVE')
+print('\nITERATIVE')
 clocked = time_function(is_palindrome_iterative)
 for s in strings:
     clocked(s)
 print()
 
-print('RECURSIVE')
+print('\nRECURSIVE')
 clocked = time_function(is_palindrome_recursive)
 for s in strings:
     clocked(s)
 print()
 
-print('SIMPLEST')
+print('\nSIMPLEST')
 clocked = time_function(is_palindrome_simple)
 for s in strings:
     clocked(s)
