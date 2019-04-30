@@ -134,5 +134,3 @@ print('\nMultiplication recursive - negative numbers included')
 for x in range(-2, 3):
     for y in range(-2, 3):
         print(f'{x:2} * {y:2} =', multiplication_recur2(x, y))
-
-
