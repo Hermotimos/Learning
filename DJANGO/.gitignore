@@ -1,8 +1,0 @@
-*.pyc
-*~
-__pycache__
-DJANGOvenv
-db.sqlite3
-/static
-.DS_Store
-requirements.txt
