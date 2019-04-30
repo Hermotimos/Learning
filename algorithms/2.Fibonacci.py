@@ -41,17 +41,19 @@ print('\nTime:', time.time() - timer)
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>FIBONACCI WITH RECURSION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
+# This one is for real Fibonacci: where sequence starts from 1 rabbit.
+# But for comparison purposes it's skipped - only those starting with 0 are printed out and compared.
+
+
 def fib_recur1(n):
     if n == 0 or n == 1:
         return 1
     else:
         return fib_recur1(n - 1) + fib_recur1(n - 2)
 
-# This one is for real Fibonacci: where sequence starts from 1 rabbit.
-# But for comparison purposes it's skipped - only those starting with 0 are printed out and compared.
-
 
 # -----------------------------------------------------------------------------------------------------
+
 
 def fib_recur2(n):
     if n == 0:
@@ -73,12 +75,6 @@ print('\nTime:', time.time() - timer)
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>FIBONACCI WITH MEMOIZATION<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
-# All three algorithms perform the same for n in range(0, 11111):
-# fib_memo_mit(): Time: 1.7741012573242188, 1.786102294921875, 1.7611007690429688
-# fib_memo(): 1.8361051082611084, 1.797102689743042, 1.920109748840332
-# fib_memo2(): Time: 1.8981084823608398, 1.8031032085418701, 1.8231043815612793
-# fib_decorated(): Time: 1.7651009559631348, 1.8391053676605225, 1.8151037693023682
-
 
 d = {0: 0, 1: 1}
 
@@ -194,11 +190,13 @@ print('\nTime:', time.time() - timer)
 
 # -----------------------------------------------------------------------------------------------------------
 
+
 # The golden ratio of Fibonacci sequence
-print('\n\nRatio of increment:')
+print('\n\nADDENDUM: Ratio of increment:')
 for i in range(1, 11):
     print(fib_decorated(i + 1) / fib_decorated(i))
 print()
+
 
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PERFORMANCE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
