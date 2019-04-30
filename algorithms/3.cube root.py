@@ -84,7 +84,7 @@ print('\n-------------------------------------APPROXIMATION\n')
 # Also added code for negative cubes.
 
 
-def approximate_cube_root(cube, tolerance=0.001, increment=0.01):
+def approximate_3root_pos_neg(cube, tolerance=0.001, increment=0.01):
     guess = 0.0
     guess_counter = 1
 
@@ -101,15 +101,15 @@ def approximate_cube_root(cube, tolerance=0.001, increment=0.01):
             {guess}**3 = {guess**3}\n""")
 
 
-approximate_cube_root(10000, tolerance=0.00001, increment=0.0001)
-approximate_cube_root(-10000)
+approximate_3root_pos_neg(10000, tolerance=0.00001, increment=0.0001)
+approximate_3root_pos_neg(-10000)
 
 for num in range(9):
-    approximate_cube_root(num)
+    approximate_3root_pos_neg(num)
 
 
 # Here's the MIT algorithm with example that enters infinite loop.
-def approximate_cube_root_mit(cube, tolerance=0.0001, increment=0.01):
+def approximate_3root_mit(cube, tolerance=0.0001, increment=0.01):
     guess = 0.0
     guess_counter = 1
 
@@ -131,7 +131,7 @@ def approximate_cube_root_mit(cube, tolerance=0.0001, increment=0.01):
                 {guess}**3 = {guess**3}\n""")
 
 # This enters infinite loop:
-# approximate_cube_root_mit(10000)
+# approximate_3root_mit(10000)
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -140,7 +140,7 @@ def approximate_cube_root_mit(cube, tolerance=0.0001, increment=0.01):
 print('\n-------------------------------------BISECTION/BINARY SEARCH\n')
 
 
-def bisection_cube_root_only_positive(cube, tolerance=0.01):
+def bisection_3root_iter_pos(cube, tolerance=0.01):
     low, high = 0, cube
     guess = (low + high) / 2.0
     guess_counter = 1
@@ -160,17 +160,17 @@ def bisection_cube_root_only_positive(cube, tolerance=0.01):
 
 
 print('\nBISECTION: POSITIVE NUMS\n')
-bisection_cube_root_only_positive(64)
-bisection_cube_root_only_positive(42331233, tolerance=0.00000001)
+bisection_3root_iter_pos(64)
+bisection_3root_iter_pos(42331233, tolerance=0.00000001)
 
 for num in range(9):
-    bisection_cube_root_only_positive(num)
+    bisection_3root_iter_pos(num)
 
 
 # ----------------------------------------------------------------------------------------------------
 
 
-def bisection_cube_root_with_negative(cube, tolerance=0.01):
+def bisection_3root_iter_pos_neg(cube, tolerance=0.01):
     low, high = 0, abs(cube)
     guess = (low + high) / 2.0
     guess_counter = 1
@@ -194,8 +194,8 @@ def bisection_cube_root_with_negative(cube, tolerance=0.01):
 
 
 print('\nBISECTION: POSITIVE & NEGATIVE NUMS\n')
-bisection_cube_root_with_negative(-64)
-bisection_cube_root_with_negative(-8)
+bisection_3root_iter_pos_neg(-64)
+bisection_3root_iter_pos_neg(-8)
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -203,7 +203,7 @@ bisection_cube_root_with_negative(-8)
 
 # MIT ASSIGNMENT: FRACTIONS
 
-def bisection_cube_root_fractions(cube, tolerance=0.00001):
+def bisection_3root_iter_fractions(cube, tolerance=0.00001):
     low, high = cube, 1
     guess = (low + high) / 2.0
     guess_counter = 1
@@ -227,8 +227,8 @@ def bisection_cube_root_fractions(cube, tolerance=0.00001):
 
 
 print('\nBISECTION: ONLY FRACTIONS\n')
-bisection_cube_root_fractions(0.5)
-bisection_cube_root_fractions(0.2)
+bisection_3root_iter_fractions(0.5)
+bisection_3root_iter_fractions(0.2)
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -237,7 +237,7 @@ bisection_cube_root_fractions(0.2)
 # Positive, negative and fraction numbers.
 # Also fixed bug from MIT lecture considering number of guesses: first guess was never counted.
 
-def bisection_root_all(cube, tolerance=0.01):
+def bisection_3root_iter_all(cube, tolerance=0.01):
 
     if abs(cube) < 1:                  # 0 < abs(cube) < 1
         low, high = abs(cube), 1
@@ -265,7 +265,7 @@ def bisection_root_all(cube, tolerance=0.01):
 
 print('\nBISECTION: POS, NEG & FRACTIONS\n')
 for d in (7, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
-    bisection_root_all(d, tolerance=0.0001)
+    bisection_3root_iter_all(d, tolerance=0.0001)
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -273,7 +273,7 @@ for d in (7, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
 
 # BISECTION SEARCH FOR POSITIVE, NEGATIVE [RECURSIVE]
 
-def cube_root6(n, low=0, high=0, tolerance=0.01):
+def bisection_3root_recur_pos_neg(n, low=0, high=0, tolerance=0.01):
     if high == 0:
         high = abs(n)
     guess = (low + high) / 2
@@ -285,12 +285,12 @@ def cube_root6(n, low=0, high=0, tolerance=0.01):
         high = guess
     else:
         low = guess
-    return cube_root6(n, low, high, tolerance)
+    return bisection_3root_recur_pos_neg(n, low, high, tolerance)
 
 
 print('\nBISECTION: RECURSIVE FOR POSITIVE, NEGATIVE [my own]\n')
 for d in (7, 8, -64, -1.5, -42341.6435235):
-    print(cube_root6(d, tolerance=0.0001))
+    print(bisection_3root_recur_pos_neg(d, tolerance=0.0001))
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -298,7 +298,7 @@ for d in (7, 8, -64, -1.5, -42341.6435235):
 
 #  BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS [RECURSIVE]
 
-def cube_root7(n, low=0, high=0, tolerance=0.01):
+def bisection_3root_recur_all(n, low=0, high=0, tolerance=0.01):
     if abs(n) < 1 and high == 0:
         low, high = abs(n), 1
     elif high == 0:
@@ -312,12 +312,12 @@ def cube_root7(n, low=0, high=0, tolerance=0.01):
         high = guess
     else:
         low = guess
-    return cube_root7(n, low, high, tolerance)
+    return bisection_3root_recur_all(n, low, high, tolerance)
 
 
 print('\nBISECTION: RECURSIVE FOR POSITIVE, NEGATIVE, AND FRACTIONS [my own]\n')
 for d in (7, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
-    print(cube_root7(d, tolerance=0.0001))
+    print(bisection_3root_recur_all(d, tolerance=0.0001))
 
 
 # ----------------------------------------------------------------------------------------------------
