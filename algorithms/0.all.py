@@ -388,6 +388,14 @@ def palindrome1(text):
     return text == text[::-1]
 
 
+def palindrome11(text):
+    text = str(text).lower()
+    for d in text:
+        if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
+            text = text.replace(d, '')
+    return len(text) != 0 and text == text[::-1]
+
+
 # //////////// PALINDROME ITERATIVE ////////////
 
 def palindrome2(text):
@@ -467,6 +475,23 @@ def palindrome4(text):
     if len(text) == 0:
         return False
     return is_palindrome(text)
+
+
+def palindrome44(text):
+    def convert_to_digits(string):
+        string = str(string).lower()
+        for d in string:
+            if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
+                string = string.replace(d, '')
+        return string
+
+    def is_palindrome(string):
+        if len(string) <= 1:
+            return True
+        return string[0] == string[-1] and is_palindrome(string[1:-1])
+
+    text = convert_to_digits(text)
+    return len(text) != 0 and is_palindrome(text)
 
 
 # //////////////////////////////////////////////////////////////////////////////////////
