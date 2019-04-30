@@ -378,27 +378,26 @@ def cube_root7(n, low=0, high=0, tolerance=0.01):
 # //////////// PALINDROME SIMPLEST ////////////
 
 def palindrome1(text):
-    if len(text) == 0:
-        return False
-
     text = str(text).lower()
     for d in text:
         if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
             text = text.replace(d, '')
+
+    if len(text) == 0:
+        return False
     return text == text[::-1]
 
 
 # //////////// PALINDROME ITERATIVE ////////////
 
 def palindrome2(text):
-    if len(text) == 0:
-        return False
-
     text = str(text).lower()
     for d in text:
         if d not in 'abcdefghijklmnopqrstuvwxyz0123456789':
             text = text.replace(d, '')
 
+    if len(text) == 0:
+        return False
     for n in range(1, len(text) // 2):
         if text[n-1] != text[-n]:
             return False
