@@ -99,6 +99,16 @@ def fact_recur_memo1(n):
         return result
 
 
+def fact_recur_memo1_short(n):
+    if n in factorials_1:
+        return factorials_1[n]
+    if n < 2:
+        factorials_1[n] = 1
+    else:
+        factorials_1[n] = n * fact_recur_memo1_short(n-1)
+    return factorials_1[n]
+
+
 print('\nFactorial recursive with memoization 1')
 time_function(fact_recur_memo1)(3500)
 # The one below already uses factorials_1 cache, so there's slight improvement in performance
