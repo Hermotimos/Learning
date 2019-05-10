@@ -395,6 +395,24 @@ def cube_root7(n, low=0, high=0, tolerance=0.01):
     return cube_root7(n, low, high, tolerance)
 
 
+def cube_root8(n, low=0, high=0, tolerance=0.01):
+    if high == 0:
+        if abs(n) < 1:
+            low, high = abs(n), 1
+        else:
+            low, high = 0, abs(n)
+    guess = (low + high) / 2
+
+    if abs(abs(n) - guess**3) > tolerance:
+        if guess**3 > abs(n):
+            high = guess
+        else:
+            low = guess
+        return cube_root8(n, low, high, tolerance)
+    else:
+        return -guess if n < 0 else guess
+
+
 # //////////////////////////////////////////////////////////////////////////////////////
 # ///////////////////////////////////// PALINDROME /////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////////////////////
