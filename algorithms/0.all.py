@@ -2,10 +2,10 @@
     This file is for learning and exercise purposes.
 
     Topics:
-        - all algorithms from directory in one place.
+        - all algorithms from the directory in one place.
 
     Sources:
-        In separate files.
+        Indicated in separate files.
 """
 
 # //////////////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ def multiply3(a, b):
         return 0
     else:
         res = a + multiply3(a, abs(b)-1)
-        if res < 0:
+        if b < 0:
             res = -res
         return res
 
@@ -68,6 +68,13 @@ def multiply3(a, b):
 def multiply33(a, b):
     if b == 0:
         return 0
+    res = a + multiply3(a, abs(b)-1)
+    return -res if b < 0 else res
+
+
+def multiply333(a, b):
+    if b == 1:
+        return a
     res = a + multiply3(a, abs(b)-1)
     return -res if b < 0 else res
 
