@@ -287,8 +287,7 @@ def cube_root2(n):
 def cube_root22(n):
     for guess in range(abs(n)+1):
         if guess**3 == abs(n):
-            guess = -guess if n < 0 else guess
-            return f'Cube root of {n} is {guess}'
+            return f'Cube root of {n} is {-guess if n < 0 else guess}'
         elif guess**3 > abs(n):
             return f'{n} is not a perfect cube'
 
