@@ -157,16 +157,37 @@ def fact2(n):
 def fact22(n):
     if n in factorials2:
         return factorials2[n]
-    res = 1 if n < 2 else n * fact22(n-1)
-    factorials2[n] = res
+    if n < 2:
+        factorials2[n] = 1
+    else:
+        factorials2[n] = n * fact22(n-1)
+    return factorials2[n]
+
+
+# //////////// FACTORIAL RECURSIVE WITH MEMOIZATION -2- ////////////
+
+factorials3 = {}
+
+
+def fact3(n):
+    if n in factorials3:
+        return factorials3[n]
+    res = 1 if n < 2 else n * fact3(n-1)
+    factorials3[n] = res
     return res
 
 
-def fact222(n):
-    if n not in factorials2:
-        res = 1 if n < 2 else n * fact222(n-1)
-        factorials2[n] = res
-    return factorials2[n]
+def fact33(n):
+    if n not in factorials3:
+        res = 1 if n < 2 else n * fact33(n-1)
+        factorials3[n] = res
+    return factorials3[n]
+
+
+def fact333(n):
+    if n not in factorials3:
+        factorials3[n] = 1 if n < 2 else n * fact333(n-1)
+    return factorials3[n]
 
 
 # //////////////////////////////////////////////////////////////////////////////////////
