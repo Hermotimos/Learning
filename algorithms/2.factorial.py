@@ -155,6 +155,12 @@ def fact_recur_memo3(n):
     return factorials_3[n]
 
 
+def fact_recur_memo3_short(n):
+    if n not in factorials_3:
+        factorials_3[n] = 1 if n == 0 else n * fact_recur_memo3_short(n - 1)
+    return factorials_3[n]
+
+
 print('\nFactorial recursive with memoization - 3')
 time_function(fact_recur_memo3)(3500)
 time_function(fact_recur_memo3)(3500)
