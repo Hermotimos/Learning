@@ -26,7 +26,7 @@ def guess_cube_root1(cube):
     return f'{cube} is not a perfect cube'
 
 
-for d in (8, 27, 64, 100):
+for d in (0, 1, 8, 27, 64, 100):
     print(guess_cube_root1(d))
 print()
 
@@ -48,7 +48,7 @@ def guess_cube_root2(cube):
         return f'Cube root of {cube} is {guess}.'
 
 
-for d in (8, -27, -64, 100):
+for d in (0, 1, 8, -27, -64, 100):
     print(guess_cube_root2(d))
 print()
 
@@ -66,7 +66,7 @@ def guess_cube_root3(n):
             return f'{n} is not a perfect cube.'
 
 
-for d in (8, -27, -64, 100):
+for d in (0, 1, 8, -27, -64, 100):
     print(guess_cube_root3(d))
 print()
 
@@ -194,8 +194,9 @@ def bisection_3root_iter_pos_neg(cube, tolerance=0.01):
 
 
 print('\nBISECTION: POSITIVE & NEGATIVE NUMS\n')
-bisection_3root_iter_pos_neg(-64)
-bisection_3root_iter_pos_neg(-8)
+for d in (0, 1, 8, -27, -64, 100):
+    bisection_3root_iter_pos_neg(d)
+print()
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -238,10 +239,9 @@ bisection_3root_iter_fractions(0.2)
 # Also fixed bug from MIT lecture considering number of guesses: first guess was never counted.
 
 def bisection_3root_iter_all(cube, tolerance=0.01):
-
-    if abs(cube) < 1:                  # 0 < abs(cube) < 1
+    if 0 < abs(cube) < 1:
         low, high = abs(cube), 1
-    else:                              # 1 <= abs(cube)
+    else:                              # 1 <= abs(cube) or abs(cube) = 0
         low, high = 0, abs(cube)
     guess = (low + high) / 2.0
     guess_counter = 1
@@ -264,7 +264,7 @@ def bisection_3root_iter_all(cube, tolerance=0.01):
 
 
 print('\nBISECTION: POS, NEG & FRACTIONS\n')
-for d in (7, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
+for d in (0, 1, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
     bisection_3root_iter_all(d, tolerance=0.0001)
 
 
@@ -291,7 +291,7 @@ def bisection_3root_recur_pos_neg(n, low=0, high=0, tolerance=0.01):
 
 
 print('\nBISECTION: RECURSIVE FOR POSITIVE, NEGATIVE [my own]\n')
-for d in (7, 8, -64, -1.5, -42341.6435235):
+for d in (0, 1, 8, -64, -1.5, -42341.6435235):
     print(bisection_3root_recur_pos_neg(d, tolerance=0.0001))
 
 
@@ -302,7 +302,7 @@ for d in (7, 8, -64, -1.5, -42341.6435235):
 
 def bisection_3root_recur_all(n, low=0, high=0, tolerance=0.01):
     if high == 0:                                  # high == 0 only in the first step
-        if abs(n) < 1:
+        if 0 < abs(n) < 1:
             low, high = abs(n), 1
         else:
             high = abs(n)
@@ -321,7 +321,7 @@ def bisection_3root_recur_all(n, low=0, high=0, tolerance=0.01):
 
 
 print('\nBISECTION: RECURSIVE FOR POSITIVE, NEGATIVE, AND FRACTIONS 1 [my own]\n')
-for d in (7, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
+for d in (0, 1, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
     print(bisection_3root_recur_all(d, tolerance=0.0001))
 
 
@@ -329,7 +329,7 @@ for d in (7, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
 
 def bisection_3root_recur_all2(n, low=0, high=0, tolerance=0.01):
     if high == 0:                                  # high == 0 only in the first step
-        if abs(n) < 1:
+        if 0 < abs(n) < 1:
             low, high = abs(n), 1
         else:
             high = abs(n)
@@ -346,7 +346,7 @@ def bisection_3root_recur_all2(n, low=0, high=0, tolerance=0.01):
 
 
 print('\nBISECTION: RECURSIVE FOR POSITIVE, NEGATIVE, AND FRACTIONS 2 [my own]\n')
-for d in (7, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
+for d in (0, 1, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
     print(bisection_3root_recur_all2(d, tolerance=0.0001))
 
 
