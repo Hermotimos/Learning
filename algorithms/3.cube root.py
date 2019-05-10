@@ -298,7 +298,7 @@ for d in (7, 8, -64, -1.5, -42341.6435235):
 # ----------------------------------------------------------------------------------------------------
 
 
-#  BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS [RECURSIVE]
+#  BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS [RECURSIVE - 1]
 
 def bisection_3root_recur_all(n, low=0, high=0, tolerance=0.01):
     if high == 0:                                  # high == 0 only in the first step
@@ -320,9 +320,34 @@ def bisection_3root_recur_all(n, low=0, high=0, tolerance=0.01):
     return bisection_3root_recur_all(n, low, high, tolerance)
 
 
-print('\nBISECTION: RECURSIVE FOR POSITIVE, NEGATIVE, AND FRACTIONS [my own]\n')
+print('\nBISECTION: RECURSIVE FOR POSITIVE, NEGATIVE, AND FRACTIONS 1 [my own]\n')
 for d in (7, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
     print(bisection_3root_recur_all(d, tolerance=0.0001))
+
+
+#  BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS [RECURSIVE - 2]
+
+def bisection_3root_recur_all2(n, low=0, high=0, tolerance=0.01):
+    if high == 0:                                  # high == 0 only in the first step
+        if abs(n) < 1:
+            low, high = abs(n), 1
+        else:
+            high = abs(n)
+    guess = (low + high) / 2
+
+    if abs(abs(n) - guess**3) > tolerance:
+        if guess**3 > abs(n):
+            high = guess
+        else:
+            low = guess
+        return bisection_3root_recur_all2(n, low, high, tolerance)
+    else:
+        return f'Approximate cube root of {n} is: {-guess if n < 0 else guess}.'
+
+
+print('\nBISECTION: RECURSIVE FOR POSITIVE, NEGATIVE, AND FRACTIONS 2 [my own]\n')
+for d in (7, 8, -64, 0.2, -1.5, -0.423425, -42341.6435235):
+    print(bisection_3root_recur_all2(d, tolerance=0.0001))
 
 
 # ----------------------------------------------------------------------------------------------------
