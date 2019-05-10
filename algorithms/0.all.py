@@ -381,10 +381,11 @@ def cube_root6(n, low=0, high=0, tolerance=0.01):
 # //////////// BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS [RECURSIVE] ////////////
 
 def cube_root7(n, low=0, high=0, tolerance=0.01):
-    if abs(n) < 1 and high == 0:
-        low, high = abs(n), 1
-    elif high == 0:
-        high = abs(n)
+    if high == 0:                                   # high == 0 only in the first step
+        if abs(n) < 1:
+            low, high = abs(n), 1
+        else:
+            low, high = 0, abs(n)
     guess = (low + high) / 2
 
     if abs(abs(n) - guess**3) <= tolerance:

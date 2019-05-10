@@ -277,10 +277,12 @@ def bisection_3root_recur_pos_neg(n, low=0, high=0, tolerance=0.01):
     if high == 0:
         high = abs(n)
     guess = (low + high) / 2
+
     if abs(abs(n) - guess**3) <= tolerance:
         if n < 0:
             guess = -guess
         return f'Approximate cube root of {n} is: {guess}.'
+
     elif guess**3 > abs(n):
         high = guess
     else:
@@ -299,15 +301,18 @@ for d in (7, 8, -64, -1.5, -42341.6435235):
 #  BISECTION SEARCH FOR POSITIVE, NEGATIVE, AND FRACTIONS [RECURSIVE]
 
 def bisection_3root_recur_all(n, low=0, high=0, tolerance=0.01):
-    if abs(n) < 1 and high == 0:
-        low, high = abs(n), 1
-    elif high == 0:
-        high = abs(n)
+    if high == 0:                                  # high == 0 only in the first step
+        if abs(n) < 1:
+            low, high = abs(n), 1
+        else:
+            high = abs(n)
     guess = (low + high) / 2
+
     if abs(abs(n) - guess**3) <= tolerance:
         if n < 0:
             guess = -guess
         return f'Approximate cube root of {n} is: {guess}.'
+
     elif guess**3 > abs(n):
         high = guess
     else:
