@@ -362,14 +362,12 @@ def cube_root5(n, tolerance=0.01):
 # //////////// BISECTION SEARCH FOR POSITIVE, NEGATIVE [RECURSIVE] ////////////
 
 def cube_root6(n, low=0, high=0, tolerance=0.01):
-    if high == 0:
+    if high == 0:                                   # high == 0 only in the first step
         high = abs(n)
     guess = (low + high) / 2
 
     if abs(abs(n) - guess**3) <= tolerance:
-        if n < 0:
-            guess = -guess
-        return f'Cube root of {n} is approximately: {guess}'
+        return -guess if n < 0 else guess
 
     elif guess**3 > abs(n):
         high = guess
@@ -389,8 +387,7 @@ def cube_root7(n, low=0, high=0, tolerance=0.01):
     guess = (low + high) / 2
 
     if abs(abs(n) - guess**3) <= tolerance:
-        guess = -guess if n < 0 else guess
-        return f'Cube root of {n} is approximately: {guess}'
+        return -guess if n < 0 else guess
 
     elif guess**3 > abs(n):
         high = guess
