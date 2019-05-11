@@ -134,7 +134,6 @@ print(is_palindrome_recur2(''))
 
 # ----------------------------------------------------------------------------------------------------
 
-
 # 3) Best recursive version
 #    Avoids applying text formatting in each recursive step AND deals with empty strings (returns False)
 #    TODO Test it's performance in comparison to others
