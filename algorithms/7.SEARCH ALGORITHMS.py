@@ -84,6 +84,19 @@ def bisection_search(iterable, searched):
             return bisection_search(iterable[half:], searched)
 
 
+def bisection_search2(iterable, searched):
+    if len(iterable) == 0:
+        return False
+    elif len(iterable) == 1:
+        return iterable[0] == searched
+
+    half = len(iterable) // 2
+    if iterable[half] > searched:
+        return bisection_search2(iterable[:half], searched)
+    else:
+        return bisection_search2(iterable[half:], searched)
+
+
 print('BISECTION SEARCH - WITH COPYING')
 print(bisection_search(SORTED_NUMBERS, 4))
 print(bisection_search(SORTED_NUMBERS, 44))
