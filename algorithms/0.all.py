@@ -563,3 +563,61 @@ def hanoi2(height, source, target, middle):
 # //////////////////////////////////////////////////////////////////////////////////////
 # //////////////////////////////////////// SEARCH //////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////////////////////
+
+
+# //////////// LINEAR SEARCH (ITERATIVE) - UNSORTED LIST ////////////
+
+def search1(elem, iterable):
+    for e in iterable:
+        if e == elem:
+            return True
+    return False
+
+
+# //////////// LINEAR SEARCH (ITERATIVE) - SORTED LIST ////////////
+
+def search2(elem, iterable):
+    for e in iterable:
+        if e == elem:
+            return True
+        elif e > elem:
+            return False
+    return False
+
+
+# //////////// BINARY SEARCH (RECURSIVE) - INEFFICIENT ////////////
+
+def search3(elem, iterable):
+    if len(iterable) == 0:
+        return False
+    elif len(iterable) == 1:
+        return iterable[0] == elem
+
+    guess = len(iterable) // 2
+    if iterable[guess] > elem:
+        return search3(elem, iterable[:guess])
+    else:
+        return search3(elem, iterable[guess:])
+
+
+# //////////// BINARY SEARCH (RECURSIVE) - EFFICIENT ////////////
+
+def search4(elem, iterable, low=0, high=None):
+    if len(iterable) == 0:
+        return False
+
+    if high is None:
+        high = len(iterable)
+    if len(iterable[low:high]) == 1:
+        return iterable[0] == elem
+
+    guess = (low + high) // 2
+    if iterable[guess] == elem:
+        return True
+    elif iterable[guess] > elem:
+        high = guess
+    else:
+        low = guess
+    return search4(elem, iterable, low, high)
+
+
