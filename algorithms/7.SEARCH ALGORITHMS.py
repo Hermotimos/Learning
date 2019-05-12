@@ -106,8 +106,9 @@ print(bisection_search(SORTED_LETTERS, 'h'))
 print()
 
 
-# 2) MY ALGORITHM => cost O(log n)
-# based on hint from MIT lecture to use pointers instead of copying iterable
+# 2) ALGORITHM WITHOUT COPYING OF THE LIST => cost O(log n)
+# uses pointers instead of copying iterable
+# MY OWN ALGORITHM - SIMPLER THAN THE ONE FROM MIT LECTURE
 
 
 def bisection_search_efficient_1(iterable, searched, low=0, high=None):
@@ -152,7 +153,7 @@ def linear_search_unsorted(iterable, searched):
     for e in iterable:
         steps += 1
         if e == searched:
-            found = True                # returning True here would speed up, but not in worst case scenario (e absent)
+            found = True
     return f"""Steps: {steps:5}\t{'not ' if found == False else "":}found '{searched}' in {len(iterable)} elements"""
 
 
