@@ -142,6 +142,7 @@ print()
 
 # 3) Aditya Bhardava - iterative bisection
 # there was no division //2 in the book - must be a mistake, cause without it it's not a bisection
+# Cost must be O(log n) because there's no copying of the iterable - it's like pointers.
 
 def bisection_search3(iterable, elem):
     low = 0
