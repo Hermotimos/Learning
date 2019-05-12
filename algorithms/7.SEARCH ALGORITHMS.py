@@ -112,23 +112,22 @@ print()
 
 
 def bisection_search_efficient_1(iterable, searched, low=0, high=None):
-    if high is None:
-        high = len(iterable)
-
     if len(iterable) == 0:
         return False
-    elif len(iterable[low:high]) == 1:
+
+    if high is None:
+        high = len(iterable)
+    if len(iterable[low:high]) == 1:
         return iterable[0] == searched
 
+    middle = (low + high) // 2
+    if iterable[middle] == searched:
+        return True
+    elif iterable[middle] > searched:
+        high = middle
     else:
-        middle = (low + high) // 2
-        if iterable[middle] == searched:
-            return True
-        elif iterable[middle] > searched:
-            high = middle
-        else:
-            low = middle
-        return bisection_search_efficient_1(iterable, searched, low, high)
+        low = middle
+    return bisection_search_efficient_1(iterable, searched, low, high)
 
 
 print('BISECTION SEARCH - WITH POINTERS')
