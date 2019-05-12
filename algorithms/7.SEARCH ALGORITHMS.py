@@ -141,20 +141,21 @@ print()
 
 
 # 3) Aditya Bhardava - iterative bisection
+# there was no division //2 in the book - must be a mistake, cause without it it's not a bisection
 
 def bisection_search3(iterable, elem):
     low = 0
     high = len(iterable) - 1
 
     while low <= high:
-        guess = (low + high) // 2        # added division, in the book it's absence was probably a mistake
+        guess = (low + high) // 2
         if iterable[guess] == elem:
-            return guess                 # returns index in iterable
+            return guess
         if iterable[guess] > elem:
             high = guess - 1
         else:
             low = guess + 1
-    return None
+    return False
 
 
 print('BISECTION SEARCH ITERATIVE - Aditya Bhargava - Algorytmy. Ilustrowany przewodnik')
