@@ -190,12 +190,11 @@ time_function(factorial_iter_memo)(5000)
 time_function(factorial_iter_memo)(8000)
 time_function(factorial_iter_memo)(8000)
 
-print('Cache RESET')
+print('\nCache RESET to free memory')
 factorials_4.clear()
-time_function(factorial_iter_memo)(50000)
+time_function(factorial_iter_memo)(45000)
 
-# TODO works up to 50000! (ca. 1.6 secs) but higher values will hang the system ==> try out on stronger system.
-# TODO: Probably this is caused by searching for memoized/cached data => try with bisection search algorithms
+# TODO works up to 45000! (ca. 1.8 secs) but higher values raise MemoryError or hang the system (depending on computer)
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -205,16 +204,13 @@ time_function(factorial_iter_memo)(50000)
 
 print('\n--------------------------------------------------------')
 # Reset cached/memoized data before performance test:
-factorials_1.clear()
-factorials_2.clear()
-factorials_3.clear()
-factorials_4.clear()
+del factorials_1, factorials_2, factorials_3, factorials_4
+factorials_1, factorials_2, factorials_3, factorials_4 = {}, {}, {}, {}
 
 
 print('\nPERFORMANCE: iterative 1')
 for v in (3000, 3000, 5000, 5000, 8000, 8000, 20000, 90000, 90000):
     time_function(fact_iter1)(v)
-
 print('\nPERFORMANCE: iterative 2')
 for v in (3000, 3000, 5000, 5000, 8000, 8000, 20000, 90000, 90000):
     time_function(fact_iter2)(v)
@@ -235,9 +231,10 @@ for v in (3000, 3000, 5000, 5000, 8000, 8000, 11500, 15000, 18500, 22000, 25500,
     time_function(factorial_iter_memo)(v)
 
 print('\nPERFORMANCE: iterative with memoization can do even more [from scratch, cached data reset]:')
-factorials_4.clear()
-for v in (50000, 60000):
-    time_function(factorial_iter_memo)(v)
+del factorials_1, factorials_2, factorials_3, factorials_4
+factorials_4 = {}
+time_function(factorial_iter_memo)(45000)
+time_function(factorial_iter_memo)(45000)
 
 
 # CONCLUSION:
@@ -246,7 +243,7 @@ for v in (50000, 60000):
 # ITERATIVE:    performs very well for small numbers (up to 20000). But then it slows down significantly.
 # RECURSIVE WITH MEMOIZATION: works well if it can populate its cache with gradually increasing searched n.
 #                             It's potentially better than iterative for big numbers (only by gradually increasing n).
-# ITERATIVE WITH MEMOIZATION: the most efficient one, can handle 50000 from scratch in 1.5 secs (though more hangs the
-#                             system instead of throwing exception). It's slightly slower than recursive memo, but
-#                             can handle much bigger leaps of n values than recursive.
+# ITERATIVE WITH MEMOIZATION: the most efficient one, can handle (depending on computer) 45000-50000 from scratch
+#                             in 1.5 secs (though more hangs the system or raises exception).
+#                             It's slightly slower than recursive memo, but can handle bigger leaps of n values.
 #                             TODO Test theory that it's a problem with searching the dict. Use search algorithm !
