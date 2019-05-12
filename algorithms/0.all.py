@@ -621,6 +621,23 @@ def search4(elem, iterable, low=0, high=None):
     return search4(elem, iterable, low, high)
 
 
+# //////////// BINARY SEARCH (ITERATIVE) - EFFICIENT ////////////
+
+def search5(elem, iterable):
+    low = 0
+    high = len(iterable) - 1
+
+    while low <= high:
+        guess = (low + high) // 2
+        if iterable[guess] == elem:
+            return True
+        if iterable[guess] > elem:
+            high = guess -1
+        else:
+            low = guess + 1
+    return False
+
+
 # //////////////////////////////////////////////////////////////////////////////////////
 # //////////////////////////////////////// SORT ////////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////////////////////
