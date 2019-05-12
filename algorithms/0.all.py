@@ -632,7 +632,7 @@ def search5(elem, iterable):
         if iterable[guess] == elem:
             return True
         if iterable[guess] > elem:
-            high = guess -1
+            high = guess - 1
         else:
             low = guess + 1
     return False
