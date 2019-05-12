@@ -2,10 +2,11 @@
     This file is for learning and exercise purposes.
 
     Topics:
-        - algorithms: linear search, bisection search, todo ..............
+        - algorithms: linear search, bisection search
 
     Sources:
         https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
+        Aditya Bhargava - Algorytmy. Ilustrowany przewodnik.
 """
 
 UNSORTED_LETTERS = ['c', 'a', 'd', 'b', 'g', 'j', 'k', 'o', 'p', 'q', 'r', 's', 'z', 't', 'u', 'v', 'x', 'y']
@@ -97,7 +98,7 @@ def bisection_search2(iterable, searched):
         return bisection_search2(iterable[half:], searched)
 
 
-print('BISECTION SEARCH - WITH COPYING')
+print('BISECTION SEARCH RECURSIVE - WITH COPYING')
 print(bisection_search(SORTED_NUMBERS, 4))
 print(bisection_search(SORTED_NUMBERS, 44))
 print(bisection_search(SORTED_NUMBERS, 11))
@@ -130,7 +131,7 @@ def bisection_search_efficient_1(iterable, searched, low=0, high=None):
     return bisection_search_efficient_1(iterable, searched, low, high)
 
 
-print('BISECTION SEARCH - WITH POINTERS')
+print('BISECTION SEARCH RECURSIVE - WITH POINTERS')
 print(bisection_search_efficient_1(SORTED_NUMBERS, 4))
 print(bisection_search_efficient_1(SORTED_NUMBERS, 44))
 print(bisection_search_efficient_1(SORTED_NUMBERS, 11))
@@ -138,6 +139,31 @@ print(bisection_search_efficient_1(SORTED_LETTERS, 'z'))
 print(bisection_search_efficient_1(SORTED_LETTERS, 'h'))
 print()
 
+
+# 3) Aditya Bhardava - iterative bisection
+
+def bisection_search3(iterable, elem):
+    low = 0
+    high = len(iterable) - 1
+
+    while low <= high:
+        guess = (low + high) // 2        # added division, in the book it's absence was probably a mistake
+        if iterable[guess] == elem:
+            return guess                 # returns index in iterable
+        if iterable[guess] > elem:
+            high = guess - 1
+        else:
+            low = guess + 1
+    return None
+
+
+print('BISECTION SEARCH ITERATIVE - Aditya Bhargava - Algorytmy. Ilustrowany przewodnik')
+print(bisection_search3(SORTED_NUMBERS, 4))
+print(bisection_search3(SORTED_NUMBERS, 44))
+print(bisection_search3(SORTED_NUMBERS, 11))
+print(bisection_search3(SORTED_LETTERS, 'z'))
+print(bisection_search3(SORTED_LETTERS, 'h'))
+print()
 
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PERFORMANCE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
