@@ -567,7 +567,7 @@ def hanoi2(height, source, target, middle):
 
 # //////////// LINEAR SEARCH (ITERATIVE) - UNSORTED LIST ////////////
 
-def search1(elem, iterable):
+def search(elem, iterable):
     for e in iterable:
         if e == elem:
             return True
@@ -576,12 +576,24 @@ def search1(elem, iterable):
 
 # //////////// LINEAR SEARCH (ITERATIVE) - SORTED LIST ////////////
 
-def search2(elem, iterable):
+def search1(elem, iterable):
     for e in iterable:
         if e == elem:
             return True
         elif e > elem:
             return False
+    return False
+
+
+def search2(elem, iterable):
+    indx = 0
+    while indx < len(iterable):
+        if iterable[indx] == elem:
+            return True
+        elif iterable[indx] > elem:
+            return False
+        else:
+            indx += 1
     return False
 
 

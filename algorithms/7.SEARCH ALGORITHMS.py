@@ -48,12 +48,31 @@ def linear_search_sorted(iterable, searched):
     return False
 
 
-print('LINEAR SEARCH ON SORTED ITERABLE')
+print('LINEAR SEARCH ON SORTED ITERABLE - 1')
 print(linear_search_sorted(SORTED_NUMBERS, 4))
 print(linear_search_sorted(SORTED_NUMBERS, 44))
 print(linear_search_sorted(SORTED_NUMBERS, 11))
 print(linear_search_sorted(SORTED_LETTERS, 'z'))
 print(linear_search_sorted(SORTED_LETTERS, 'h'))
+print()
+
+
+def linear_search_sorted2(iterable, elem):
+    indx = 0
+    while indx < len(iterable):
+        if iterable[indx] == elem:
+            return True
+        else:
+            indx += 1
+    return False
+
+
+print('LINEAR SEARCH ON SORTED ITERABLE - 2')
+print(linear_search_sorted2(SORTED_NUMBERS, 4))
+print(linear_search_sorted2(SORTED_NUMBERS, 44))
+print(linear_search_sorted2(SORTED_NUMBERS, 11))
+print(linear_search_sorted2(SORTED_LETTERS, 'z'))
+print(linear_search_sorted2(SORTED_LETTERS, 'h'))
 print()
 
 
@@ -197,7 +216,7 @@ def linear_search_sorted(iterable, searched):
         if iterable[e] == searched:
             found = True
             break
-        if iterable[e] > searched:
+        elif iterable[e] > searched:
             break
     return f"""Steps: {steps:5}\t{'not ' if found == False else "":}found '{searched}' in {len(iterable)} elements"""
 
@@ -210,6 +229,30 @@ print(linear_search_sorted(SORTED_LETTERS, 'z'))
 print(linear_search_sorted(SORTED_LETTERS, 'h'))
 print()
 
+
+def linear_search_sorted2(iterable, searched):
+    indx = 0
+    steps = 0
+    found = False
+    while indx < len(iterable):
+        steps += 1
+        if iterable[indx] == searched:
+            found = True
+            break
+        elif iterable[indx] > searched:
+            break
+        else:
+            indx += 1
+    return f"""Steps: {steps:5}\t{'not ' if found == False else "":}found '{searched}' in {len(iterable)} elements"""
+
+
+print('LINEAR SEARCH ON SORTED ITERABLE - 2')
+print(linear_search_sorted2(SORTED_NUMBERS, 4))
+print(linear_search_sorted2(SORTED_NUMBERS, 44))
+print(linear_search_sorted2(SORTED_NUMBERS, 11))
+print(linear_search_sorted2(SORTED_LETTERS, 'z'))
+print(linear_search_sorted2(SORTED_LETTERS, 'h'))
+print()
 
 # ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>> BISECTION SEARCH [REQUIRES SORTED ITERABLE] <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
