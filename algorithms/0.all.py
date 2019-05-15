@@ -677,3 +677,52 @@ def bubble_sort(list_):
                 return list_
 
 
+def bubble_sort2(list_):
+    while not all(list_[n-1] <= list_[n] for n in range(1, len(list_))):
+        for n in range(1, len(list_)):
+            if list_[n-1] > list_[n]:
+                list_[n-1], list_[n] = list_[n], list_[n-1]
+    return list_
+
+
+# ////////////////// SELECTION SORT //////////////////
+
+def selection_sort(list_):
+    suffix = 0
+    while suffix < len(list_):
+        for n in range(suffix, len(list_)):
+            if list_[suffix] > list_[n]:
+                list_[suffix], list_[n] = list_[n], list_[suffix]
+        suffix += 1
+    return list_
+
+
+# ////////////////// MERGE SORT //////////////////
+
+def merge_sort(list_):
+
+    def merge(left, right):
+        result = []
+        a, b = 0, 0
+        while a < len(left) and b < len(right):
+            if left[a] < right[b]:
+                result.append(left[a])
+                a += 1
+            else:
+                result.append(right[b])
+                b += 1
+        while a < len(left):
+            result.append(left[a])
+            a += 1
+        while b < len(right):
+            result.append(right[b])
+            b += 1
+        return result
+
+    if len(list_) < 2:
+        return list_
+    else:
+        mid = len(list_) // 2
+        half1 = merge_sort(list_[:mid])
+        half2 = merge_sort(list_[mid:])
+        return merge(half1, half2)
