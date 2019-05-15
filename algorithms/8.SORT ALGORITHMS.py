@@ -12,8 +12,8 @@ from time_function_decorator import time_function
 
 
 # CODE TO CHECK IF LIST IS SORTED
-def is_sorted(listx):
-    return all(listx[n - 1] <= listx[n] for n in range(1, len(listx)))
+def is_sorted(list_):
+    return all(list_[n - 1] <= list_[n] for n in range(1, len(list_)))
 
 
 tuple1 = 1, 2, 3, 4
@@ -36,19 +36,19 @@ print('MONKEY SORT / BOGO SORT / SHOTGUN SORT')
 
 
 # PURE ALGORITHM
-def bogo_sort(listx):
-    while not all(listx[n - 1] <= listx[n] for n in range(1, len(listx))):
-        random.shuffle(listx)
-    return listx
+def bogo_sort(list_):
+    while not all(list_[n - 1] <= list_[n] for n in range(1, len(list_))):
+        random.shuffle(list_)
+    return list_
 
 
 # VERSION WITH PRINTOUT AND COUNTER
-def bogo_sort2(listx, shuffle_counter=0):
-    print(f'Start: {listx}')
-    while not all(listx[n - 1] <= listx[n] for n in range(1, len(listx))):
-        random.shuffle(listx)
+def bogo_sort2(list_, shuffle_counter=0):
+    print(f'Start: {list_}')
+    while not all(list_[n - 1] <= list_[n] for n in range(1, len(list_))):
+        random.shuffle(list_)
         shuffle_counter += 1
-    print(f'Steps needed: {shuffle_counter}: {listx}')
+    print(f'Steps needed: {shuffle_counter}: {list_}')
 
 
 list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
@@ -73,17 +73,17 @@ print()
 
 # MIT VERSION
 
-def bubble_mit(listx):
+def bubble_mit(list_):
     swap = False
     while not swap:
         swap = True
-        for j in range(1, len(listx)):
-            if listx[j - 1] > listx[j]:
+        for j in range(1, len(list_)):
+            if list_[j - 1] > list_[j]:
                 swap = False
-                temp = listx[j]
-                listx[j] = listx[j - 1]
-                listx[j - 1] = temp
-    return listx
+                temp = list_[j]
+                list_[j] = list_[j - 1]
+                list_[j - 1] = temp
+    return list_
 
 
 list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
@@ -97,15 +97,15 @@ print()
 
 # SHORTER VERSION
 
-def bubble_sort_short(listx):
+def bubble_sort_short(list_):
     while True:
         swap = False
-        for e in range(1, len(listx)):
-            if listx[e-1] > listx[e]:
-                listx[e-1], listx[e] = listx[e], listx[e-1]
+        for e in range(1, len(list_)):
+            if list_[e - 1] > list_[e]:
+                list_[e - 1], list_[e] = list_[e], list_[e - 1]
                 swap = True
         if not swap:
-            return listx
+            return list_
 
 
 list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
@@ -116,12 +116,12 @@ print()
 
 # SHORTEST VERSION
 
-def bubble_sort_shortest(listx):
-    while not all(listx[n-1] <= listx[n] for n in range(1, len(listx))):
-        for e in range(1, len(listx)):
-            if listx[e-1] > listx[e]:
-                listx[e-1], listx[e] = listx[e], listx[e-1]
-    return listx
+def bubble_sort_shortest(list_):
+    while not all(list_[n - 1] <= list_[n] for n in range(1, len(list_))):
+        for e in range(1, len(list_)):
+            if list_[e - 1] > list_[e]:
+                list_[e - 1], list_[e] = list_[e], list_[e - 1]
+    return list_
 
 
 list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
@@ -131,19 +131,19 @@ print()
 
 
 # VERSION WITH PRINTOUT AND COUNTER
-def bubble_sort2(listx, printout=True):
-    print(f'Start: {listx}') if printout else None
+def bubble_sort2(list_, printout=True):
+    print(f'Start: {list_}') if printout else None
     step_count = 0
     while True:
         swap = False
-        for e in range(1, len(listx)):
-            if listx[e-1] > listx[e]:
-                listx[e-1], listx[e] = listx[e], listx[e-1]
+        for e in range(1, len(list_)):
+            if list_[e - 1] > list_[e]:
+                list_[e - 1], list_[e] = list_[e], list_[e - 1]
                 swap = True
                 step_count += 1
-                print(f'Step {step_count}: {listx}') if printout else None
+                print(f'Step {step_count}: {list_}') if printout else None
         if not swap:
-            return listx if printout else print(f'Steps: {step_count}: {listx}.')
+            return list_ if printout else print(f'Steps: {step_count}: {list_}.')
 
 
 list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
@@ -154,7 +154,7 @@ print('\nlist2'), bubble_sort2(list2)
 print('\nlist3'), bubble_sort2(list3, False)
 print()
 
-# Order of growth O(n**2) because each iterative solution is O(len(listx) = O(n).
+# Order of growth O(n**2) because each iterative solution is O(len(list_) = O(n).
 # There are 2 iterative constructs (while and for), so O(n)*O(n) = O(n**2)
 
 
@@ -165,26 +165,26 @@ print('SELECTION SORT')
 
 
 # PURE ALGORITHM
-def selection_sort(listx):
+def selection_sort(list_):
     index = 0
-    while index < len(listx):
-        for n in range(index, len(listx)):
-            if listx[index] > listx[n]:
-                listx[index], listx[n] = listx[n], listx[index]
+    while index < len(list_):
+        for n in range(index, len(list_)):
+            if list_[index] > list_[n]:
+                list_[index], list_[n] = list_[n], list_[index]
         index += 1
-    return listx
+    return list_
 
 
 # WITH PRINTOUT
-def selection2(listx):
+def selection2(list_):
     index = 0
-    while index != len(listx):
-        print(f'Step {index}: {listx}')
-        for n in range(index, len(listx)):
-            if listx[index] > listx[n]:
-                listx[index], listx[n] = listx[n], listx[index]
+    while index != len(list_):
+        print(f'Step {index}: {list_}')
+        for n in range(index, len(list_)):
+            if list_[index] > list_[n]:
+                list_[index], list_[n] = list_[n], list_[index]
         index += 1
-    return listx
+    return list_
 
 
 list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
@@ -202,7 +202,7 @@ print()
 print('MERGE SORT')
 
 
-def merge_sort(listx):
+def merge_sort(list_):
     def merge(left, right):
         result = []
         a, b = 0, 0
@@ -221,12 +221,12 @@ def merge_sort(listx):
             b += 1
         return result
 
-    if len(listx) < 2:
-        return listx[:]
+    if len(list_) < 2:
+        return list_[:]
     else:
-        middle = len(listx) // 2
-        half1 = merge_sort(listx[:middle])
-        half2 = merge_sort(listx[middle:])
+        middle = len(list_) // 2
+        half1 = merge_sort(list_[:middle])
+        half2 = merge_sort(list_[middle:])
         return merge(half1, half2)
 
 
@@ -241,7 +241,7 @@ print('\nlist3'), print(merge_sort(list3))
 # WITH PRINTOUT
 # Steps counting has no meaning by recursion - I'm putting it here to see why
 
-def merge_sort2(listx):
+def merge_sort2(list_):
     global counter
     counter += 1
 
@@ -264,12 +264,12 @@ def merge_sort2(listx):
             b += 1
         return result
 
-    if len(listx) < 2:
-        return listx[:]
+    if len(list_) < 2:
+        return list_[:]
     else:
-        middle = len(listx) // 2
-        half1 = merge_sort2(listx[:middle])
-        half2 = merge_sort2(listx[middle:])
+        middle = len(list_) // 2
+        half1 = merge_sort2(list_[:middle])
+        half2 = merge_sort2(list_[middle:])
         return merge(half1, half2)
 
 
