@@ -300,6 +300,6 @@ for alg in algorithms:
     list5 = list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4
     lists = [list1, list2, list3, list4, list5]
     print()
-    for i, list_ in enumerate(lists):
-        print(f'list length: {len(list_)}')
-        time_function(alg, print_args=False)(list_)
+    for i, listx in enumerate(lists):
+        print(f'list length: {len(listx)}')
+        time_function(alg, print_args=False)(listx)
