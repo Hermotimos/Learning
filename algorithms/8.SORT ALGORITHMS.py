@@ -60,8 +60,8 @@ print('\nlist2'), bogo_sort2(list2)
 print()
 
 # This algorithm will eventually sort short lists.
-# 10 trials for a 7-element list: 327, 325, 235, 204, 169, 421, 401, 593, 3, 391. Generally seen range 3 - 2400 !!!
-# Order of growth O is here unbounded in the worst case scenario.
+# 10 trials for a 7-element list: 327, 325, 235, 204, 169, 421, 401, 593, 3, 391 ===> seen range 3 - 2400 !!!
+# Order of growth O is unbounded.
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -91,9 +91,8 @@ print(f'MIT algorithm test for {list1}:')
 print(bubble_mit(list1))
 print()
 # COMMENT
-# This 'swap' business here is very counter-intuitive, as 'swap = False' right before a swap is done.
-# Also it doen't make use of multiple assignment. And it's long...
-# So it needs simplification
+# The 'swap' flag in this algorithm is very counter-intuitive: it makes 'swap = False' right before a swap is done.
+# Also it doen't make use of multiple assignment. And it's long... So it needs simplification:
 
 
 # SHORTER VERSION
@@ -303,4 +302,4 @@ for alg in algorithms:
     print()
     for i, list_ in enumerate(lists):
         print(f'list length: {len(list_)}')
-        time_function(alg)(list_)
+        time_function(alg, print_args=False)(list_)
