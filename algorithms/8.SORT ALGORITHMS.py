@@ -71,8 +71,6 @@ print('BUBBLE SORT')
 print()
 
 
-# MIT VERSION
-
 def bubble_mit(list_):
     swap = False
     while not swap:
@@ -91,11 +89,9 @@ print(f'MIT algorithm test for {list1}:')
 print(bubble_mit(list1))
 print()
 # COMMENT
-# The 'swap' flag in this algorithm is very counter-intuitive: it makes 'swap = False' right before a swap is done.
-# Also it doen't make use of multiple assignment. And it's long... So it needs simplification:
+# The 'swap' flag in this MIT lecture algorithm is counter-intuitive: makes 'swap = False' right before a swap is done.
+# Also it doesn't make use of multiple assignment. And it's long... So it needs simplification:
 
-
-# SHORTER VERSION
 
 def bubble_sort_short(list_):
     while True:
@@ -113,8 +109,6 @@ print(f'Shorter algorithm test for list {list1}:')
 print(bubble_sort_short(list1))
 print()
 
-
-# SHORTEST VERSION
 
 def bubble_sort_shortest(list_):
     while not all(list_[n - 1] <= list_[n] for n in range(1, len(list_))):
@@ -177,13 +171,13 @@ def selection_sort(list_):
 
 # WITH PRINTOUT
 def selection2(list_):
-    index = 0
-    while index != len(list_):
-        print(f'Step {index}: {list_}')
-        for n in range(index, len(list_)):
-            if list_[index] > list_[n]:
-                list_[index], list_[n] = list_[n], list_[index]
-        index += 1
+    suffix = 0
+    while suffix != len(list_):
+        print(f'Step {suffix}: {list_}')
+        for n in range(suffix, len(list_)):
+            if list_[suffix] > list_[n]:
+                list_[suffix], list_[n] = list_[n], list_[suffix]
+        suffix += 1
     return list_
 
 
