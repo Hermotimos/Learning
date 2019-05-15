@@ -653,3 +653,27 @@ def search5(elem, iterable):
 # //////////////////////////////////////////////////////////////////////////////////////
 # //////////////////////////////////////// SORT ////////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////////////////////
+
+
+# //////////// BOGO SORT = MONKEY SORT = SHOTGUN SORT ////////////
+
+def bogo_sort(list_):
+    import random
+    while not all(list_[n-1] <= list_[n] for n in range(1, len(list_))):
+        random.shuffle(list_)
+    return list_
+
+
+# ////////////////// BUBBLE SORT //////////////////
+
+def bubble_sort(list_):
+    while True:
+        swap = False
+        for n in range(1, len(list_)):
+            if list_[n-1] > list_[n]:
+                list_[n-1], list_[n] = list_[n], list_[n-1]
+                swap = True
+            if not swap:
+                return list_
+
+
