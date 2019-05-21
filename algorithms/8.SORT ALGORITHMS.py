@@ -287,13 +287,69 @@ print()
 algorithms = [bubble_mit, bubble_sort_short, bubble_sort_shortest, selection_sort, merge_sort]
 
 for alg in algorithms:
-    list1 = [17, 2, 73, 1, 34, 3, 54, 17, 2, 73]
-    list2 = list1 + list1 + list1 + list1 + list1 + list1 + list1 + list1 + list1 + list1
-    list3 = list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2
-    list4 = list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3
-    list5 = list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4
-    lists = [list1, list2, list3, list4, list5]
+    list1 = [17, 2, 73, 1, 34, 3, 54, 17, 2, 73]                                            # len 10
+    list2 = list1 + list1 + list1 + list1 + list1 + list1 + list1 + list1 + list1 + list1   # len 100
+    list3 = list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2 + list2   # len 1000
+    list4 = list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3 + list3   # len 10000
+    # list5 = list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4 + list4   # len 100000
+    lists = [list1, list2, list3, list4]
     print()
     for i, listx in enumerate(lists):
         print(f'list length: {len(listx)}')
         time_function(alg, print_args=False)(listx)
+
+
+"""
+CONCLUSION:
+
+1) bubble sort algorithms: all three versions perform the same
+2) Hierarchy of algorithms as per performance: 1.merge; 2.selection, 3.bubble (monkey sort is no solution at all!)
+
+
+Exemplary performance times:
+---------------------------------
+list length: 10
+Time for bubble_mit(): 0.0000179190 secs
+list length: 100
+Time for bubble_mit(): 0.0025734970 secs
+list length: 1000
+Time for bubble_mit(): 0.1592203170 secs
+list length: 10000
+Time for bubble_mit(): 16.3996849690 secs
+
+list length: 10
+Time for bubble_sort_short(): 0.0000162120 secs
+list length: 100
+Time for bubble_sort_short(): 0.0014224210 secs
+list length: 1000
+Time for bubble_sort_short(): 0.1649984540 secs
+list length: 10000
+Time for bubble_sort_short(): 16.8835250990 secs
+
+list length: 10
+Time for bubble_sort_shortest(): 0.0000287270 secs
+list length: 100
+Time for bubble_sort_shortest(): 0.0016212340 secs
+list length: 1000
+Time for bubble_sort_shortest(): 0.1689135930 secs
+list length: 10000
+Time for bubble_sort_shortest(): 17.2415139040 secs
+
+list length: 10
+Time for selection_sort(): 0.0000156430 secs
+list length: 100
+Time for selection_sort(): 0.0005645880 secs
+list length: 1000
+Time for selection_sort(): 0.0608656990 secs
+list length: 10000
+Time for selection_sort(): 6.1365184810 secs
+
+list length: 10
+Time for merge_sort(): 0.0000295800 secs
+list length: 100
+Time for merge_sort(): 0.0003726000 secs
+list length: 1000
+Time for merge_sort(): 0.0051583710 secs
+list length: 10000
+Time for merge_sort(): 0.0672087090 secs
+"""
