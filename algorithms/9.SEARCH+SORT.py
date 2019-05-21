@@ -7,7 +7,7 @@
 
 
 # ----------------------------------------------------------------------------------------------------
-# >>>>>>>>>>>>>>>>>>>>>>>>>> SEARCH FOR UNORDERED LIST + SELECTION SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>> SEARCH IN UNORDERED LIST + SELECTION SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
 
@@ -44,6 +44,7 @@ def search_sorted(list_, searched_elem):
     return bisection_search(list_, searched_elem)
 
 
+print('\n', '\bSEARCH IN UNORDERED LIST + SELECTION SORT')
 unordered_list = [3, 1, 5, 6, 7, 3, 543, 64, 234, 12, 6, 3, 5478, 543, 2]
 print(search_sorted(unordered_list, 12))
 print(search_sorted(unordered_list, 7))
@@ -51,7 +52,7 @@ print(search_sorted(unordered_list, 333))
 
 
 # ----------------------------------------------------------------------------------------------------
-# >>>>>>>>>>>>>>>>>>>>>>>>>> SEARCH FOR UNORDERED LIST + MERGE SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>>>>>>>>>>>>>>>>> SEARCH IN UNORDERED LIST + MERGE SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
 
 def search_sorted2(list_, searched_elem):
@@ -105,6 +106,7 @@ def search_sorted2(list_, searched_elem):
     return bisection_search(list_, searched_elem)
 
 
+print('\n', '\bSEARCH IN UNORDERED LIST + MERGE SORT')
 unordered_list = [3, 1, 5, 6, 7, 3, 543, 64, 234, 12, 6, 3, 5478, 543, 2]
 print(search_sorted2(unordered_list, 12))
 print(search_sorted2(unordered_list, 7))
