@@ -53,6 +53,7 @@ print(recursive_count(tuple_1))
 # ----------------------------------------------------------------------------------------------------
 
 
+# based on merge sort (this I would call 'emerge' sort :))
 def recursive_max(iterable):
     if not iterable:
         return None
@@ -65,9 +66,26 @@ def recursive_max(iterable):
         return half1 if half1 > half2 else half2
 
 
-print('\n', '\bRECURSIVE MAX ELEMENT')
+print('\n', '\bRECURSIVE MAX ELEMENT 1')
 list_1 = [1, 2, 3, 4, 10, 11, 12]
 tuple_1 = (1, 2, 3, 4, 10, 11, 12)
 
 print(recursive_max(list_1))
 print(recursive_max(tuple_1))
+
+
+# from Aditya Bhargava
+def recursive_max2(iterable):
+    if len(iterable) == 2:
+        return iterable[0] if iterable[0] > iterable[1] else iterable[1]
+    else:
+        sub_max = recursive_max(iterable[1:])
+        return iterable[0] if iterable[0] > sub_max else sub_max
+
+
+print('\n', '\bRECURSIVE MAX ELEMENT 2')
+list_1 = [1, 2, 3, 4, 10, 11, 12]
+tuple_1 = (1, 2, 3, 4, 10, 11, 12)
+
+print(recursive_max2(list_1))
+print(recursive_max2(tuple_1))
