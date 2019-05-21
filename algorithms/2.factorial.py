@@ -246,4 +246,6 @@ time_function(factorial_iter_memo)(45000)
 # ITERATIVE WITH MEMOIZATION: the most efficient one, can handle (depending on computer) 45000-50000 from scratch
 #                             in 1.5 secs (though more hangs the system or raises exception).
 #                             It's slightly slower than recursive memo, but can handle bigger leaps of n values.
-#                             TODO Test theory that it's a problem with searching the dict. Use search algorithm !
+#
+#                               This has nothing to do with searching the dict
+#                               => it's not being searched, the value is retrieved via it's key - complexity: O(1)
