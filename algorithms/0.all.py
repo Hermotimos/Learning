@@ -697,6 +697,23 @@ def selection_sort(list_):
     return list_
 
 
+def selection_sort2(unordered_list):
+    def find_smallest(list_):
+        smallest = list_[0]
+        smallest_index = 0
+        for e in range(1, len(list_)):
+            if list_[e] < smallest:
+                smallest = list_[e]
+                smallest_index = e
+        return smallest_index
+
+    ordered_list = []
+    for _ in range(len(unordered_list)):
+        smallest_ = find_smallest(unordered_list)
+        ordered_list.append(unordered_list.pop(smallest_))
+    return ordered_list
+
+
 # ////////////////// MERGE SORT //////////////////
 
 def merge_sort(list_):

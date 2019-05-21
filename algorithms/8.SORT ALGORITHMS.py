@@ -6,6 +6,7 @@
 
     Sources:
         https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/
+        Aditya Bhargava - Algorytmy. Ilustrowany przewodnik.
 """
 import random
 from time_function_decorator import time_function
@@ -167,6 +168,25 @@ def selection_sort(list_):
                 list_[index], list_[n] = list_[n], list_[index]
         index += 1
     return list_
+
+
+# From Aditya Bhargava - Algorytmy. Ilustrowany przewodnik.
+def selection_sort2(unordered_list):
+
+    def find_smallest(list_):
+        smallest = list_[0]
+        smallest_index = 0
+        for e in range(1, len(list_)):
+            if list_[e] < smallest:
+                smallest = list_[e]
+                smallest_index = e
+        return smallest_index
+
+    ordered_list = []
+    for _ in range(len(unordered_list)):
+        smallest_ = find_smallest(unordered_list)
+        ordered_list.append(unordered_list.pop(smallest_))
+    return ordered_list
 
 
 # WITH PRINTOUT
