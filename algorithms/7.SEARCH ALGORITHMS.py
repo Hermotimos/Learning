@@ -324,7 +324,6 @@ def bisection_search_efficient_1(iterable, searched, low=0, high=0):
         return False
     elif len(iterable[low:high]) == 1:
         return iterable[0] == searched
-
     else:
         middle = (low + high) // 2
         if iterable[middle] == searched:
