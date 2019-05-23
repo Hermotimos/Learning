@@ -300,11 +300,37 @@ print()
 
 
 # ----------------------------------------------------------------------------------------------------
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> QUICK SORT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# ----------------------------------------------------------------------------------------------------
+print('QUICK SORT')
+
+
+def quick_sort(list_):
+    if len(list_) < 2:
+        return list_
+    else:
+        pivot = list_[0]
+        less = [i for i in list_[1:] if i < pivot]
+        greater = [i for i in list_[1:] if i > pivot]
+        return quick_sort(less) + [pivot] + quick_sort(greater)
+
+
+list1 = [1, 2, 3, 1, 4, 3, 4, 3, 1]
+list2 = [(2, 'two'), (3, 'three'), (0, 'zero'), (4, 'four'), (1, 'one')]
+list3 = [17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3, 4, 3, 1, 17, 2, 73, 1, 34, 3, 54, 43, 11, 1, 2, 3, 1, 4, 3]
+print('\nlist1'), print(quick_sort(list1))
+print('\nlist2'), print(quick_sort(list2))
+print('\nlist3'), print(quick_sort(list3))
+print()
+
+
+# ----------------------------------------------------------------------------------------------------
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PERFORMANCE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 # ----------------------------------------------------------------------------------------------------
+print('--------------- PERGORMANCE ---------------')
 
 
-algorithms = [bubble_mit, bubble_sort_short, bubble_sort_shortest, selection_sort, merge_sort]
+algorithms = [bubble_mit, bubble_sort_short, bubble_sort_shortest, selection_sort, merge_sort, quick_sort]
 
 for alg in algorithms:
     list1 = [17, 2, 73, 1, 34, 3, 54, 17, 2, 73]                                            # len 10
@@ -322,54 +348,65 @@ for alg in algorithms:
 """
 CONCLUSION:
 
-1) bubble sort algorithms: all three versions perform the same
-2) Hierarchy of algorithms as per performance: 1.merge; 2.selection, 3.bubble (monkey sort is no solution at all!)
+1) Hierarchy of algorithms as per performance: 1.quick; 2.merge; 3.selection; 4.bubble
+2) bubble sort algorithms: all three versions perform almost the same
+3) monkey sort of course is completely inefficient.
 
 
 Exemplary performance times:
 ---------------------------------
 list length: 10
-Time for bubble_mit(): 0.0000179190 secs
+Time for bubble_mit(): 0.0000170650 secs
 list length: 100
-Time for bubble_mit(): 0.0025734970 secs
+Time for bubble_mit(): 0.0013789030 secs
 list length: 1000
-Time for bubble_mit(): 0.1592203170 secs
+Time for bubble_mit(): 0.1603156460 secs
 list length: 10000
-Time for bubble_mit(): 16.3996849690 secs
+Time for bubble_mit(): 16.5113194890 secs
 
 list length: 10
-Time for bubble_sort_short(): 0.0000162120 secs
+Time for bubble_sort_short(): 0.0000162130 secs
 list length: 100
-Time for bubble_sort_short(): 0.0014224210 secs
+Time for bubble_sort_short(): 0.0018666960 secs
 list length: 1000
-Time for bubble_sort_short(): 0.1649984540 secs
+Time for bubble_sort_short(): 0.1574986800 secs
 list length: 10000
-Time for bubble_sort_short(): 16.8835250990 secs
+Time for bubble_sort_short(): 16.7325608480 secs
 
 list length: 10
-Time for bubble_sort_shortest(): 0.0000287270 secs
+Time for bubble_sort_shortest(): 0.0000298650 secs
 list length: 100
-Time for bubble_sort_shortest(): 0.0016212340 secs
+Time for bubble_sort_shortest(): 0.0016368780 secs
 list length: 1000
-Time for bubble_sort_shortest(): 0.1689135930 secs
+Time for bubble_sort_shortest(): 0.2606456100 secs
 list length: 10000
-Time for bubble_sort_shortest(): 17.2415139040 secs
+Time for bubble_sort_shortest(): 16.9746885460 secs
 
 list length: 10
-Time for selection_sort(): 0.0000156430 secs
+Time for selection_sort(): 0.0000153590 secs
 list length: 100
-Time for selection_sort(): 0.0005645880 secs
+Time for selection_sort(): 0.0005668640 secs
 list length: 1000
-Time for selection_sort(): 0.0608656990 secs
+Time for selection_sort(): 0.0582939100 secs
 list length: 10000
-Time for selection_sort(): 6.1365184810 secs
+Time for selection_sort(): 5.8116967250 secs
 
 list length: 10
-Time for merge_sort(): 0.0000295800 secs
+Time for merge_sort(): 0.0000298650 secs
 list length: 100
-Time for merge_sort(): 0.0003726000 secs
+Time for merge_sort(): 0.0003760130 secs
 list length: 1000
-Time for merge_sort(): 0.0051583710 secs
+Time for merge_sort(): 0.0049737770 secs
 list length: 10000
-Time for merge_sort(): 0.0672087090 secs
+Time for merge_sort(): 0.0632207570 secs
+
+list length: 10
+Time for quick_sort(): 0.0000108080 secs
+list length: 100
+Time for quick_sort(): 0.0000301490 secs
+list length: 1000
+Time for quick_sort(): 0.0001877220 secs
+list length: 10000
+Time for quick_sort(): 0.0016840930 secs
+
 """

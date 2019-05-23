@@ -743,3 +743,15 @@ def merge_sort(list_):
         half1 = merge_sort(list_[:mid])
         half2 = merge_sort(list_[mid:])
         return merge(half1, half2)
+
+
+# ////////////////// QUICK SORT //////////////////
+
+def quick_sort(list_):
+    if len(list_) < 2:
+        return list_
+    else:
+        pivot = list_[0]
+        less = [i for i in list_[1:] if i < pivot]
+        greater = [i for i in list_[1:] if i > pivot]
+        return quick_sort(less) + [pivot] + quick_sort(greater)
