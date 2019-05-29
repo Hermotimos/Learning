@@ -48,6 +48,8 @@ graph1[30] = [28, 29]
 # ---------------------------------------------------------------------
 
 
+# BFS (breadth-first search)
+
 def check_if_path_exists(graph, starting_point, target_point):
     search_queue = deque()
     search_queue += graph[starting_point]
