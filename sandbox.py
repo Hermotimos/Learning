@@ -89,3 +89,6 @@
 #
 #
 # fizzbuzz()
+
+s = 'shshsh123'
+print(s[:-1] + 'x' + s[0:])

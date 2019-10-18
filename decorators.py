@@ -37,7 +37,10 @@ def beep_function():
 
 
 print(function_using_other_functions_as_arg(beep_function))
+print(function_using_other_functions_as_arg(beep_function).split()[0])
 print(function_using_other_functions_as_arg(beep_function).split()[1])
+print(function_using_other_functions_as_arg(beep_function).split()[2])
+print(function_using_other_functions_as_arg(beep_function).split()[3])
 print(function_using_other_functions_as_arg(function_using_other_functions_as_arg))
 print(function_using_other_functions_as_arg(print))
 print('#############################################################################################################')
@@ -89,7 +92,7 @@ print()
 # It's possible to assign reference to a function to a variable:
 variable = function_with_inner_functions(1)
 var2 = function_with_inner_functions(2)
-# Now whis variable is a function, specifically its equal to first_func
+# Now this variable is a function, it is equal to first_func
 variable()
 var2()
 
