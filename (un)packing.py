@@ -13,25 +13,30 @@
 
 
 print('UNPACKING TUPLE')
-tuple_1 = [1, 2, 3, 4]
+tuple_1 = (1, 2, 3, 4)
 print(tuple_1)
 print(*tuple_1)
 
 print('UNPACKING LIST')
-list_1 = (1, 2, 3, 4)
+list_1 = [1, 2, 3, 4]
 print(list_1)
 print(*list_1)
 
 print('UNPACKING DICT')
 dict_1 = {1: 'a', 2: 'b', 3: 'c', 4: 'd'}
+print('DICT 1:')
 print(dict_1)
 print(*dict_1)
+print(*dict_1.keys())
 print(*dict_1.values())
+print(*dict_1.items())
 dict_2 = {'a': 'orange', 'b': 'apple', 'c': 'kiwi', 'd': 'banana'}
+print('DICT 2:')
 print(dict_2)
 print(*dict_2)
+print(*dict_2.keys())
 print(*dict_2.values())
-
+print(*dict_2.items())
 
 print('##########################################################################')
 print('UNPACKING FOR FUNCTIONS')
@@ -50,7 +55,8 @@ forfun(*list_1)
 print('*dict accesses keys')
 forfun(*dict_1)
 forfun(*dict_2)
-print('**dict accesses values - but keys need to be str for values to be printed out without error')     # WHY?
+print('**dict accesses values - but keys need to be str for values to be printed out without errors, '
+      'so it only works for dict_2')
 # forfun(**dict_1)  # - generates error: TypeError: forfun() keywords must be strings
 forfun(**dict_2)
 
@@ -63,18 +69,18 @@ dict_1 = {1: 'a', 2: 'b', 3: 'c', 4: 'd'}
 dict_2 = {'a': 'orange', 'b': 'apple', 'c': 'kiwi', 'd': 'banana'}
 
 
-def sumup(*args):
+def sum_(*args):
     """Function packs all provided arguments into a tuple, so then it can iterate over them."""
-    summ = 0
+    sum_ = 0
     for a in args:
-        summ += a
-    return summ
+        sum_ += a
+    return sum_
 
 
-print(sumup(1, 4, 6, 7, 8, 11))
-print(sumup(*tuple_1))              # Here *tuple_1 unpack arguments, which are then packed again by sumup(*args)
-print(sumup(*dict_1))
-print(sumup(*tuple_1, *list_1, *dict_1))
+print(sum_(1, 4, 6, 7, 8, 11))
+print(sum_(*tuple_1))              # Here *tuple_1 unpack arguments, which are then packed again by sumup(*args)
+print(sum_(*dict_1))
+print(sum_(*tuple_1, *list_1, *dict_1))
 
 
 print('##########################################################################')
@@ -91,7 +97,7 @@ def unpack_dict(**kwargs):
 dict_citations = {'Malinowski, Bronislaw': ('3', '5', '17', '167'),
                   'Levi-Strauss, Claude': ('4', '9', '89', '134'),
                   'Geertz, Clifford': ('3', '5', '78', '89')}
-print(unpack_dict(**dict_citations))     # **dict_citations unpacks dict items
+print(unpack_dict(**dict_citations))     # **dict_citations unpacks dict items (keys and values)
 
 
 print('##########################################################################')
