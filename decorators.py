@@ -22,7 +22,7 @@
 #       FUNCTIONS AS FIRST-CLASS OBJECTS
 #       - like all objects in Py functions can be passed around and used as arguments
 #       - functions can be defined inside other functions
-#       - it's possible to return a function or it's value in the return of another function
+#       - it's possible to return a function or it's value in the return statement of another function
 
 
 # Function used as arg of another has to be used without parentheses ()
@@ -147,7 +147,7 @@ print('#########################################################################
 # MORE ON DECORATORS
 #        - decorators can be moved to separate file and then imported
 #        - to make decorators accept arguments from decorated functions => put *args, **kwargs as arguments of wrapper
-#        - to make decotators return values from decorated functions => make wrapper-function return them
+#        - to make decorators return values from decorated functions => make wrapper-function return them
 
 
 def do_twice(any_function):
@@ -185,8 +185,8 @@ print('#########################################################################
 
 
 # MORE ON DECORATORS
-#        - decorated functions are technically become wrappers inside decorating functions
-#        - their __name__ is becomes the name of the wrapper, which may be confusing
+#        - decorated functions technically become wrappers inside decorating functions
+#        - their __name__ becomes the name of the wrapper, which may be confusing
 #        - to preserve their names use in-built @functools.wraps decorator from 'functools' module
 
 print(call_my_name2.__name__)
@@ -222,8 +222,8 @@ def verify_decorator2(func):
             return value
         except AssertionError:
             print('Wrong value entered. Please try again.')
-            return wrapper()
-    return wrapper
+            return wrapper()                                  # ask_sex() becomes wrapper()
+    return wrapper                                            # so return wrapper() serves to call ask_sex() recursively
 
 
 @verify_decorator2
