@@ -2,93 +2,44 @@
     This is sandbox file for learning and exercise purposes.
 """
 
-# # y/n function for TV series database with recursion :)
-#
-#
-# def yesno_choice(text):
-#     try:
-#         assert text in ('y', 'n')
-#         return text
-#     except AssertionError:
-#         text = input("Please answer with one of the following keys: 'y' for 'yes' or 'n' for 'no': ")
-#         return yesno_choice(text)
-#
-#
-# text = input(" y or n ? ")
-# print(yesno_choice(text))
-#
-#
-#
-# # EXERCISE
-#
-# first_name = input("What is you first name? ")
-# first_name.capitalize()
-# print(first_name.isalpha())
-# if first_name[-1] == 'a':
-#     print("If your name is Polish, is seems you're a women.")
-# else:
-#     pass
-#
-# last_name = input("What is you last name? ")
-# last_name.capitalize()
-# print(last_name.isalpha())
-#
-# phone = input("What is you telephone number? ")
-# phone_digits_only = ""
-# for elem in phone:
-#     if elem.isdigit():
-#         phone_digits_only += elem
-# print(phone_digits_only)
-# print(phone_digits_only.isdigit())
-#
-# personal = first_name + ' ' + last_name + ' ' + phone_digits_only
-# print(personal)
-# print(len(personal))
-#
-# letters_cnt = 0
-# for elem in personal:
-#     if elem.isalpha():
-#         letters_cnt += 1
-# print(letters_cnt)
-#
-#
-#
-# # List comprehension: constructing a list in a shorter way
-#
-# words = 'The quick brown fox jumps over the lazy dog'.split()
-# print(words)
-# stuff = [[w.upper(), w.lower(), len(w)] for w in words]
-# for i in stuff:
-#     print(i)
+cube = -66
+guess = None
+for guess in range(abs(cube)+1):
+    if guess**3 >= abs(cube):
+        break
+if guess**3 != abs(cube):
+    print(cube, 'is not a perfect cube', guess)
+else:
+    if cube < 0:
+        guess = -guess
+    print(f'Cube root of {cube} is {guess}')
 
 
-# # SPOJ half of the half
-# values = open('sandbox_SPOJ_input').read().splitlines()
-# times = int(values[0])
-# words = tuple(str(v) for v in values[1:])
-#
-# for t in range(times):
-#     word = words[t]
-#     out = ''
-#     for letter in (word[i] for i in range(0, len(word) // 2, 2)):
-#         out += letter
-#     print(out)
-#
-#
-# # Fizz Buzz
-# def fizzbuzz():
-#     for n in range(1, 101):
-#         if n % 3 == 0 and n % 5 == 0:
-#             print('Fizz Buzz')
-#         elif n % 3 == 0:
-#             print('Fizz')
-#         elif n % 5 == 0:
-#             print('Buzz')
-#         else:
-#             print(n)
-#
-#
-# fizzbuzz()
+DATE_FORMAT = "%m/%d/%y %H:%M"
 
-s = 'shshsh123'
-print(s[:-1] + 'x' + s[0:])
+import datetime
+a = "7/2/10 2:00"
+# b = "2012"
+c = "2012-01"
+d = "2012-02-02"
+
+print(datetime.datetime.strptime(a, DATE_FORMAT))
+# print(datetime.datetime.strptime(b, DATE_FORMAT))
+print(datetime.datetime.strptime(c, DATE_FORMAT))
+print(datetime.datetime.strptime(d, DATE_FORMAT))
+
+
+import requests
+
+terms = {'q': 'flowers', 'inauthor': 'Keyes'}
+response = requests.get(
+    'https://www.googleapis.com/books/v1/volumes',
+    params=terms,
+)
+
+url = response.url.replace('&', '+')
+response = requests.get(url)
+print(response.url)
+print(response.text)
+
+
