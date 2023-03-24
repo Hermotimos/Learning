@@ -121,130 +121,6 @@ print(account._somestuff)
 
 
 
-"""
-INHERITANCE
------------
-
-Inheritance is a core concept in Object-Oriented Programming (OOP).
-Inheritance that allows a class to inherit the properties and methods of another class.
-    * the class that is inherited from: "parent" or "superclass",
-    * the class that inherits from it: "child" or "subclass".
-
-Inheritance allows subclasses to reuse code from their superclass, which:
-    1) reduces code duplication (DRY)
-    2) improves the maintainability of software
-
-Ad 1)
-By inheriting properties and methods from a superclass,
-a subclass can extend or modify its behavior without having to rewrite everything from scratch.
-
-"""
-
-
-# Code reuse - example
-# Both __init__ and __str__ methods are reused by subclasses
-
-class ParentClass:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
-
-    def __str__(self) -> str:
-        return f"({self.__class__.__name__}: {self.a}, {self.b})"
-
-    def do_its_thing(self):
-        raise NotImplementedError
-
-class ChildAdd(ParentClass):
-    def do_its_thing(self):
-        return self.a + self.b
-
-class ChildMultiply(ParentClass):
-    def do_its_thing(self):
-        return self.a * self.b
-
-
-a1 = ChildAdd(2, 5)
-a2 = ChildAdd(2, 6)
-print(a1.do_its_thing())
-print(a2.do_its_thing())
-
-
-b1 = ChildMultiply(2, 5)
-b2 = ChildMultiply(2, 6)
-print(b1.do_its_thing())
-print(b2.do_its_thing())
-
-print(a1)
-print(b1)
-
-"""
-Inheritance - hints
-    * every class (=type) in Python is a subclass of 'object'.
-    * if a subclass A should inherit only some methods from the superclass B,
-      this is a sign, that a third class C should be created and those methods
-      should be placed in that class C and then inherited by A and B.
-
-
-"""
-
-
-
-
-"""
-COMPOSITION
------------
-
-Composition is another fundamental concept in object-oriented programming
-that allows developers to reuse code and create more complex and flexible software systems.
-
-Composition is a programming technique where a class contains an instance of another class
-as one of its member variables. This means that the class is composed of other objects.
-
-Composition can be achieved in two ways:
-    1) class composition
-    2) passing objects to constructors
-
-"""
-
-
-# Ad 1) composition via class composition
-class Engine:
-    def start(self):
-        print("Engine started")
-
-class Car:
-    def __init__(self):
-        self.engine = Engine()          # class composition
-
-    def start(self):
-        self.engine.start()
-
-
-car = Car()
-car.start()  # output: Engine started
-
-
-
-# Ad 2) composition via passing objects to constructors
-class Engine:
-    def start(self):
-        print(f"Engine started.")
-
-class Car:
-    def __init__(self, engine: Engine):
-        self.engine = engine
-
-    def start(self):
-        self.engine.start()
-
-
-my_engine = Engine()
-my_car = Car(engine=my_engine)
-my_car.start()
-
-
-
 
 
 """
@@ -322,3 +198,145 @@ class Calculator:
 calculator = Calculator()
 print(calculator.add(2, 3))
 print(calculator.add(2, 3, 4))
+
+
+
+
+
+
+
+"""
+INHERITANCE
+-----------
+
+Inheritance is a core concept in Object-Oriented Programming (OOP).
+Inheritance that allows a class to inherit the properties and methods of another class.
+    * the class that is inherited from: "parent" or "superclass",
+    * the class that inherits from it: "child" or "subclass".
+
+Inheritance allows subclasses to reuse code from their superclass, which:
+    1) reduces code duplication (DRY)
+    2) improves the maintainability of software
+
+Ad 1)
+By inheriting properties and methods from a superclass,
+a subclass can extend or modify its behavior without having to rewrite everything from scratch.
+
+"""
+
+
+# Code reuse - example
+# Both __init__ and __str__ methods are reused by subclasses
+
+class ParentClass:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def __str__(self) -> str:
+        return f"({self.__class__.__name__}: {self.a}, {self.b})"
+
+    def do_its_thing(self):
+        raise NotImplementedError
+
+class ChildAdd(ParentClass):
+    def do_its_thing(self):
+        return self.a + self.b
+
+class ChildMultiply(ParentClass):
+    def do_its_thing(self):
+        return self.a * self.b
+
+
+a1 = ChildAdd(2, 5)
+a2 = ChildAdd(2, 6)
+print(a1.do_its_thing())
+print(a2.do_its_thing())
+
+
+b1 = ChildMultiply(2, 5)
+b2 = ChildMultiply(2, 6)
+print(b1.do_its_thing())
+print(b2.do_its_thing())
+
+print(a1)
+print(b1)
+
+"""
+Inheritance - hints
+
+    * every class (=type) in Python is a subclass of 'object'.
+
+    * if a subclass A should inherit only some methods from the superclass B,
+      this is a sign, that a third class C should be created and those methods
+      should be placed in that class C and then inherited by A and B.
+
+    * use abstract base classes to create interfaces
+      and then inherit from them to create concrete classes
+      (this reduces coupling, whereas inheritance from concrete superclasses increases it)
+      [INFO: Coupling and Cohesion explained in 'oop3c_concepts_MORE.py']
+
+"""
+
+
+
+
+
+
+"""
+COMPOSITION
+-----------
+
+Composition is another fundamental concept in object-oriented programming
+that allows developers to reuse code and create more complex and flexible software systems.
+
+Composition is a programming technique where a class contains an instance of another class
+as one of its member variables.
+This means that the class is possibly composed of other classes.
+
+Composition can be achieved in two ways:
+    1) class composition
+    2) passing objects to constructors
+
+"""
+
+
+# Ad 1) composition via class composition
+class Engine:
+    def start(self):
+        print("Engine started")
+
+class Car:
+    def __init__(self):
+        self.engine = Engine()          # class composition
+
+    def start(self):
+        self.engine.start()
+
+
+car = Car()
+car.start()  # output: Engine started
+
+
+
+# Ad 2) composition via passing objects to constructors
+class Engine:
+    def start(self):
+        print(f"Engine started.")
+
+class Car:
+    def __init__(self, engine: Engine):
+        self.engine = engine
+
+    def start(self):
+        self.engine.start()
+
+
+my_engine = Engine()
+my_car = Car(engine=my_engine)
+my_car.start()
+
+
+
+
+
