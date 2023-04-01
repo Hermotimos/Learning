@@ -4,12 +4,13 @@ Key concepts in OOP:
 1) Abstraction
 2) Encapsulation
 3) Inheritance
-
-also:
 4) Composition
 5) Polymorphism
 
 """
+
+
+
 
 
 """
@@ -23,8 +24,8 @@ without understanding or even thinking about all the hidden background/back-end 
 Abstraction is achieved through various mechanisms:
     * Encapsulation (organizing code into classes)
     * Inheritance   (reusing classes)
-    * Polymorphism  (objects that are different can be used in a unified way)
     * Composition   (objects can be composed of other objects)
+    * Polymorphism  (objects that are different can be used in a unified way)
 
 Abstraction is essential in programming because it allows developers to manage complexity
 and build systems that are easy to use and understand.
@@ -54,6 +55,12 @@ class Shape(ABC):
         pass
 
 
+
+
+
+
+
+
 """
 ENCAPSULATION
 -------------
@@ -71,10 +78,12 @@ but it provides conventions for indicating the level of visibility of a class me
     * Public members:
         members without underscores before their names,
         can be accessed from anywhere.
+
     * Protected members:
         members with a single underscore (_) before their names,
         can only be accessed from within the class or its subclasses;
         but no error raised otherwise.
+
     * Private members:
         members that have double underscores (__) before their names,
         can only be accessed from within the class;
@@ -115,7 +124,7 @@ try:
 except AttributeError:
     print("Raised exception: AttributeError: 'BankAccount' object has no attribute '__account_number'")
 print(account._somestuff)
-
+print()
 
 
 
@@ -155,7 +164,6 @@ By using polymorphism, you can create code that works with different types of ob
 as long as they implement the same interface or inherit from the same base class.
 This makes it easier to write reusable code and to write code that can adapt to changing requirements over time.
 
-
 """
 
 # Method overriding (runtime polymorphism)
@@ -181,7 +189,7 @@ a1 = ChildAdd(2, 5)
 print(a1.do_its_thing())
 b1 = ChildMultiply(2, 5)
 print(b1.do_its_thing())
-
+print()
 
 
 
@@ -198,6 +206,15 @@ class Calculator:
 calculator = Calculator()
 print(calculator.add(2, 3))
 print(calculator.add(2, 3, 4))
+
+
+# Another example of sth like method ocerloading
+# type() function either returns object's type, or a new class/type,
+# epending on the list of arguments
+print('SomeString 1:', type('SomeString'))
+print('SomeString 2:', type('SomeString', (int,), {}))
+print()
+
 
 
 
@@ -249,18 +266,15 @@ class ChildMultiply(ParentClass):
 
 
 a1 = ChildAdd(2, 5)
-a2 = ChildAdd(2, 6)
 print(a1.do_its_thing())
-print(a2.do_its_thing())
+print(a1)
 
 
 b1 = ChildMultiply(2, 5)
-b2 = ChildMultiply(2, 6)
 print(b1.do_its_thing())
-print(b2.do_its_thing())
-
-print(a1)
 print(b1)
+
+print()
 
 """
 Inheritance - hints
@@ -277,6 +291,9 @@ Inheritance - hints
       [INFO: Coupling and Cohesion explained in 'oop3c_concepts_MORE.py']
 
 """
+
+
+
 
 
 

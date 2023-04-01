@@ -1,6 +1,4 @@
 # TODO: dependency injection: https://youtu.be/-ghD-XjjO2g?t=622
-# TODO: abstract class (ABC), abstract methods
-
 
 
 # -----------------------------------------------------------------------------

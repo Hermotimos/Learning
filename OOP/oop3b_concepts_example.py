@@ -33,11 +33,9 @@ and mixed responsibilities.
 
 """
 
-
 @dataclass
 class HourlyEmployee:
     """Employee that's paid based on number of worked hours."""
-
     name: str
     id: int
     commission: float = 100
@@ -57,7 +55,6 @@ class HourlyEmployee:
 @dataclass
 class SalariedEmployee:
     """Employee that's paid based on a fixed monthly salary."""
-
     name: str
     id: int
     commission: float = 100
@@ -75,7 +72,6 @@ class SalariedEmployee:
 @dataclass
 class Freelancer:
     """Freelancer that's paid based on number of worked hours."""
-
     name: str
     id: int
     commission: float = 100
@@ -104,6 +100,9 @@ main1()
 
 
 
+
+
+
 """
 [2]
 
@@ -112,8 +111,7 @@ The problem is that whenever we want to extend the program,
 ex. by adding another type of payment modality like yearly bonus,
 we get a cascade of new classes and inheritance tree explodes.
 
-Adding bonus modality to a program designed below with Inheritance,
-would require:
+Adding bonus modality to a program designed as below with Inheritance, requires:
     HourlyEmployeeWithYearlyBonus(HourlyEmployee)
     SalariedEmployeeWithYearlyBonus(SalariedEmployee)
     FreelancerWithYearlyBonus(Freelancer)
@@ -125,11 +123,9 @@ So in this example pure inheritance doesn't solve the problem of code repetition
 
 """
 
-
 @dataclass
 class Employee(ABC):
     """Basic representation of an employee at the company."""
-
     name: str
     id: int
 
@@ -141,7 +137,6 @@ class Employee(ABC):
 @dataclass
 class HourlyEmployee(Employee):
     """Employee that's paid based on number of worked hours."""
-
     pay_rate: float
     hours_worked: int = 0
     employer_cost: float = 1000
@@ -153,7 +148,6 @@ class HourlyEmployee(Employee):
 @dataclass
 class SalariedEmployee(Employee):
     """Employee that's paid based on a fixed monthly salary."""
-
     monthly_salary: float
     percentage: float = 1
 
@@ -164,7 +158,6 @@ class SalariedEmployee(Employee):
 @dataclass
 class Freelancer(Employee):
     """Freelancer that's paid based on number of worked hours."""
-
     pay_rate: float
     hours_worked: int = 0
     vat_number: str = ""
@@ -176,7 +169,6 @@ class Freelancer(Employee):
 @dataclass
 class SalariedEmployeeWithCommission(SalariedEmployee):
     """Employee that's paid based on a fixed monthly salary and that gets a commission."""
-
     commission: float = 100
     contracts_landed: float = 0
 
@@ -187,7 +179,6 @@ class SalariedEmployeeWithCommission(SalariedEmployee):
 @dataclass
 class HourlyEmployeeWithCommission(HourlyEmployee):
     """Employee that's paid based on number of worked hours and that gets a commission."""
-
     commission: float = 100
     contracts_landed: float = 0
 
@@ -198,7 +189,6 @@ class HourlyEmployeeWithCommission(HourlyEmployee):
 @dataclass
 class FreelancerWithCommission(Freelancer):
     """Freelancer that's paid based on number of worked hours and that gets a commission."""
-
     commission: float = 100
     contracts_landed: float = 0
 
@@ -220,15 +210,18 @@ main2()
 
 
 
+
+
+
+
 """
 [3]
 
-With Composition + Inheritance used only for creating interfaces
-(abstract base classes with purely abstract methods),
-we get a program that is easily extendable
+With Composition + Inheritance (inheritance used only for creating interfaces,
+i.e. abstract base classes with purely abstract methods),
+we get a program that is easily extendable.
 
 """
-
 
 class Contract(ABC):
     """Represents a contract and a payment process for a particular employeee."""
@@ -241,7 +234,6 @@ class Contract(ABC):
 @dataclass
 class HourlyContract(Contract):
     """Contract type for an employee being paid on an hourly basis."""
-
     pay_rate: float
     hours_worked: int = 0
     employer_cost: float = 1000
@@ -253,7 +245,6 @@ class HourlyContract(Contract):
 @dataclass
 class SalariedContract(Contract):
     """Contract type for an employee being paid a monthly salary."""
-
     monthly_salary: float
     percentage: float = 1
 
@@ -264,7 +255,6 @@ class SalariedContract(Contract):
 @dataclass
 class FreelancerContract(Contract):
     """Contract type for a freelancer (paid on an hourly basis)."""
-
     pay_rate: float
     hours_worked: int = 0
     vat_number: str = ""
@@ -288,7 +278,6 @@ class Commission(ABC):
 @dataclass
 class ContractCommission(Commission):
     """Represents a commission payment process based on the number of contracts landed."""
-
     commission: float = 100
     contracts_landed: int = 0
 
@@ -303,11 +292,10 @@ class ContractCommission(Commission):
 @dataclass
 class Employee:
     """Basic representation of an employee at the company."""
-
     name: str
     id: int
-    contract: Contract
-    commission: Optional[Commission] = None
+    contract: Contract                              # <--- composition here !
+    commission: Optional[Commission] = None         # <--- composition here !
 
     def compute_pay(self) -> float:
         """Compute how much the employee should be paid."""
@@ -332,9 +320,7 @@ def main3() -> None:
 
     sarah_contract = SalariedContract(monthly_salary=5000)
     sarah_commission = ContractCommission(contracts_landed=10)
-    sarah = Employee(
-        name="Sarah", id=47832, contract=sarah_contract, commission=sarah_commission
-    )
+    sarah = Employee(name="Sarah", id=47832, contract=sarah_contract, commission=sarah_commission)
     print(
         f"{sarah.name} landed {sarah_commission.contracts_landed} contracts "
         f"and earned ${sarah.compute_pay()}."

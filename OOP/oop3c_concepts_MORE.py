@@ -18,13 +18,12 @@ Single Responsibility Principle aims at creating highly cohesive classes.
     * If our module performs one task and nothing else or has a clear purpose,
         then it has high cohesion.
     * If our module tries to encapsulate more than one purpose or has an unclear purpose,
-        then it  has low cohesion.
+        then it has low cohesion.
 
 Advantages of high cohesion:
-    * Reduced module complexity, better understandability.
-    * Increased system maintainability, because changes in one module
-        require fewer changes in other modules.
-    * Increased module reusability, because application developers will find the component
+    * Reduced module complexity: better understandability.
+    * Increased system maintainability: changes in one module require fewer changes in others.
+    * Increased module reusability: application developers will find the component
         they need more easily among the cohesive set of operations provided by the module.
 
 
@@ -64,7 +63,6 @@ Disadvantages of tightly coupling
     2) Assembly of modules might require more effort or time due to the increased inter-module dependency.
     3) A particular module might be harder to reuse or test because dependent modules must be included.
 
-
 """
 
 
@@ -92,7 +90,7 @@ Cohesion: While designing we should strive for high cohesion. Ex: cohesive compo
 Coupling: While designing we should strive for low coupling. Ex: dependency between modules should be low.
 
 
-Cohesion: is a natural extension of data hiding,
+Cohesion: is a natural extension of data hiding
 Coupling: making private fields, private methods and non public classes provides loose coupling
 
 
