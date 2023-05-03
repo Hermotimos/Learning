@@ -29,9 +29,6 @@ Abstraction is achieved through various mechanisms:
 
 Abstraction is essential in programming because it allows developers to manage complexity
 and build systems that are easy to use and understand.
-By hiding the details of a system, programmers can focus on designing the essential features
-and providing a clean and intuitive interface for users to interact with.
-
 
 Example in Python: abstraction can be achieved through the use of abstract classes and interfaces,
 which are defined using the 'abc' module:
@@ -81,8 +78,8 @@ but it provides conventions for indicating the level of visibility of a class me
 
     * Protected members:
         members with a single underscore (_) before their names,
-        can only be accessed from within the class or its subclasses;
-        but no error raised otherwise.
+        should only be accessed from within the class or its subclasses;
+        but this is just a hint to other programmers, no error raised otherwise.
 
     * Private members:
         members that have double underscores (__) before their names,
@@ -227,7 +224,7 @@ INHERITANCE
 -----------
 
 Inheritance is a core concept in Object-Oriented Programming (OOP).
-Inheritance that allows a class to inherit the properties and methods of another class.
+Inheritance allows a class to inherit the properties and methods of another class.
     * the class that is inherited from: "parent" or "superclass",
     * the class that inherits from it: "child" or "subclass".
 

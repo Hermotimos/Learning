@@ -78,3 +78,76 @@ print(summed)
 my_letters = ('a', 'b', 'c', 'c', 'c', 'c', 'd', 'a', 'g', 'b', 'b', 'b')
 concatenated = reduce(lambda a, b: a + b, my_letters)
 print(concatenated)
+
+
+
+
+
+
+
+
+
+# lambda
+
+func = lambda a, b: f"{a} / {b}"
+print(func(1, 2))
+
+
+
+#  map
+alist1 = ['aa', 'bb', 'cc']
+print(list(map(str.upper, alist1)))
+print(list(map(str.title, alist1)))
+print(list(map(str.capitalize, alist1)))
+
+alist2 = [1.2, 2.5, 3.6]
+print(list(map(round, alist2)))
+
+
+zipped = list(map(lambda a, b: (a, b), alist1, alist2))
+print(zipped)
+
+
+def myzip(a, b):
+    return a, b
+
+
+zipped = list(map(myzip, alist1, alist2))
+print(zipped)
+
+
+# filter
+
+dromes = ("demigod", "rewire", "madam", "freer", "anutforajaroftuna", "kiosk")
+print(list(filter(lambda a: a == a[::-1], dromes)))
+
+
+# reduce
+
+from functools import reduce
+
+
+def mysum(a, b):
+    return a + b
+
+
+numbers = [3, 4, 6, 9, 34, 12]
+print(reduce(mysum, numbers))
+
+
+def anytrue(a, b) -> bool:
+    return bool(a or b)
+
+
+def alltrue(a, b) -> bool:
+    return bool(a and b)
+
+
+vals = [0, 0, 0, 1, 1, 0]
+
+print(reduce(anytrue, vals))
+print(reduce(alltrue, vals))
+
+print(reduce(lambda a, b: bool(a or b), vals))
+print(reduce(lambda a, b: bool(a and b), vals))
+

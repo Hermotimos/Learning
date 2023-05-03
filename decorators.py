@@ -233,3 +233,83 @@ def ask_sex():
 
 
 print(ask_sex())
+
+
+
+
+
+
+
+
+
+
+# closure
+
+def enclosing_func(msg):
+    def nested_func():
+        return msg + ' nested'
+    return nested_func
+
+afunc = enclosing_func('Hello')
+print(afunc)
+print(afunc())
+func1 = enclosing_func('1')
+func2 = enclosing_func('2')
+func3 = enclosing_func('3')
+func4 = enclosing_func('4')
+
+print(func4())
+
+
+# decorator
+
+def enclosing_func(func):
+    def nested_func(arg):
+        res = func(arg)
+        return res + ' decorated'
+    return nested_func
+
+
+def get_name(name: str):
+    return name.title()
+
+
+print(enclosing_func(get_name)('Bill'))
+
+
+@enclosing_func
+def get_name(name: str):
+    return name.title()
+
+
+print(get_name('Bill'))
+
+
+#  =============================
+
+
+def decorator_with_params(addition):
+    def inner(func):
+        def wrapper(arg):
+            res = func(arg)
+            return res + addition
+        return wrapper
+
+    return inner
+
+
+def get_name(name: str):
+    return name.title()
+
+
+print(decorator_with_params('add')(get_name)('bill'))
+
+
+@decorator_with_params('the addition')
+def get_name(name: str):
+    return name.title()
+
+
+print(get_name('bill'))
+
+
